@@ -1,0 +1,44 @@
+/* Centraliza o texto dentro dos elementos com a classe .App */
+.App {
+  text-align: center;
+}
+
+/* Define a altura do logo e desativa eventos de ponteiro */
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+/* Animação do logo quando a preferência de movimento reduzido não é definida */
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+/* Estiliza o cabeçalho da aplicação */
+.App-header {
+  background-color: #282c34; /* Cor de fundo escura */
+  min-height: 100vh; /* Ocupa a altura total da janela de visualização */
+  display: flex; /* Usa Flexbox para organizar os itens */
+  flex-direction: column; /* Organiza os itens em uma coluna */
+  align-items: center; /* Centraliza os itens horizontalmente */
+  justify-content: center; /* Centraliza os itens verticalmente */
+  font-size: calc(10px + 2vmin); /* Ajusta o tamanho da fonte com base no tamanho da viewport */
+  color: white; /* Define a cor do texto como branco */
+}
+
+/* Estiliza os links dentro da aplicação */
+.App-link {
+  color: #61dafb; /* Define a cor do link */
+}
+
+/* Animação de rotação contínua do logo */
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg); /* Começa sem rotação */
+  }
+  to {
+    transform: rotate(360deg); /* Completa uma rotação de 360 graus */
+  }
+}
