@@ -1,0 +1,147 @@
+/* OneLevel.css */
+
+.level-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #282c34; /* Cor de fundo para um contraste agradável */
+}
+
+.level-container h1 {
+    font-family: 'Skranji', cursive;
+    letter-spacing: 2px;
+    font-size: 2.5rem; /* Tamanho da fonte do título */
+    margin-bottom: 20px; /* Espaçamento abaixo do título */
+    color: #ffb000; /* Cor do título para destacá-lo */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para melhor legibilidade */
+}
+
+.game-info {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #fff; /* Texto claro para visibilidade sobre fundo escuro */
+}
+
+.game-area {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha ao topo */
+    gap: 5px; /* Espaçamento entre a grade e a lista */
+    width: 100%;
+    max-width: 100%; /* Ajusta a largura para preencher o container disponível */
+    overflow-x: auto; /* Permite rolar horizontalmente se os itens excederem a largura */
+}
+
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 80px); /* 10 colunas para 10 itens por fileira */
+    grid-auto-rows: 80px; /* Define a altura das linhas */
+    gap: 4px; /* Espaçamento entre os itens */
+    background-color: #f5f5f5; /* Fundo claro para contraste com os itens */
+    padding: 10px;
+    border-radius: 10px; /* Arredondar os cantos da grade */
+    width: fit-content; /* Ajusta a largura da grid conforme o conteúdo */
+    max-width: calc(80px * 10 + 4px * 9 + 20px); /* Ajusta a largura máxima da grid */
+    box-sizing: border-box; /* Inclui padding e border no cálculo da largura e altura */
+    margin-right: 20px; /* Adiciona espaço entre a grid e a borda da página */
+}
+
+.item {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    background-color: #f0f0f0;
+    border: 2px solid #ddd;
+    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+    border-radius: 5px; /* Arredondar os cantos dos itens */
+}
+
+.item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.item:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        inset 0px 0px 8px rgba(0, 0, 0, 0.5),
+        0px 4px 10px rgba(0, 0, 0, 0.3);
+    border-color: #ffb000; /* Destacar item encontrado com uma cor */
+}
+
+.item-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha à esquerda */
+    width: 250px; /* Largura da lista de itens */
+    background-color: #f5f5f5; /* Fundo claro para a lista */
+    padding: 10px;
+    border-radius: 10px; /* Arredondar os cantos da lista */
+    position: relative; /* Necessário para o posicionamento absoluto dos elementos */
+}
+
+.item-list h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #333;
+}
+
+.item-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.item-list li {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+    text-shadow: 0 1px 3px #000;
+}
+
+.item-list .status {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+}
+
+.item-list li.found {
+    text-decoration: line-through; /* Risca itens encontrados */
+    color: #666; /* Cor mais clara para itens encontrados */
+}
+
+.found {
+    opacity: 0.5; /* Visualmente marcar itens encontrados */
+}
+
+.game-over-message {
+    text-align: center;
+    margin-top: 20px;
+    color: #fff; /* Texto claro para visibilidade sobre fundo escuro */
+}
+
+.game-over-message button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ffb000; /* Cor de fundo dos botões */
+    border: none;
+    border-radius: 5px; /* Arredondar os cantos dos botões */
+    color: #fff; /* Texto claro nos botões */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transição suave ao passar o mouse */
+}
+
+.game-over-message button:hover {
+    background-color: #ff9c00; /* Cor mais escura ao passar o mouse */
+}
