@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BackgroundVideo from '../../../Utils/BackgroundVideo/BackgroundVideo';
+import clickSound from '../../../../assets/sounds/click.mp3'; // Ajuste o caminho conforme necessário
 import './OneLevel.css';
 
 const OneLevel = () => {
+    const navigate = useNavigate();
     const [items, setItems] = useState([]);
     const [itemsToFind, setItemsToFind] = useState([]);
     const [foundItems, setFoundItems] = useState([]);
@@ -60,6 +63,32 @@ const OneLevel = () => {
         setGameStatus('playing');
     };
 
+    const goToMenu = () => {
+        playSound();
+        navigate(-1); // Ajuste o caminho conforme necessário
+    };
+
+    const goToNextLevel = () => {
+        playSound();
+        navigate('/fist-mode-level/2'); // Ajuste o caminho conforme necessário
+    };
+
+    const formatTime = (time) => {
+        const minutes = Math.floor(time / 60).toString().padStart(2, '0');
+        const seconds = (time % 60).toString().padStart(2, '0');
+        return `${minutes}:${seconds}`;
+    };
+
+    const playSound = () => {
+        const audio = new Audio(clickSound);
+        audio.play();
+    };
+
+    const handleBackClick = () => {
+        playSound();
+        navigate(-1); // Volta para a página anterior
+    };
+
     return (
         <div className="level-container">
             <BackgroundVideo />
@@ -82,10 +111,10 @@ const OneLevel = () => {
                 {/* Lista de Itens a Serem Encontrados com Status */}
                 <div className="item-list">
                     <div className="status">
-                        <p>Tempo restante: {timeRemaining}s</p>
-                        <p>Itens encontrados: {foundItems.length}/{itemsToFind.length}</p>
+                        <p>{formatTime(timeRemaining)}</p>
+                        <p>Itens encontrados: </p>
+                        <p>{foundItems.length}/{itemsToFind.length}</p>
                     </div>
-                    <h2>Encontre:</h2>
                     <ul>
                         {itemsToFind.map((item, index) => (
                             <li key={index} className={foundItems.includes(item) ? 'found' : ''}>
@@ -101,15 +130,17 @@ const OneLevel = () => {
                 <div className="game-over-message">
                     {gameStatus === 'won' ? (
                         <>
-                            <h2>Parabéns!</h2>
+                            <h2>PARABÉNS!</h2>
                             <p>Você encontrou todos os itens.</p>
                         </>
                     ) : (
                         <>
-                            <h2>Que pena!</h2>
+                            <h2>QUE PENA!</h2>
                             <p>Você não encontrou todos os itens.</p>
                         </>
                     )}
+                    <button onClick={goToMenu}>Menu</button>
+                    <button onClick={goToNextLevel}>Próximo Nível</button>
                     <button onClick={restartLevel}>Reiniciar</button>
                 </div>
             )}
