@@ -11,6 +11,8 @@ const OneLevel = () => {
     const [foundItems, setFoundItems] = useState([]);
     const [timeRemaining, setTimeRemaining] = useState(60);
     const [gameStatus, setGameStatus] = useState('playing');
+    const [isPaused, setIsPaused] = useState(false); // Novo estado para pausa
+    const [hintItem, setHintItem] = useState(null); // Novo estado para dica
 
     // Função para importar todas as imagens da pasta
     const importAll = (r) => {
@@ -19,7 +21,7 @@ const OneLevel = () => {
             image: r(fileName) // Caminho da imagem
         }));
     };
-    
+
     // Importar todas as imagens da pasta
     const allItems = importAll(require.context('../../../../assets/itensFistMode', false, /\.(png|jpe?g|svg)$/));
 
@@ -37,7 +39,8 @@ const OneLevel = () => {
     }, []);
 
     useEffect(() => {
-        if (gameStatus === 'playing' && timeRemaining > 0) {
+        if (gameStatus === 'playing' && timeRemaining > 0 && !isPaused) {
+            
             const timer = setInterval(() => {
                 setTimeRemaining((prevTime) => prevTime - 1);
             }, 1000);
@@ -45,7 +48,7 @@ const OneLevel = () => {
         } else if (timeRemaining === 0) {
             setGameStatus('lost');
         }
-    }, [timeRemaining, gameStatus]);
+    }, [timeRemaining, gameStatus, isPaused]);
 
     const handleItemClick = (item) => {
         if (itemsToFind.includes(item) && !foundItems.includes(item)) {
@@ -61,6 +64,8 @@ const OneLevel = () => {
         setFoundItems([]);
         setTimeRemaining(60);
         setGameStatus('playing');
+        setIsPaused(false); // Resetar o estado de pausa
+        setHintItem(null); // Resetar a dica
     };
 
     const goToMenu = () => {
@@ -89,6 +94,25 @@ const OneLevel = () => {
         navigate(-1); // Volta para a página anterior
     };
 
+    const handlePause = () => {
+        playSound();
+        setIsPaused(true);
+    };
+
+    const handleContinue = () => {
+        playSound();
+        setIsPaused(false);
+    };
+
+
+    const handleHint = () => {
+        if (itemsToFind.length > 0) {
+            const randomItem = itemsToFind[Math.floor(Math.random() * itemsToFind.length)];
+            setHintItem(randomItem);
+            setTimeout(() => setHintItem(null), 3000); // Resetar dica após 3 segundos
+        }
+    };
+
     return (
         <div className="level-container">
             <BackgroundVideo />
@@ -100,7 +124,7 @@ const OneLevel = () => {
                     {items.map((item, index) => (
                         <div
                             key={index}
-                            className={`item ${foundItems.includes(item) ? 'found' : ''}`}
+                            className={`item ${foundItems.includes(item) ? 'found' : ''} ${hintItem === item ? 'hint' : ''}`}
                             onClick={() => handleItemClick(item)}
                         >
                             <img src={item.image} alt={item.name} />
@@ -125,23 +149,42 @@ const OneLevel = () => {
                 </div>
             </div>
 
+            {/* Botões de Controle */}
+            <div className="controls">
+                <button className="btn-control" onClick={handlePause}>||</button>
+                <button className="btn-control" onClick={handleHint}>?</button>
+            </div>
+
             {/* Mensagem de Fim de Jogo */}
             {gameStatus !== 'playing' && (
-                <div className="game-over-message">
-                    {gameStatus === 'won' ? (
-                        <>
-                            <h2>PARABÉNS!</h2>
-                            <p>Você encontrou todos os itens.</p>
-                        </>
-                    ) : (
-                        <>
-                            <h2>QUE PENA!</h2>
-                            <p>Você não encontrou todos os itens.</p>
-                        </>
-                    )}
-                    <button onClick={goToMenu}>Menu</button>
-                    <button onClick={goToNextLevel}>Próximo Nível</button>
-                    <button onClick={restartLevel}>Reiniciar</button>
+                <div className="pause-overlay">
+                    <div className="game-over-message">
+                        {gameStatus === 'won' ? (
+                            <>
+                                <h2>PARABÉNS!</h2>
+                                <p>Você encontrou todos os itens.</p>
+                            </>
+                        ) : (
+                            <>
+                                <h2>QUE PENA!</h2>
+                                <p>Você não encontrou todos os itens.</p>
+                            </>
+                        )}
+                        <button onClick={goToMenu}>Menu</button>
+                        <button onClick={goToNextLevel}>Próximo Nível</button>
+                        <button onClick={restartLevel}>Reiniciar</button>
+                    </div>
+                </div>
+            )}
+
+            {/* Sobreposição de Pausa */}
+            {isPaused && (
+                <div className="pause-overlay">
+                    <div className="pause-message">
+                        <h2>Jogo Pausado</h2>
+                        <button onClick={handleContinue}>Continuar</button>
+                        <button onClick={goToMenu}>Desistir</button>
+                    </div>
                 </div>
             )}
         </div>
