@@ -1,0 +1,45 @@
+.mode1-container {
+    text-align: center;
+    padding: 1px; /* Espaçamento ao redor do grid */
+}
+
+.mode1-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas na grade */
+    grid-gap: 2px; /* Reduzi o espaço entre os itens para combinar com o tamanho reduzido */
+    justify-content: center;
+    align-items: center;
+}
+
+.mode1-item-container {
+    position: relative;
+    width: 60px; /* Largura reduzida do item */
+    height: 60px; /* Altura reduzida do item */
+    background-color: white;
+    border-top: 3px solid #ffb000; /* Borda ligeiramente reduzida */
+    border-left: 3px solid #ffb000;
+    border-right: 3px solid #ffb000;
+    border-bottom: 3px solid #ffb000;
+    box-shadow: 
+        inset 0px 0px 5px rgba(0, 0, 0, 0.4),
+        0px 3px 8px rgba(0, 0, 0, 0.2); /* Sombra ajustada para o tamanho menor */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4px; /* Margem ajustada */
+    transition: border-color 0.5s ease; /* Transição suave para a cor da borda */
+}
+
+.mode1-item-container.highlighted-green {
+    border-color: green;
+}
+
+.mode1-item-container.highlighted-red {
+    border-color: red;
+}
+
+.mode1-item-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Garante que a imagem se ajusta ao container sem distorção */
+}

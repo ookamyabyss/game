@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import BackgroundVideo from '../../Utils/BackgroundVideo/BackgroundVideo';
 import BackButton from '../../Utils/BackButton/BackButton';
-import FistModeCarousel from '../../Utils/FistModeCarousel/FistModeCarousel';
-import './FistMode.css'; 
+import FirstModeCarousel from '../../Utils/FirstModeCarousel/FirstModeCarousel';
+import './FirstMode.css'; 
 
-const FistMode = () => {
+const FirstMode = () => {
     const [currentStep, setCurrentStep] = useState(1);
 
     const handleNext = () => {
@@ -29,7 +29,7 @@ const FistMode = () => {
     return (
         <div className="fist-mode">
             <BackgroundVideo />
-            <FistModeCarousel 
+            <FirstModeCarousel 
                 currentStep={currentStep}
                 handleNext={handleNext}
                 handlePrevious={handlePrevious}
@@ -41,4 +41,4 @@ const FistMode = () => {
     );
 };
 
-export default FistMode;
+export default FirstMode;

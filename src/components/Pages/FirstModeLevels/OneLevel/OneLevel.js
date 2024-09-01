@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BackgroundVideo from '../../../Utils/BackgroundVideo/BackgroundVideo';
 import clickSound from '../../../../assets/sounds/click.mp3'; // Ajuste o caminho conforme necessário
+import itemFoundSound from '../../../../assets/sounds/success.mp3'; // Novo som para item encontrado
 import './OneLevel.css';
 
 const OneLevel = () => {
@@ -40,7 +41,6 @@ const OneLevel = () => {
 
     useEffect(() => {
         if (gameStatus === 'playing' && timeRemaining > 0 && !isPaused) {
-            
             const timer = setInterval(() => {
                 setTimeRemaining((prevTime) => prevTime - 1);
             }, 1000);
@@ -53,11 +53,21 @@ const OneLevel = () => {
     const handleItemClick = (item) => {
         if (itemsToFind.includes(item) && !foundItems.includes(item)) {
             setFoundItems([...foundItems, item]);
+            playItemFoundSound(); // Tocar som quando item encontrado
 
             if (foundItems.length + 1 === itemsToFind.length) {
                 setGameStatus('won');
             }
         }
+    };
+
+    const playSound = (soundFile) => {
+        const audio = new Audio(soundFile);
+        audio.play();
+    };
+
+    const playItemFoundSound = () => {
+        playSound(itemFoundSound); // Tocar som específico para item encontrado
     };
 
     const restartLevel = () => {
@@ -69,12 +79,12 @@ const OneLevel = () => {
     };
 
     const goToMenu = () => {
-        playSound();
+        playSound(clickSound);
         navigate(-1); // Ajuste o caminho conforme necessário
     };
 
     const goToNextLevel = () => {
-        playSound();
+        playSound(clickSound);
         navigate('/fist-mode-level/2'); // Ajuste o caminho conforme necessário
     };
 
@@ -84,26 +94,20 @@ const OneLevel = () => {
         return `${minutes}:${seconds}`;
     };
 
-    const playSound = () => {
-        const audio = new Audio(clickSound);
-        audio.play();
-    };
-
     const handleBackClick = () => {
-        playSound();
+        playSound(clickSound);
         navigate(-1); // Volta para a página anterior
     };
 
     const handlePause = () => {
-        playSound();
+        playSound(clickSound);
         setIsPaused(true);
     };
 
     const handleContinue = () => {
-        playSound();
+        playSound(clickSound);
         setIsPaused(false);
     };
-
 
     const handleHint = () => {
         if (itemsToFind.length > 0) {
@@ -116,11 +120,11 @@ const OneLevel = () => {
     return (
         <div className="level-container">
             <BackgroundVideo />
-            <h1>LEVEL 1</h1>
+            <h1>NÍVEL 1</h1>
 
             <div className="game-area">
                 {/* Matriz de Itens com 8 colunas e ajustada automaticamente */}
-                <div className="item-grid">
+                <div className="item-grid" style={{ visibility: isPaused ? 'hidden' : 'visible' }}>
                     {items.map((item, index) => (
                         <div
                             key={index}

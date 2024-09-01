@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import clickSound from '../../../assets/sounds/click.mp3'; 
-import './FistModeCarousel.css'; 
+import './FirstModeCarousel.css'; 
 
-const FistModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
+const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
     const navigate = useNavigate();
     
     const playSound = () => {
@@ -26,7 +26,7 @@ const FistModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
     const handleLevelSelect = (level) => {
         playSound();
         console.log(`Navigating to level: ${level}`);
-        navigate(`/fist-mode-level/${level}`);
+        navigate(`/first-mode-level/${level}`);
     };
 
     const handleBackClick = () => {
@@ -59,15 +59,14 @@ const FistModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
         };
     }, [currentStep]);
 
-    const steps = Array.from({ length: 10 }, (_, index) => ({
+     const steps = Array.from({ length: 10 }, (_, index) => ({
         title: `Level ${index + 1}`,
         content: (
             <div>
-                <p>Selecione o Level {index + 1}.</p>
-                {/* O botão "Ir para o Level" será adicionado apenas na navegação */}
+               {/* <p>Selecione o Level {index + 1}.</p> */}
             </div>
-        )
-    }));
+        ) 
+    })); 
 
     if (currentStep < 1 || currentStep > steps.length) {
         return null;
@@ -80,31 +79,32 @@ const FistModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                 {steps[currentStep - 1].content}
             </div>
             <div className="navigation-buttons">
-                <button
-                    className="btn-nav"
-                    onClick={handlePreviousClick}
-                    disabled={currentStep === 1}
-                >
-                    <FontAwesomeIcon icon={faArrowLeft} />
-                </button>
+                {currentStep > 1 ? (
+                    <button
+                        className="btn-nav"
+                        onClick={handlePreviousClick}
+                    >
+                        <FontAwesomeIcon icon={faArrowLeft} />
+                    </button>
+                ) : (
+                    <button className="btn-nav disabled" />
+                )}
                 <button 
                     className="btn-nav level-button"
                     onClick={() => handleLevelSelect(currentStep)}
                 >
-                    Ir para o Level {currentStep}
+                    LEVEL {currentStep}
                 </button>
-                {currentStep === steps.length ? (
-                    <button className="btn-nav finish" onClick={handleBackClick}>
-                        FIM
-                    </button>
-                ) : (
+                {currentStep < steps.length ? (
                     <button className="btn-nav" onClick={handleNextClick}>
                         <FontAwesomeIcon icon={faArrowRight} />
                     </button>
+                ) : (
+                    <button className="btn-nav disabled" />
                 )}
             </div>
         </div>
     );
 };
 
-export default FistModeCarousel;
+export default FirstModeCarousel;

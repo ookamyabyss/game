@@ -8,21 +8,21 @@ import Extras from './components/Pages/Extras/Extras';
 import HowToPlay from './components/Pages/HowToPlay/HowToPlay'; 
 import TutorialPage from './components/Pages/TutorialPage/TutorialPage';
 import ChallengeModeSelection from './components/Pages/ChallengeModeSelection/ChallengeModeSelection';  
-import FistMode from './components/Pages/FistMode/FistMode';
+import FirstMode from './components/Pages/FirstMode/FirstMode';
 import SecondMode from './components/Pages/SecondMode/SecondMode';
 import ThirdMode from './components/Pages/ThirdMode/ThirdMode';
 
 // Importa os componentes dos níveis do 'Fist Mode'
-import FistModeOneLevel from './components/Pages/FistModeLevels/OneLevel/OneLevel';
-import FistModeTwoLevel from './components/Pages/FistModeLevels/TwoLevel/TwoLevel';
-import FistModeThreeLevel from './components/Pages/FistModeLevels/ThreeLevel/ThreeLevel';
-import FistModeFourLevel from './components/Pages/FistModeLevels/FourLevel/FourLevel';
-import FistModeFiveLevel from './components/Pages/FistModeLevels/FiveLevel/FiveLevel';
-import FistModeSixLevel from './components/Pages/FistModeLevels/SixLevel/SixLevel';
-import FistModeSevenLevel from './components/Pages/FistModeLevels/SevenLevel/SevenLevel';
-import FistModeEightLevel from './components/Pages/FistModeLevels/EightLevel/EightLevel';
-import FistModeNineLevel from './components/Pages/FistModeLevels/NineLevel/NineLevel';
-import FistModeTenLevel from './components/Pages/FistModeLevels/TenLevel/TenLevel';
+import FirstModeOneLevel from './components/Pages/FirstModeLevels/OneLevel/OneLevel';
+import FirstModeTwoLevel from './components/Pages/FirstModeLevels/TwoLevel/TwoLevel';
+import FirstModeThreeLevel from './components/Pages/FirstModeLevels/ThreeLevel/ThreeLevel';
+import FirstModeFourLevel from './components/Pages/FirstModeLevels/FourLevel/FourLevel';
+import FirstModeFiveLevel from './components/Pages/FirstModeLevels/FiveLevel/FiveLevel';
+import FirstModeSixLevel from './components/Pages/FirstModeLevels/SixLevel/SixLevel';
+import FirstModeSevenLevel from './components/Pages/FirstModeLevels/SevenLevel/SevenLevel';
+import FirstModeEightLevel from './components/Pages/FirstModeLevels/EightLevel/EightLevel';
+import FirstModeNineLevel from './components/Pages/FirstModeLevels/NineLevel/NineLevel';
+import FirstModeTenLevel from './components/Pages/FirstModeLevels/TenLevel/TenLevel';
 
 const AppRoutes = () => {
     return (
@@ -46,7 +46,7 @@ const AppRoutes = () => {
             <Route path="/challenge-mode-selection" element={<ChallengeModeSelection />} />
 
             {/* Define a rota para o 'Fist Mode' */}
-            <Route path="/fist-mode" element={<FistMode />} />
+            <Route path="/first-mode" element={<FirstMode />} />
 
             {/* Define a rota para o 'Second Mode' */}
             <Route path="/second-mode" element={<SecondMode />} />
@@ -55,16 +55,16 @@ const AppRoutes = () => {
             <Route path="/third-mode" element={<ThirdMode />} />
             
             {/* Define as rotas para os níveis do 'Fist Mode' */}
-            <Route path="/fist-mode-level/1" element={<FistModeOneLevel />} />
-            <Route path="/fist-mode-level/2" element={<FistModeTwoLevel />} />
-            <Route path="/fist-mode-level/3" element={<FistModeThreeLevel />} />
-            <Route path="/fist-mode-level/4" element={<FistModeFourLevel />} />
-            <Route path="/fist-mode-level/5" element={<FistModeFiveLevel />} />
-            <Route path="/fist-mode-level/6" element={<FistModeSixLevel />} />
-            <Route path="/fist-mode-level/7" element={<FistModeSevenLevel />} />
-            <Route path="/fist-mode-level/8" element={<FistModeEightLevel />} />
-            <Route path="/fist-mode-level/9" element={<FistModeNineLevel />} />
-            <Route path="/fist-mode-level/10" element={<FistModeTenLevel />} />
+            <Route path="/first-mode-level/1" element={<FirstModeOneLevel />} />
+            <Route path="/first-mode-level/2" element={<FirstModeTwoLevel />} />
+            <Route path="/first-mode-level/3" element={<FirstModeThreeLevel />} />
+            <Route path="/first-mode-level/4" element={<FirstModeFourLevel />} />
+            <Route path="/first-mode-level/5" element={<FirstModeFiveLevel />} />
+            <Route path="/first-mode-level/6" element={<FirstModeSixLevel />} />
+            <Route path="/first-mode-level/7" element={<FirstModeSevenLevel />} />
+            <Route path="/first-mode-level/8" element={<FirstModeEightLevel />} />
+            <Route path="/first-mode-level/9" element={<FirstModeNineLevel />} />
+            <Route path="/first-mode-level/10" element={<FirstModeTenLevel />} />
 
             {/* Adicione rotas para outros níveis conforme necessário */}
         </Routes>

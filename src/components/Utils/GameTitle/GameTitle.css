@@ -1,0 +1,30 @@
+/* src/components/GameTitle/GameTitle.css */
+
+@import url('https://fonts.googleapis.com/css?family=Bungee');
+
+.title-container {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+.game-title {
+    font-family: 'Bungee', cursive;
+    font-size: 200px;
+    letter-spacing: 8px;
+    color: #ffc000; /* Cor do texto */
+    text-shadow: 
+        3px 3px 0 #000,    /* Contorno preto fino no topo e esquerda */
+        3px -3px 0 #000,  /* Contorno preto fino na parte inferior e direita */
+        3px -3px 0 #000,   /* Contorno preto fino na diagonal superior direita */
+        -9px 9px 0 #000,   /* Contorno preto fino na diagonal inferior esquerda */
+        9px 9px 16px rgba(0, 0, 0, 0.6); /* Sombra adicional para efeito de profundidade */
+    text-transform: uppercase;
+    margin: 0;
+    padding: 10px;
+}

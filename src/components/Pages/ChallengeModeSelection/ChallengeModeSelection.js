@@ -2,12 +2,14 @@ import React from 'react';
 import BackgroundVideo from '../../Utils/BackgroundVideo/BackgroundVideo';
 import Mode from '../../Utils/Mode/Mode';
 import BackButton from '../../Utils/BackButton/BackButton';
+import ChallengeTitle from '../../Utils/ChallengeTitle/ChallengeTitle';
 import './ChallengeModeSelection.css'; 
 
 const ChallengeModeSelection = () => {
 
     return (
         <div className="challenge-mode-selection">
+            <ChallengeTitle/>
             <BackgroundVideo />
             <Mode />
             <BackButton />
