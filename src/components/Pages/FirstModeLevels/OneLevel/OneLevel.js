@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BackgroundVideo from '../../../Utils/BackgroundVideo/BackgroundVideo';
-import clickSound from '../../../../assets/sounds/click.mp3'; // Ajuste o caminho conforme necessário
-import itemFoundSound from '../../../../assets/sounds/success.mp3'; // Novo som para item encontrado
+import clickSound from '../../../../assets/sounds/click.mp3';
+import itemFoundSound from '../../../../assets/sounds/success.mp3';
+import starImage from '../../../../assets/stars/star.png';        // Estrela colorida
+import starGrayImage from '../../../../assets/stars/star-gray.png'; // Estrela em preto e branco
 import './OneLevel.css';
 
 const OneLevel = () => {
@@ -10,28 +12,25 @@ const OneLevel = () => {
     const [items, setItems] = useState([]);
     const [itemsToFind, setItemsToFind] = useState([]);
     const [foundItems, setFoundItems] = useState([]);
-    const [timeRemaining, setTimeRemaining] = useState(60);
+    const [timeRemaining, setTimeRemaining] = useState(480);
     const [gameStatus, setGameStatus] = useState('playing');
-    const [isPaused, setIsPaused] = useState(false); // Novo estado para pausa
-    const [hintItem, setHintItem] = useState(null); // Novo estado para dica
+    const [isPaused, setIsPaused] = useState(false);
+    const [hintItem, setHintItem] = useState(null);
+    const [stars, setStars] = useState(0); // Estado para armazenar o número de estrelas
 
-    // Função para importar todas as imagens da pasta
     const importAll = (r) => {
         return r.keys().map((fileName) => ({
-            name: fileName.replace('./', '').replace(/\.\w+$/, ''), // "sorvete" se o arquivo for "sorvete.jpg"
-            image: r(fileName) // Caminho da imagem
+            name: fileName.replace('./', '').replace(/\.\w+$/, ''),
+            image: r(fileName)
         }));
     };
 
-    // Importar todas as imagens da pasta
     const allItems = importAll(require.context('../../../../assets/itensFistMode', false, /\.(png|jpe?g|svg)$/));
 
     useEffect(() => {
-        // Embaralha todos os itens e seleciona 60 para exibir na grade
         const shuffledItems = allItems.sort(() => 0.5 - Math.random()).slice(0, 60);
         setItems(shuffledItems);
 
-        // Seleciona 10 itens aleatórios da lista de itens exibidos para a lista de itens a serem encontrados
         const itemsToFindSet = new Set();
         while (itemsToFindSet.size < 10) {
             itemsToFindSet.add(shuffledItems[Math.floor(Math.random() * shuffledItems.length)]);
@@ -53,9 +52,10 @@ const OneLevel = () => {
     const handleItemClick = (item) => {
         if (itemsToFind.includes(item) && !foundItems.includes(item)) {
             setFoundItems([...foundItems, item]);
-            playItemFoundSound(); // Tocar som quando item encontrado
+            playItemFoundSound();
 
             if (foundItems.length + 1 === itemsToFind.length) {
+                calculateStars();
                 setGameStatus('won');
             }
         }
@@ -67,25 +67,41 @@ const OneLevel = () => {
     };
 
     const playItemFoundSound = () => {
-        playSound(itemFoundSound); // Tocar som específico para item encontrado
+        playSound(itemFoundSound);
+    };
+
+    const calculateStars = () => {
+        const timeSpent = 480 - timeRemaining; // Tempo gasto para concluir a fase
+        const percentageUsed = (timeSpent / 480) * 100;
+
+        if (percentageUsed <= 20) {
+            setStars(3); // Menos de 20% do tempo usado: 3 estrelas
+        } else if (percentageUsed <= 50) {
+            setStars(2); // Menos de 50% do tempo usado: 2 estrelas
+        } else if (percentageUsed <= 80) {
+            setStars(1); // Menos de 80% do tempo usado: 1 estrela
+        } else {
+            setStars(0); // Tempo esgotado ou mais de 80% do tempo usado: 0 estrelas
+        }
     };
 
     const restartLevel = () => {
         setFoundItems([]);
-        setTimeRemaining(60);
+        setTimeRemaining(480);
         setGameStatus('playing');
-        setIsPaused(false); // Resetar o estado de pausa
-        setHintItem(null); // Resetar a dica
+        setIsPaused(false);
+        setHintItem(null);
+        setStars(0); // Resetar estrelas ao reiniciar
     };
 
     const goToMenu = () => {
         playSound(clickSound);
-        navigate(-1); // Ajuste o caminho conforme necessário
+        navigate(-1);
     };
 
     const goToNextLevel = () => {
         playSound(clickSound);
-        navigate('/fist-mode-level/2'); // Ajuste o caminho conforme necessário
+        navigate('/fist-mode-level/2');
     };
 
     const formatTime = (time) => {
@@ -96,7 +112,7 @@ const OneLevel = () => {
 
     const handleBackClick = () => {
         playSound(clickSound);
-        navigate(-1); // Volta para a página anterior
+        navigate(-1);
     };
 
     const handlePause = () => {
@@ -113,8 +129,22 @@ const OneLevel = () => {
         if (itemsToFind.length > 0) {
             const randomItem = itemsToFind[Math.floor(Math.random() * itemsToFind.length)];
             setHintItem(randomItem);
-            setTimeout(() => setHintItem(null), 3000); // Resetar dica após 3 segundos
+            setTimeout(() => setHintItem(null), 3000);
         }
+    };
+
+    const renderStars = () => {
+        const totalStars = 3;
+        const starsArray = [];
+
+        for (let i = 0; i < totalStars; i++) {
+            if (i < stars) {
+                starsArray.push(<img key={i} src={starImage} alt="Estrela" />);
+            } else {
+                starsArray.push(<img key={i} src={starGrayImage} alt="Estrela em preto e branco" />);
+            }
+        }
+        return <div className="star-feedback">{starsArray}</div>;
     };
 
     return (
@@ -123,7 +153,6 @@ const OneLevel = () => {
             <h1>NÍVEL 1</h1>
 
             <div className="game-area">
-                {/* Matriz de Itens com 8 colunas e ajustada automaticamente */}
                 <div className="item-grid" style={{ visibility: isPaused ? 'hidden' : 'visible' }}>
                     {items.map((item, index) => (
                         <div
@@ -136,7 +165,6 @@ const OneLevel = () => {
                     ))}
                 </div>
 
-                {/* Lista de Itens a Serem Encontrados com Status */}
                 <div className="item-list">
                     <div className="status">
                         <p>{formatTime(timeRemaining)}</p>
@@ -153,13 +181,11 @@ const OneLevel = () => {
                 </div>
             </div>
 
-            {/* Botões de Controle */}
             <div className="controls">
                 <button className="btn-control" onClick={handlePause}>||</button>
                 <button className="btn-control" onClick={handleHint}>?</button>
             </div>
 
-            {/* Mensagem de Fim de Jogo */}
             {gameStatus !== 'playing' && (
                 <div className="pause-overlay">
                     <div className="game-over-message">
@@ -167,6 +193,7 @@ const OneLevel = () => {
                             <>
                                 <h2>PARABÉNS!</h2>
                                 <p>Você encontrou todos os itens.</p>
+                                {renderStars()} {/* Exibir estrelas coloridas e cinzas */}
                             </>
                         ) : (
                             <>
@@ -175,13 +202,12 @@ const OneLevel = () => {
                             </>
                         )}
                         <button onClick={goToMenu}>Menu</button>
-                        <button onClick={goToNextLevel}>Próximo Nível</button>
+                        <button onClick={goToNextLevel}>Próximo</button>
                         <button onClick={restartLevel}>Reiniciar</button>
                     </div>
                 </div>
             )}
 
-            {/* Sobreposição de Pausa */}
             {isPaused && (
                 <div className="pause-overlay">
                     <div className="pause-message">
