@@ -1,51 +1,57 @@
+/* Estilização do contêiner principal da página de tutorial */
 .tutorial-container {
-    position: relative;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center; /* Centraliza verticalmente */
-    
+    position: relative;         /* Define a posição relativa para ajustar outros elementos dentro do contêiner */
+    height: 100vh;              /* Define a altura do contêiner como 100% da altura da janela */
+    width: 100vw;               /* Define a largura do contêiner como 100% da largura da janela */
+    display: flex;              /* Utiliza o Flexbox para organizar o layout */
+    justify-content: center;    /* Centraliza horizontalmente o conteúdo */
+    align-items: center;        /* Centraliza verticalmente o conteúdo */
 }
 
+/* Estilização da mensagem de desabilitar o tutorial */
 .disable-message {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #fff;
-    border: 2px solid #ffb000;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    z-index: 1000; /* Garante que a mensagem esteja sobre outros elementos */
+    position: fixed;            /* Fixa a mensagem em um local da tela, independentemente do scroll */
+    top: 20px;                  /* Posiciona a mensagem 20px a partir do topo da página */
+    right: 20px;                /* Posiciona a mensagem 20px à direita da página */
+    background-color: #fff;     /* Define a cor de fundo branca para a mensagem */
+    border: 2px solid #ffb000;  /* Aplica uma borda laranja ao redor da mensagem */
+    border-radius: 8px;         /* Arredonda os cantos da caixa da mensagem */
+    padding: 15px;              /* Adiciona espaçamento interno ao redor do conteúdo da mensagem */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Aplica uma sombra ao redor da caixa para destacá-la */
+    z-index: 1000;              /* Garante que a mensagem fique sobre outros elementos da página */
 }
 
+/* Estilização do parágrafo dentro da mensagem de desabilitar */
 .disable-message p {
-    margin: 0 0 10px 0;
+    margin: 0 0 10px 0;         /* Remove as margens superiores e inferiores, exceto 10px na margem inferior */
 }
 
+/* Estilização do checkbox dentro da mensagem de desabilitar */
 .disable-message input {
-    margin-right: 10px;
+    margin-right: 10px;         /* Adiciona espaço de 10px à direita do checkbox */
 }
 
+/* Estilização do botão de fechar a mensagem de desabilitar */
 .close-button {
-    background-color: #ffb000;
-    border: none;
-    color: white;
-    font-size: 16px;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: #ffb000;  /* Define a cor de fundo do botão como laranja */
+    border: none;               /* Remove a borda padrão do botão */
+    color: white;               /* Define a cor do texto do botão como branca */
+    font-size: 16px;            /* Define o tamanho da fonte do botão */
+    border-radius: 50%;         /* Torna o botão circular */
+    width: 30px;                /* Define a largura do botão */
+    height: 30px;               /* Define a altura do botão */
+    cursor: pointer;            /* Altera o cursor para pointer, indicando que o botão é clicável */
+    display: flex;              /* Utiliza Flexbox para centralizar o conteúdo do botão */
+    align-items: center;        /* Centraliza o conteúdo verticalmente */
+    justify-content: center;    /* Centraliza o conteúdo horizontalmente */
 }
 
+/* Efeito hover (quando o mouse está sobre o botão) */
 .close-button:hover {
-    background-color: #e5a500;
+    background-color: #e5a500;  /* Altera a cor de fundo do botão ao passar o mouse */
 }
 
+/* Remove o contorno padrão ao focar no botão */
 .close-button:focus {
     outline: none;
 }

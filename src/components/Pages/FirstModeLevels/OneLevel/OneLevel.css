@@ -375,3 +375,14 @@
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
 }
+
+.star-feedback {
+    display: flex;
+    justify-content: center; /* Centraliza as estrelas */
+}
+
+.star-icon {
+    margin: 0 10px; /* Adiciona espaço de 10px entre as estrelas */
+    width: 70px; /* Ajuste o tamanho da estrela, se necessário */
+    height: auto;
+}

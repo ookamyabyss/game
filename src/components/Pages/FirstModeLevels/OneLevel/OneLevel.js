@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import BackgroundVideo from '../../../Utils/BackgroundVideo/BackgroundVideo';
 import clickSound from '../../../../assets/sounds/click.mp3';
 import itemFoundSound from '../../../../assets/sounds/success.mp3';
 import starImage from '../../../../assets/stars/star.png';        // Estrela colorida
 import starGrayImage from '../../../../assets/stars/star-gray.png'; // Estrela em preto e branco
+import backgroundImage from '../../../../assets/background_levels/FirstModeOne.png';
 import './OneLevel.css';
 
 const OneLevel = () => {
@@ -86,6 +86,15 @@ const OneLevel = () => {
     };
 
     const restartLevel = () => {
+        const shuffledItems = allItems.sort(() => 0.5 - Math.random()).slice(0, 60);
+        setItems(shuffledItems);
+    
+        const itemsToFindSet = new Set();
+        while (itemsToFindSet.size < 10) {
+            itemsToFindSet.add(shuffledItems[Math.floor(Math.random() * shuffledItems.length)]);
+        }
+        setItemsToFind(Array.from(itemsToFindSet));
+    
         setFoundItems([]);
         setTimeRemaining(480);
         setGameStatus('playing');
@@ -96,7 +105,7 @@ const OneLevel = () => {
 
     const goToMenu = () => {
         playSound(clickSound);
-        navigate(-1);
+        navigate("/first-mode");
     };
 
     const goToNextLevel = () => {
@@ -110,11 +119,6 @@ const OneLevel = () => {
         return `${minutes}:${seconds}`;
     };
 
-    const handleBackClick = () => {
-        playSound(clickSound);
-        navigate(-1);
-    };
-
     const handlePause = () => {
         playSound(clickSound);
         setIsPaused(true);
@@ -126,6 +130,7 @@ const OneLevel = () => {
     };
 
     const handleHint = () => {
+        playSound(clickSound);
         if (itemsToFind.length > 0) {
             const randomItem = itemsToFind[Math.floor(Math.random() * itemsToFind.length)];
             setHintItem(randomItem);
@@ -136,20 +141,23 @@ const OneLevel = () => {
     const renderStars = () => {
         const totalStars = 3;
         const starsArray = [];
-
+    
         for (let i = 0; i < totalStars; i++) {
-            if (i < stars) {
-                starsArray.push(<img key={i} src={starImage} alt="Estrela" />);
-            } else {
-                starsArray.push(<img key={i} src={starGrayImage} alt="Estrela em preto e branco" />);
-            }
+            starsArray.push(
+                <img 
+                    key={i} 
+                    src={i < stars ? starImage : starGrayImage} 
+                    alt="Estrela" 
+                    className="star-icon"  // Adiciona uma classe CSS para as estrelas
+                />
+            );
         }
+    
         return <div className="star-feedback">{starsArray}</div>;
-    };
+    };    
 
     return (
-        <div className="level-container">
-            <BackgroundVideo />
+            <div className="level-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
             <h1>NÍVEL 1</h1>
 
             <div className="game-area">
@@ -191,9 +199,10 @@ const OneLevel = () => {
                     <div className="game-over-message">
                         {gameStatus === 'won' ? (
                             <>
+                                {renderStars()} {/* Exibir estrelas coloridas e cinzas */}
                                 <h2>PARABÉNS!</h2>
                                 <p>Você encontrou todos os itens.</p>
-                                {renderStars()} {/* Exibir estrelas coloridas e cinzas */}
+                                
                             </>
                         ) : (
                             <>

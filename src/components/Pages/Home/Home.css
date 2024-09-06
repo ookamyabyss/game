@@ -1,13 +1,14 @@
 /* src/components/Pages/Home/Home.css */
+
+/* Classe .home define o layout principal da página Home */
 .home {
-    position: relative;
-    height: 100vh;
-    overflow: hidden;
+    position: relative; /* Define a posição relativa para ajustar elementos internos */
+    height: 100vh;      /* Define a altura da página como 100% da altura da janela */
+    overflow: hidden;   /* Evita que o conteúdo da página saia dos limites visíveis */
 }
 
+/* Classe .container define uma área de conteúdo com prioridade visual */
 .container {
-    position: relative;
-    z-index: 1;
+    position: relative; /* Mantém a posição relativa para alinhar com outros elementos */
+    z-index: 1;         /* Garante que o conteúdo da .container fique sobre outros elementos como o background */
 }
-
-
