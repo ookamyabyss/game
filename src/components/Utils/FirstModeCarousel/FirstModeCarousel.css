@@ -175,13 +175,41 @@
 
 /* Imagens de fundo específicas para cada nível */
 .fist-carousel-container.level-1 {
-    background-image: url('../../../assets/background_levels/FirstModeOne.png');
+    background-image: url('../../../assets/background_levels/FirstModeOne_Two_Three_Four.png');
 }
 
 .fist-carousel-container.level-2 {
-    background-image: url('../../../assets/background_levels/FirstModeTwo.png');
+    background-image: url('../../../assets/background_levels/FirstModeOne_Two_Three_Four.png');
 }
 
 .fist-carousel-container.level-3 {
-    background-image: url('../../../assets/background_levels/FirstModeThree.png');
+    background-image: url('../../../assets/background_levels/FirstModeOne_Two_Three_Four.png');
+}
+
+.fist-carousel-container.level-4 {
+    background-image: url('../../../assets/background_levels/FirstModeOne_Two_Three_Four.png');
+}
+
+.fist-carousel-container.level-5 {
+    background-image: url('../../../assets/background_levels/FirstModeFive_Six_Seven.jpg');
+}
+
+.fist-carousel-container.level-6 {
+    background-image: url('../../../assets/background_levels/FirstModeFive_Six_Seven.jpg');
+}
+
+.fist-carousel-container.level-7 {
+    background-image: url('../../../assets/background_levels/FirstModeFive_Six_Seven.jpg');
+}
+
+.fist-carousel-container.level-8 {
+    background-image: url('../../../assets/background_levels/FirstModeEight_Nine_Ten.png');
+}
+
+.fist-carousel-container.level-9 {
+    background-image: url('../../../assets/background_levels/FirstModeEight_Nine_Ten.png');
+}
+
+.fist-carousel-container.level-10 {
+    background-image: url('../../../assets/background_levels/FirstModeEight_Nine_Ten.png');
 }

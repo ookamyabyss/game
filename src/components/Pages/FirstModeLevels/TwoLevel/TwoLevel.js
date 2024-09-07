@@ -4,7 +4,7 @@ import clickSound from '../../../../assets/sounds/click.mp3';
 import itemFoundSound from '../../../../assets/sounds/success.mp3';
 import starImage from '../../../../assets/stars/star.png';        // Estrela colorida
 import starGrayImage from '../../../../assets/stars/star-gray.png'; // Estrela em preto e branco
-import backgroundImage from '../../../../assets/background_levels/FirstModeTwo.png';
+import backgroundImage from '../../../../assets/background_levels/FirstModeOne_Two_Three_Four.png';
 import './TwoLevel.css';
 
 const TwoLevel = () => {
@@ -25,7 +25,7 @@ const TwoLevel = () => {
         }));
     };
 
-    const allItems = importAll(require.context('../../../../assets/itensFistMode', false, /\.(png|jpe?g|svg)$/));
+    const allItems = importAll(require.context('../../../../assets/itensFirstMode', false, /\.(png|jpe?g|svg)$/));
 
     useEffect(() => {
         const shuffledItems = allItems.sort(() => 0.5 - Math.random()).slice(0, 60);
