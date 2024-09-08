@@ -16,10 +16,10 @@
     width: 60px; /* Largura reduzida do item */
     height: 60px; /* Altura reduzida do item */
     background-color: white;
-    border-top: 3px solid #ffb000; /* Borda ligeiramente reduzida */
-    border-left: 3px solid #ffb000;
-    border-right: 3px solid #ffb000;
-    border-bottom: 3px solid #ffb000;
+    border-top: 6px solid #ffb000; /* Borda ligeiramente reduzida */
+    border-left: 6px solid #ffb000;
+    border-right: 6px solid #ffb000;
+    border-bottom: 6px solid #ffb000;
     box-shadow: 
         inset 0px 0px 5px rgba(0, 0, 0, 0.4),
         0px 3px 8px rgba(0, 0, 0, 0.2); /* Sombra ajustada para o tamanho menor */

@@ -4,7 +4,7 @@ import clickSound from '../../../../assets/sounds/click.mp3';
 import itemFoundSound from '../../../../assets/sounds/success.mp3';
 import starImage from '../../../../assets/stars/star.png';
 import starGrayImage from '../../../../assets/stars/star-gray.png';
-import backgroundImage from '../../../../assets/background_levels/FirstModeFive_Six_Seven.jpg'; // Background para a fase 4
+import backgroundImage from '../../../../assets/background_levels/FirstModeFive_Six.png'; // Background para a fase 4
 import './SixLevel.css';
 
 const SixLevel = () => {

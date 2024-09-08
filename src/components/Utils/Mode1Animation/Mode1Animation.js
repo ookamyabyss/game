@@ -8,7 +8,6 @@ import item6Img from '../../../assets/imagens_tutorial/hidrante.png';
 import item7Img from '../../../assets/imagens_tutorial/mala.png';
 import item8Img from '../../../assets/imagens_tutorial/bicicleta.png';
 
-
 import './Mode1Animation.css'; // CSS para estilização
 
 const Mode1Animation = () => {

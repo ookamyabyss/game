@@ -4,7 +4,7 @@ import clickSound from '../../../../assets/sounds/click.mp3';
 import itemFoundSound from '../../../../assets/sounds/success.mp3';
 import starImage from '../../../../assets/stars/star.png';        // Estrela colorida
 import starGrayImage from '../../../../assets/stars/star-gray.png'; // Estrela em preto e branco
-import backgroundImage from '../../../../assets/background_levels/FirstModeOne_Two_Three_Four.png';
+import backgroundImage from '../../../../assets/background_levels/FirstModeOne_Two.png';
 import './TwoLevel.css';
 
 const TwoLevel = () => {
