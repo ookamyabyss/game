@@ -176,5 +176,44 @@
 /* Imagens de fundo específicas para cada nível */
 
 
+.third-carousel-container.level-1 {
+    background-image: url('../../../assets/background_levels/ThirdModeOne_Two.png');
+}
+
+.third-carousel-container.level-2 {
+    background-image: url('../../../assets/background_levels/ThirdModeOne_Two.png');
+}
+
+.third-carousel-container.level-3 {
+    background-image: url('../../../assets/background_levels/ThirdModeThree_Four.png');
+}
+
+.third-carousel-container.level-4 {
+    background-image: url('../../../assets/background_levels/ThirdModeThree_Four.png');
+}
+
+.third-carousel-container.level-5 {
+    background-image: url('../../../assets/background_levels/ThirdModeFive_Six.png');
+}
+
+.third-carousel-container.level-6 {
+    background-image: url('../../../assets/background_levels/ThirdModeFive_Six.png');
+}
+
+.third-carousel-container.level-7 {
+    background-image: url('../../../assets/background_levels/ThirdModeSeven_Eight.png');
+}
+
+.third-carousel-container.level-8 {
+    background-image: url('../../../assets/background_levels/ThirdModeSeven_Eight.png');
+}
+
+.third-carousel-container.level-9 {
+    background-image: url('../../../assets/background_levels/ThirdModeNine_Ten.png');
+}
+
+.third-carousel-container.level-10 {
+    background-image: url('../../../assets/background_levels/ThirdModeNine_Ten.png');
+} 
 
 
