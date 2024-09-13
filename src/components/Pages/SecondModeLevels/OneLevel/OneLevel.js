@@ -18,6 +18,7 @@ const OneLevel = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [hintPalavra, setHintPalavra] = useState(null);
   const [stars, setStars] = useState(0);
+  const [highlightedSquares, setHighlightedSquares] = useState([]); // Palavras acertadas
 
   useEffect(() => {
     if (gameStatus === 'playing' && timeRemaining > 0 && !isPaused) {
@@ -32,9 +33,10 @@ const OneLevel = () => {
 
   useEffect(() => {
     if (textoDigitado.length === 6) {
-      const palavraAtual = palavras.find((p) => p === textoDigitado);
+      const palavraAtual = palavras.find((p) => p === textoDigitado.toUpperCase()); // Maiúsculas não importam
       if (palavraAtual) {
         setPalavrasDigitadas([...palavrasDigitadas, textoDigitado]);
+        setHighlightedSquares([...highlightedSquares, textoDigitado]); // Adiciona a palavra correta nos quadrados de baixo
         playSuccessSound();
 
         if (palavrasDigitadas.length + 1 === palavras.length) {
@@ -43,11 +45,10 @@ const OneLevel = () => {
         }
         setTextoDigitado('');
       } else {
-        // Optional: Provide feedback for incorrect word
         setTextoDigitado('');
       }
     }
-  }, [textoDigitado, palavrasDigitadas]);
+  }, [textoDigitado, palavrasDigitadas, highlightedSquares]);
 
   const playSound = (soundFile) => {
     const audio = new Audio(soundFile);
@@ -73,6 +74,10 @@ const OneLevel = () => {
     }
   };
 
+  const handleClickOnSquare = () => {
+    document.querySelector('.hidden-input').focus(); // Força o foco no campo de input
+  };
+
   const restartLevel = () => {
     setIndicePalavraAtual(0);
     setPalavrasDigitadas([]);
@@ -81,6 +86,7 @@ const OneLevel = () => {
     setIsPaused(false);
     setHintPalavra(null);
     setStars(0);
+    setHighlightedSquares([]); // Limpa as palavras destacadas
   };
 
   const goToMenu = () => {
@@ -135,7 +141,7 @@ const OneLevel = () => {
 
       <div className="game-area">
         <div className="typing-area">
-          <div className="input-grid">
+          <div className="input-grid" onClick={handleClickOnSquare}>
             {Array(6).fill('').map((_, index) => (
               <div key={index} className="input-square">
                 {textoDigitado[index] || ''}
@@ -147,9 +153,25 @@ const OneLevel = () => {
             type="text"
             className="hidden-input"
             value={textoDigitado}
-            onChange={(e) => setTextoDigitado(e.target.value)}
+            onChange={(e) => setTextoDigitado(e.target.value.toUpperCase())} // Converte para maiúsculo
             autoFocus
           />
+
+          {/* Renderizar a palavra correta com borda verde */}
+          {highlightedSquares.length > 0 && (
+            <div className="correto-grid">
+              {highlightedSquares.map((palavra, index) => (
+                <div key={index} className="correct">
+                  {palavra.split('').map((letra, letraIndex) => (
+                    <span key={letraIndex}>{letra}</span>
+                  ))} {/* Renderiza cada letra separadamente */}
+                </div>
+              ))}
+            </div>
+          )}
+
+
+
           {hintPalavra && <p className="hint-text">Dica: {hintPalavra}</p>}
         </div>
 
@@ -202,7 +224,6 @@ const OneLevel = () => {
           <div className="pause-message">
             <h2>Jogo Pausado</h2>
             <button onClick={handleContinue}>Continuar</button>
-            <button onClick={goToMenu}>Desistir</button>
           </div>
         </div>
       )}

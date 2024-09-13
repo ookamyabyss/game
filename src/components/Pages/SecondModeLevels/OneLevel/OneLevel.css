@@ -247,3 +247,25 @@
     height: 40px;
     margin: 0 5px;
 }
+
+.correto-grid {
+    display: flex;
+    flex-direction: column; /* Cada palavra vai aparecer uma embaixo da outra */
+    gap: 10px; /* Espaço entre as palavras */
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.correct {
+    display: flex; /* As letras dentro da palavra ficam na mesma linha */
+    justify-content: center;
+    gap: 5px; /* Espaçamento entre as letras */
+    background-color: #fff;
+    border: 6px solid green;
+    font-size: 1.5rem;
+    color: #ffb000;
+    font-family: 'Bungee', cursive;
+    padding: 5px; /* Espaçamento interno entre letras */
+}
+
