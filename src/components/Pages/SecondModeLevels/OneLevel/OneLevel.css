@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Bungee');
 
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
 .level-container {
     background-size: cover;
     background-position: center;
@@ -14,11 +9,12 @@ html, body {
     align-items: center;
     justify-content: center;
     padding: 0;
-    height: 100vh; /* Ensures the container takes up full viewport height */
-    overflow: hidden; /* Prevents scrolling when not needed */
+    height: 100vh; /* A altura é 100% da viewport */
+    width: 100vw; /* A largura agora será 100% da viewport */
+    overflow: hidden; /* Impede o scroll desnecessário */
 }
 
-.typing-container {
+.typing-area {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,11 +23,11 @@ html, body {
     background: transparent;
 }
 
-.typing-container h1 {
+.level-container h1 {
     font-family: 'Bungee', cursive;
     letter-spacing: 10px;
     font-size: 3rem;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     color: #ffb000;
     text-shadow: 
         1px 1px 0 #000, 
@@ -48,12 +44,12 @@ html, body {
     font-size: 1.5rem;
 }
 
-.word-list {
+.item-list {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 600px; /* Limits the maximum width */
+    max-width: 500px;
     background-color: #282c34;
     padding: 15px;
     border-radius: 10px;
@@ -64,19 +60,21 @@ html, body {
     border-left: 10px groove #ffb000;
     border-right: 10px ridge #ffb000;
     border-bottom: 10px groove #ffb000;
+    margin-bottom: 120px; /* Ajuste para elevar a lista de palavras */
+    
 }
 
-.word-list h2 {
+.item-list h2 {
     margin-bottom: 20px;
     font-size: 28px;
     color: #ffb000;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
-.word-list ul {
+.item-list ul {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Center the list items */
+    justify-content: center; /* Centraliza os itens da lista */
     gap: 8px;
     list-style: none;
     padding: 0;
@@ -84,7 +82,7 @@ html, body {
     width: 100%;
 }
 
-.word-list li {
+.item-list li {
     font-size: 24px;
     letter-spacing: 3px;
     margin-bottom: 10px;
@@ -93,10 +91,10 @@ html, body {
     transition: color 0.3s ease;
     flex: 1 1 45%;
     max-width: 45%;
-    text-align: center; /* Center text inside list items */
+    text-align: center; /* Centraliza o texto */
 }
 
-.word-list li.correct {
+.item-list li.found {
     text-decoration: line-through;
     color: #ff0000;
 }
@@ -109,11 +107,11 @@ html, body {
 
 .input-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr); /* Adjusts grid columns to be responsive */
+    grid-template-columns: repeat(6, 1fr); /* Ajusta a grid para 6 colunas */
     gap: 10px;
     margin-bottom: 20px;
     width: 100%;
-    max-width: 500px; /* Ensures the grid doesn’t grow too large */
+    max-width: 500px; /* Limita o tamanho máximo da grid */
 }
 
 .input-square {
@@ -129,24 +127,9 @@ html, body {
     font-family: 'Bungee', cursive;
 }
 
-.input-box {
-    width: 50px; /* Adjusted to be consistent with input-square */
-    height: 50px; /* Adjusted to be consistent with input-square */
-    margin: 0; /* Removed margin for consistent spacing */
-    border: 2px solid #ffb000;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 1.5rem;
-    color: #fff;
-    background-color: #333;
-}
-
-.input-box.correct {
-    background-color: #00ff00;
-}
-
-.input-box.incorrect {
-    background-color: #ff0000;
+.hidden-input {
+    position: absolute;
+    opacity: 0;
 }
 
 .game-over-message, .pause-message {
@@ -201,10 +184,13 @@ html, body {
 }
 
 .controls {
-    margin-top: 20px;
+    bottom: 40px; /* Ajuste para garantir que fique alinhado abaixo da lista */
+    left: 63%; /* Posiciona o controle no centro horizontal da item-list */
+
     display: flex;
     justify-content: center;
     gap: 10px;
+
 }
 
 .btn-control {
@@ -240,7 +226,6 @@ html, body {
     justify-content: center;
     align-items: center;
     z-index: 2000;
-    /* Removed background color of pause-overlay to make sure overlay is visible */
 }
 
 .hint-text {
@@ -249,4 +234,16 @@ html, body {
     font-size: 1.6rem;
     text-align: center;
     margin-top: 20px;
+}
+
+.star-feedback {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.star-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
 }

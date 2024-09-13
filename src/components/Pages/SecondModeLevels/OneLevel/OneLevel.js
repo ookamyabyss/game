@@ -9,7 +9,7 @@ import './OneLevel.css';
 
 const OneLevel = () => {
   const navigate = useNavigate();
-  const [palavras] = useState(['banana', 'tomato']);
+  const [palavras] = useState(['BANANA', 'AMIGOS', 'GAROTO', 'FUTURO', 'BRASIL', 'CARROS', 'PRAIAS', 'LIVROS']);
   const [indicePalavraAtual, setIndicePalavraAtual] = useState(0);
   const [textoDigitado, setTextoDigitado] = useState('');
   const [palavrasDigitadas, setPalavrasDigitadas] = useState([]);
