@@ -183,17 +183,19 @@
     background-color: #ff9c00;
 }
 
-.controls {
-    bottom: 40px; /* Ajuste para garantir que fique alinhado abaixo da lista */
-    left: 63%; /* Posiciona o controle no centro horizontal da item-list */
-
+.controls-second {
+    position: fixed; /* Fixa o menu na tela */
+    bottom: 60px; /* Alinha o menu 20px do fundo da tela */
+    left: 960px; /* Alinha o menu 20px da esquerda da tela */
+    display: flex; /* Exibe o contêiner como flexbox */
+    flex-direction: flex; /* Alinha os itens em uma coluna */
+    align-items: flex-start; /* Alinha os itens à esquerda */
     display: flex;
     justify-content: center;
     gap: 10px;
-
 }
 
-.btn-control {
+.second-btn-control {
     width: 70px;
     letter-spacing: 2px;
     border-radius: 8px;
@@ -211,7 +213,7 @@
     transition: background-color 0.3s;
 }
 
-.btn-control:hover {
+.second-btn-control:hover {
     background: radial-gradient(circle, #e52b2b, #8b0000);
 }
 

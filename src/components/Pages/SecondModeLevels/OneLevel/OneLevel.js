@@ -192,9 +192,9 @@ const OneLevel = () => {
         </div>
       </div>
 
-      <div className="controls">
-        <button className="btn-control" onClick={handlePause}>||</button>
-        <button className="btn-control" onClick={handleHint}>?</button>
+      <div className="controls-second">
+        <button className="second-btn-control" onClick={handlePause}>||</button>
+        <button className="second-btn-control" onClick={handleHint}>?</button>
       </div>
 
       {gameStatus !== 'playing' && (
@@ -224,6 +224,7 @@ const OneLevel = () => {
           <div className="pause-message">
             <h2>Jogo Pausado</h2>
             <button onClick={handleContinue}>Continuar</button>
+            <button onClick={goToMenu}>Desistir</button>
           </div>
         </div>
       )}

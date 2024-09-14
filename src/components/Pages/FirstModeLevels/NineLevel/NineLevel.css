@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css?family=Bungee');
+
+:root {
+    --primary-color: #ffb000;
+    --secondary-color: #8b0000;
+    --text-color: #fff;
+    --background-color: #333;
+    --highlight-color: #f44336;
+    --button-hover-color: #ff9c00;
+    --button-active-color: #ec6a6a;
+    --border-color: #ffb000;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+.level-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: transparent;
+}
+
+.level-container h1 {
+    font-family: 'Bungee', cursive;
+    letter-spacing: 10px;
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+    text-shadow: 1px 1px 0 #000, 1px -1px 0 #000, 1px -1px 0 #000, -2px 2px 0 #000, 2px 2px 2px rgba(0, 0, 0, 0.6);
+}
+
+.game-info {
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--text-color);
+    font-size: 1.5rem;
+}
+
+.game-area {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 100px);
+    grid-auto-rows: 100px;
+    gap: 8px;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 10px;
+    width: fit-content;
+    max-width: calc(100px * 10 + 8px * 9 + 20px);
+    box-sizing: border-box;
+    margin-right: 20px;
+}
+
+.item {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: #f0f0f0;
+    border: 2px solid #ddd;
+    box-shadow: inset 0px 0px 4px var(--shadow-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.item img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.item:hover {
+    transform: scale(1.05);
+    box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.5), 0px 4px 10px var(--shadow-color);
+    border-color: var(--primary-color);
+}
+
+.item-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #282c34;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    font-family: 'Skranji', cursive;
+    color: #333;
+    border-top: 10px ridge var(--primary-color);
+    border-left: 10px groove var(--primary-color);
+    border-right: 10px ridge var(--primary-color);
+    border-bottom: 10px groove var(--primary-color);
+    box-sizing: border-box;
+}
+
+.item-list h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: var(--primary-color);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.item-list ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.item-list li {
+    font-size: 24px;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+    text-shadow: 0 1px 3px #000;
+    transition: color 0.3s ease;
+    flex: 1 1 45%;
+    max-width: 45%;
+}
+
+.item-list li.found {
+    text-decoration: line-through;
+    color: #ff0000;
+}
+
+.item-list .status {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: var(--primary-color);
+    text-align: center;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+    width: 100%;
+}
+
+.found {
+    opacity: 0.5;
+}
+
+.game-over-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--background-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    text-align: center;
+    color: var(--text-color);
+    border-top: 8px ridge var(--primary-color);
+    border-left: 8px groove var(--primary-color);
+    border-right: 8px ridge var(--primary-color);
+    border-bottom: 8px groove var(--primary-color);
+    z-index: 1000;
+    width: 80%;
+    max-width: 600px;
+}
+
+.game-over-message h2, .pause-message h2 {
+    font-family: 'Skranji', cursive;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    letter-spacing: 6px;
+    color: var(--primary-color);
+}
+
+.game-over-message p, .pause-message p {
+    font-family: 'Skranji', cursive;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    color: var(--primary-color);
+}
+
+.game-over-message button, .pause-message button, .btn-control {
+    margin: 10px 20px;
+    width: 150px;
+    letter-spacing: 2px;
+    border-radius: 8px;
+    font-family: 'Skranji', cursive;
+    color: #ffc000;
+    font-size: 25px;
+    font-weight: 400;
+    text-shadow: 0 1px 3px #000;
+    text-align: center;
+    padding: 10px 0;
+    background: radial-gradient(circle, var(--secondary-color), var(--secondary-color));
+    border-top: 8px ridge var(--primary-color);
+    border-left: 8px groove var(--primary-color);
+    border-right: 8px ridge var(--primary-color);
+    border-bottom: 8px groove var(--primary-color);
+    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.game-over-message button:hover, .pause-message button:hover, .btn-control:hover {
+    background-color: var(--button-hover-color);
+}
+
+.game-over-message button:active, .pause-message button:active, .btn-control:active {
+    background-color: var(--button-active-color);
+    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
+}
+
+.pause-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.pause-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--background-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    text-align: center;
+    color: var(--text-color);
+    border-top: 8px ridge var(--primary-color);
+    border-left: 8px groove var(--primary-color);
+    border-right: 8px ridge var(--primary-color);
+    border-bottom: 8px groove var(--primary-color);
+    z-index: 1000;
+    width: 80%;
+    max-width: 500px;
+}
+
+.star-feedback {
+    display: flex;
+    justify-content: center;
+}
+
+.star-icon {
+    margin: 0 10px;
+    width: 70px;
+    height: auto;
+}
+
+.lock-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px; /* Ajuste conforme necessário */
+    height: auto;
+    z-index: 1; /* Para garantir que fique sobre o item */
+}

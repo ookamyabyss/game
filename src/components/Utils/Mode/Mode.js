@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import clickSound from '../../../assets/sounds/click.mp3'; // Ajuste o caminho conforme necessário
 import Mode1Animation from '../Mode1Animation/Mode1Animation';
+import Mode2Animation from '../Mode2Animation/Mode2Animation';
 import './Mode.css';
 
 const Mode = () => {
@@ -48,11 +49,12 @@ const Mode = () => {
                     <>
                         <div className="info-container info-left">
                             {/* Aqui vai a animação do Modo 2 */}
+                            <Mode2Animation/>
                             <img src="caminho/para/animacao2.gif" alt="Animação Modo 2" />
                         </div>
                         <div className="info-container info-right">
                             {/* Aqui vai a descrição do Modo 2 */}
-                            <p>Descrição do Modo 2: Detalhes e instruções sobre o modo 2.</p>
+                            <p>Digite as palavras ou codigos antes do tempo termina.</p>
                         </div>
                     </>
                 )}

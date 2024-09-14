@@ -29,7 +29,7 @@
     text-align: center; /* Centraliza o texto */
     font-family: 'Bungee', cursive;
     color: #ffc000; /* Cor do texto */
-    font-size: 35px; /* Tamanho da fonte */
+    font-size: 45px; /* Tamanho da fonte */
     font-weight: 400; /* Peso da fonte */
     text-shadow: 
     1px 1px 0 #000,    /* Contorno preto fino no topo e esquerda */
@@ -213,3 +213,4 @@
 .fist-carousel-container.level-10 {
     background-image: url('../../../assets/background_levels/FirstModeNine_Ten.png');
 }
+
