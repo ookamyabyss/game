@@ -55,7 +55,7 @@ const Carousel = ({ currentStep, handleNext, handlePrevious, handleFinish }) => 
     // Definição dos títulos e do conteúdo das etapas
     const steps = [
         {
-            title: "Parte 1 do Tutorial: Escolha de Itens",
+            title: "Parte 1 : Escolha de Itens",
             content: <ImageSelection onCorrectSelection={handleCorrectSelection} />
         },
         {
