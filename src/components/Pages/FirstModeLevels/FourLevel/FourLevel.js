@@ -181,7 +181,7 @@ const FourLevel = () => {
             return newVisibility;
         });
     };
-  
+
     const handleContinue = () => {
         playSound(clickSound);
         setIsPaused(false);
@@ -260,7 +260,7 @@ const FourLevel = () => {
                 )}
             </div>
         
-            <div className="controls">
+            <div className="controls-level-four">
                 <button className="btn-control" onClick={handlePause}>||</button>
                 <button className="btn-control" onClick={handleHint}>?</button>
             </div>
@@ -273,7 +273,6 @@ const FourLevel = () => {
                                 {renderStars()} {/* Exibir estrelas coloridas e cinzas */}
                                 <h2>PARABÉNS!</h2>
                                 <p>Você encontrou todos os itens.</p>
-                                
                             </>
                         ) : (
                             <>
@@ -288,9 +287,7 @@ const FourLevel = () => {
                 </div>
             )}
         </div>
-    );    
-    
-    
+    );
 };
 
 export default FourLevel;

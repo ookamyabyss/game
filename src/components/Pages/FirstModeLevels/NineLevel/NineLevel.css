@@ -277,3 +277,44 @@
     height: auto;
     z-index: 1; /* Para garantir que fique sobre o item */
 }
+
+.controls-level-nine {
+    position: absolute;
+    bottom: 70px; /* Distância do fundo da tela, ajustada para subir mais um pouco */
+    left: 82%; /* Ajusta a posição horizontal para a direita */
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.controls-level-nine .btn-control {
+    margin: 10px;
+    width: 70px;
+    letter-spacing: 2px;
+    border-radius: 8px;
+    font-family: 'Skranji', cursive;
+    color: #ffc000;
+    font-size: 25px;
+    font-weight: 400;
+    text-shadow: 0 1px 3px #000;
+    text-align: center;
+    padding: 10px 0;
+    background: radial-gradient(circle, #8b0000, #8b0000);
+    border-top: 8px ridge #ffb000;
+    border-left: 8px groove #ffb000;
+    border-right: 8px ridge #ffb000;
+    border-bottom: 8px groove #ffb000;
+    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-control:hover {
+    background: radial-gradient(circle, #e52b2b, #8b0000);
+    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
+}
+
+.btn-control:active {
+    background: radial-gradient(circle, #ec6a6a, #e52b2b);
+    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
+}

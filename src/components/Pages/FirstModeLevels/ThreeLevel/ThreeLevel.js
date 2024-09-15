@@ -8,16 +8,20 @@ import backgroundImage from '../../../../assets/background_levels/FirstModeThree
 import './ThreeLevel.css';
 
 const ThreeLevel = () => {
+    // Hook para navegação entre páginas
     const navigate = useNavigate();
-    const [items, setItems] = useState([]);
-    const [itemsToFind, setItemsToFind] = useState([]);
-    const [foundItems, setFoundItems] = useState([]);
-    const [timeRemaining, setTimeRemaining] = useState(180);
-    const [gameStatus, setGameStatus] = useState('playing');
-    const [isPaused, setIsPaused] = useState(false);
-    const [hintItem, setHintItem] = useState(null);
+
+    // Estados do componente
+    const [items, setItems] = useState([]);  // Itens exibidos na tela
+    const [itemsToFind, setItemsToFind] = useState([]);  // Itens que o usuário deve encontrar
+    const [foundItems, setFoundItems] = useState([]);  // Itens encontrados pelo usuário
+    const [timeRemaining, setTimeRemaining] = useState(180);  // Tempo restante para concluir o nível
+    const [gameStatus, setGameStatus] = useState('playing');  // Status do jogo: 'playing', 'won', 'lost'
+    const [isPaused, setIsPaused] = useState(false);  // Estado de pausa do jogo
+    const [hintItem, setHintItem] = useState(null);  // Item para dica
     const [stars, setStars] = useState(0); // Estado para armazenar o número de estrelas
 
+    // Função para importar todos os itens da pasta
     const importAll = (r) => {
         return r.keys().map((fileName) => ({
             name: fileName.replace('./', '').replace(/\.\w+$/, ''),
@@ -25,8 +29,10 @@ const ThreeLevel = () => {
         }));
     };
 
+    // Importa todos os itens do diretório especificado
     const allItems = importAll(require.context('../../../../assets/itensFirstMode', false, /\.(png|jpe?g|svg)$/));
 
+    // Efeito para inicializar o jogo quando o componente é montado
     useEffect(() => {
         const shuffledItems = allItems.sort(() => 0.5 - Math.random()).slice(0, 60);
         setItems(shuffledItems);
@@ -38,6 +44,7 @@ const ThreeLevel = () => {
         setItemsToFind(Array.from(itemsToFindSet));
     }, []);
 
+    // Efeito para gerenciar o cronômetro do jogo
     useEffect(() => {
         if (gameStatus === 'playing' && timeRemaining > 0 && !isPaused) {
             const timer = setInterval(() => {
@@ -49,6 +56,7 @@ const ThreeLevel = () => {
         }
     }, [timeRemaining, gameStatus, isPaused]);
 
+    // Função para lidar com o clique em um item
     const handleItemClick = (item) => {
         if (itemsToFind.includes(item) && !foundItems.includes(item)) {
             setFoundItems([...foundItems, item]);
@@ -61,15 +69,18 @@ const ThreeLevel = () => {
         }
     };
 
+    // Função para tocar um som
     const playSound = (soundFile) => {
         const audio = new Audio(soundFile);
         audio.play();
     };
 
+    // Função para tocar o som de item encontrado
     const playItemFoundSound = () => {
         playSound(itemFoundSound);
     };
 
+    // Função para calcular o número de estrelas baseado no tempo gasto
     const calculateStars = () => {
         const timeSpent = 180 - timeRemaining; // Tempo gasto para concluir a fase
         const percentageUsed = (timeSpent / 180) * 100;
@@ -85,6 +96,7 @@ const ThreeLevel = () => {
         }
     };
 
+    // Função para reiniciar o nível
     const restartLevel = () => {
         const shuffledItems = allItems.sort(() => 0.5 - Math.random()).slice(0, 60);
         setItems(shuffledItems);
@@ -103,41 +115,48 @@ const ThreeLevel = () => {
         setStars(0); // Resetar estrelas ao reiniciar
     };
 
+    // Função para ir ao menu principal
     const goToMenu = () => {
         playSound(clickSound);
         navigate("/first-mode");
     };
 
+    // Função para ir para o próximo nível
     const goToNextLevel = () => {
         playSound(clickSound);
         navigate('/first-mode-level/4');
     };
 
+    // Função para formatar o tempo restante
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60).toString().padStart(2, '0');
         const seconds = (time % 60).toString().padStart(2, '0');
         return `${minutes}:${seconds}`;
     };
 
+    // Função para pausar o jogo
     const handlePause = () => {
         playSound(clickSound);
         setIsPaused(true);
     };
 
+    // Função para continuar o jogo após pausa
     const handleContinue = () => {
         playSound(clickSound);
         setIsPaused(false);
     };
 
+    // Função para fornecer uma dica ao usuário
     const handleHint = () => {
         playSound(clickSound);
         if (itemsToFind.length > 0) {
             const randomItem = itemsToFind[Math.floor(Math.random() * itemsToFind.length)];
             setHintItem(randomItem);
-            setTimeout(() => setHintItem(null), 3000);
+            setTimeout(() => setHintItem(null), 3000); // Remove a dica após 3 segundos
         }
     };
 
+    // Função para renderizar as estrelas de feedback
     const renderStars = () => {
         const totalStars = 3;
         const starsArray = [];
@@ -189,7 +208,7 @@ const ThreeLevel = () => {
                 </div>
             </div>
 
-            <div className="controls">
+            <div className="controls-level-three">
                 <button className="btn-control" onClick={handlePause}>||</button>
                 <button className="btn-control" onClick={handleHint}>?</button>
             </div>
@@ -202,7 +221,6 @@ const ThreeLevel = () => {
                                 {renderStars()} {/* Exibir estrelas coloridas e cinzas */}
                                 <h2>PARABÉNS!</h2>
                                 <p>Você encontrou todos os itens.</p>
-                                
                             </>
                         ) : (
                             <>

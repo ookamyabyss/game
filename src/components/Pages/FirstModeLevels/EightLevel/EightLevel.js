@@ -229,7 +229,7 @@ const EightLevel = () => {
                 )}
             </div>
         
-            <div className="controls">
+            <div className="controls-level-eight">
                 <button className="btn-control" onClick={handlePause}>||</button>
                 <button className="btn-control" onClick={handleHint}>?</button>
             </div>

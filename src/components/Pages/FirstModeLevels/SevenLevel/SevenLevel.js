@@ -229,7 +229,7 @@ const SevenLevel = () => {
                 )}
             </div>
         
-            <div className="controls">
+            <div className="controls-level-seven">
                 <button className="btn-control" onClick={handlePause}>||</button>
                 <button className="btn-control" onClick={handleHint}>?</button>
             </div>

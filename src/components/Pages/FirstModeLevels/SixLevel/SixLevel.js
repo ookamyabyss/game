@@ -171,7 +171,7 @@ const SixLevel = () => {
         playSound(clickSound);
         setIsPaused(true);
         clearInterval(visibilityInterval); // Para a alternância de visibilidade
-    
+
         // Define a visibilidade de todos os itens como false
         setItemVisibility((prevVisibility) => {
             const newVisibility = {};
@@ -181,7 +181,7 @@ const SixLevel = () => {
             return newVisibility;
         });
     };
-  
+
     const handleContinue = () => {
         playSound(clickSound);
         setIsPaused(false);
@@ -217,7 +217,7 @@ const SixLevel = () => {
     return (
         <div className={`level-container ${isPaused ? 'paused' : ''}`} style={{ backgroundImage: `url(${backgroundImage})` }}>
             <h1>NÍVEL 6</h1>
-        
+
             <div className="game-area">
                 {/* A classe paused é adicionada aqui para tornar a grade invisível */}
                 <div className={`item-grid ${isPaused ? 'paused' : ''}`}>
@@ -232,7 +232,7 @@ const SixLevel = () => {
                         </div>
                     ))}
                 </div>
-        
+
                 <div className="item-list">
                     <div className="status">
                         <p>{formatTime(timeRemaining)}</p>
@@ -247,7 +247,7 @@ const SixLevel = () => {
                         ))}
                     </ul>
                 </div>
-                
+
                 {/* Overlay de pausa */}
                 {isPaused && (
                     <div className="pause-overlay">
@@ -259,12 +259,12 @@ const SixLevel = () => {
                     </div>
                 )}
             </div>
-        
-            <div className="controls">
+
+            <div className="controls-level-six">
                 <button className="btn-control" onClick={handlePause}>||</button>
                 <button className="btn-control" onClick={handleHint}>?</button>
             </div>
-        
+
             {gameStatus !== 'playing' && (
                 <div className="pause-overlay">
                     <div className="game-over-message">
@@ -273,7 +273,6 @@ const SixLevel = () => {
                                 {renderStars()} {/* Exibir estrelas coloridas e cinzas */}
                                 <h2>PARABÉNS!</h2>
                                 <p>Você encontrou todos os itens.</p>
-                                
                             </>
                         ) : (
                             <>
@@ -288,9 +287,7 @@ const SixLevel = () => {
                 </div>
             )}
         </div>
-    );    
-    
-    
+    );
 };
 
 export default SixLevel;

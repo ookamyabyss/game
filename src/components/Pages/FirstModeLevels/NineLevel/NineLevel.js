@@ -229,7 +229,7 @@ const NineLevel = () => {
                 )}
             </div>
         
-            <div className="controls">
+            <div className="controls-level-nine">
                 <button className="btn-control" onClick={handlePause}>||</button>
                 <button className="btn-control" onClick={handleHint}>?</button>
             </div>
