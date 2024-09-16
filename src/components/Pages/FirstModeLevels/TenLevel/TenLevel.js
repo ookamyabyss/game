@@ -38,7 +38,7 @@ const TenLevel = () => {
             setItems(shuffledItems);
     
             const itemsToFindSet = new Set();
-            while (itemsToFindSet.size < 10) {
+            while (itemsToFindSet.size < 20) {
                 itemsToFindSet.add(shuffledItems[Math.floor(Math.random() * shuffledItems.length)]);
             }
             setItemsToFind(Array.from(itemsToFindSet));
@@ -52,7 +52,7 @@ const TenLevel = () => {
     
             // Inicializa itens bloqueados
             const initialLockedItems = Array.from(itemsToFindSet).slice(0, 6); // Ajuste a quantidade conforme necessário
-            setLockedItems(initialLockedItems);
+            setLockedItems(Array.from(allItems.sort(() => 0.5 - Math.random()).slice(0, 30)).slice(0, 45));
         };
     
         initializeGame();
@@ -142,7 +142,7 @@ const TenLevel = () => {
         setItems(shuffledItems);
 
         const itemsToFindSet = new Set();
-        while (itemsToFindSet.size < 10) {
+        while (itemsToFindSet.size < 20) {
             itemsToFindSet.add(shuffledItems[Math.floor(Math.random() * shuffledItems.length)]);
         }
         setItemsToFind(Array.from(itemsToFindSet));
@@ -173,7 +173,7 @@ const TenLevel = () => {
 
     const goToNextLevel = () => {
         playSound(clickSound);
-        navigate('/first-mode-level/5');
+        navigate('/first-mode-level/1');
     };
 
     const formatTime = (time) => {
@@ -238,7 +238,7 @@ const TenLevel = () => {
                     {items.map((item, index) => (
                         <div
                             key={index}
-                            className={`item ${foundItems.includes(item) ? 'found' : ''} ${hintItem === item ? 'hint' : ''}`}
+                            className={`item ${foundItems.includes(item) ? 'found-one' : ''} ${hintItem === item ? 'hint' : ''}`}
                             onClick={() => handleItemClick(item)}
                             style={{ visibility: itemVisibility[item.name] ? 'visible' : 'hidden' }}
                         >
@@ -258,7 +258,7 @@ const TenLevel = () => {
                     </div>
                     <ul>
                         {itemsToFind.map((item, index) => (
-                            <li key={index} className={foundItems.includes(item) ? 'found' : ''}>
+                            <li key={index} className={foundItems.includes(item) ? 'found-one' : ''}>
                                 {item.name}
                             </li>
                         ))}

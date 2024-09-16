@@ -95,12 +95,12 @@
 
 /* Lista de itens a serem encontrados */
 .item-list {
-    display: flex; /* Usa layout flexível */
+    display: fixed; /* Usa layout flexível */
     flex-direction: column; /* Alinha itens na vertical */
     align-items: center; /* Centraliza horizontalmente */
-    width: 100%; /* Largura total */
+    width: 80%; /* Largura total */
     background-color: #282c34; /* Cor de fundo da lista */
-    padding: 15px; /* Espaçamento interno */
+    padding: 10px; /* Espaçamento interno */
     border-radius: 10px; /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra externa */
     font-family: 'Skranji', cursive; /* Fonte usada na lista */
@@ -302,17 +302,17 @@
 /* PAUSE E DICA*/
 
 /* Controles */
-.controls-level-one {
-    position: absolute; /* Posiciona os controles de forma absoluta */
-    bottom: 70px; /* Distância do fundo da tela */
-    left: 82%; /* Posição horizontal ajustada para a direita */
-    transform: translateX(-50%); /* Centraliza horizontalmente */
-    display: flex; /* Usa layout flexível */
-    gap: 10px; /* Espaço entre os botões */
+.controls-level-two {
+    position: fixed; /* Posiciona o menu fixo na tela */
+    bottom: 20px; /* Distância do fundo da tela */
+    right: 0px; /* Distância da borda direita da tela */
+    display: flex; /* Usa flexbox para layout */
+    flex-direction: column; /* Alinha os itens em coluna */
+    align-items: flex-end; /* Alinha os itens à direita */
 }
 
 /* Estilo dos botões de controle */
-.btn-control-one {
+.btn-control-two {
     margin: 10px; /* Espaço ao redor do botão */
     width: 70px; /* Largura do botão */
     letter-spacing: 2px; /* Espaçamento entre letras */
@@ -335,13 +335,13 @@
 }
 
 /* Estilo do botão ao passar o mouse sobre ele */
-.btn-control-one:hover {
+.btn-control-two:hover {
     background: radial-gradient(circle, #e52b2b, #8b0000); /* Cor de fundo ao passar o mouse */
     box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2); /* Sombra ao passar o mouse */
 }
 
 /* Estilo do botão ao ser clicado */
-.btn-control-one:active {
+.btn-control-two:active {
     background: radial-gradient(circle, #ec6a6a, #e52b2b); /* Cor de fundo ao clicar */
     box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2); /* Sombra ao clicar */
 }

@@ -215,9 +215,9 @@ const OneLevel = () => {
             </div>
 
             {/* Controles do jogo */}
-            <div className="controls-level-one">
-                <button className="btn-control-one" onClick={handlePause}>||</button>
-                <button className="btn-control-one" onClick={handleHint}>?</button>
+            <div className="controls-level-two">
+                <button className="btn-control-two" onClick={handlePause}>||</button>
+                <button className="btn-control-two" onClick={handleHint}>?</button>
             </div>
 
             {/* Tela de Game Over ou vitória */}

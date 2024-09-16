@@ -83,7 +83,7 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
             content: (
                 <div className="level-description">
                     <p> 5 MINUTOS </p>
-                    <p> 10 ITENS </p>
+                    <p> 12 ITENS </p>
                 </div>
             ),
         },
@@ -92,7 +92,7 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
             content: (
                 <div className="level-description">
                     <p> 3 MINUTOS </p>
-                    <p> 10 ITENS </p>
+                    <p> 12 ITENS </p>
                 </div>
             ),
         },
@@ -101,7 +101,7 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
             content: (
                 <div className="level-description">
                     <p> 8 MINUTOS </p>
-                    <p> 10 ITENS </p>
+                    <p> 14 ITENS </p>
                     <p> DESAPARECENDO </p>
                 </div>
             ),
@@ -111,7 +111,7 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
             content: (
                 <div className="level-description">
                     <p> 5 MINUTOS </p>
-                    <p> 10 ITENS </p>
+                    <p> 16 ITENS </p>
                     <p> DESAPARECENDO </p>
                 </div>
             ),
@@ -121,7 +121,7 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
             content: (
                 <div className="level-description">
                     <p> 3 MINUTOS </p>
-                    <p> 10 ITENS </p>
+                    <p> 18 ITENS </p>
                     <p> DESAPARECENDO </p>
                 </div>
             ),
@@ -131,7 +131,7 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
             content: (
                 <div className="level-description">
                     <p> 8 MINUTOS </p>
-                    <p> 10 ITENS </p>
+                    <p> 18 ITENS </p>
                     <p> BLOQUEADOS </p>
                 </div>
             ),
@@ -141,7 +141,7 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
             content: (
                 <div className="level-description">
                     <p> 5 MINUTOS </p>
-                    <p> 10 ITENS </p>
+                    <p> 18 ITENS </p>
                     <p> BLOQUEADOS </p>
                 </div>
             ),
@@ -151,7 +151,7 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
             content: (
                 <div className="level-description">
                     <p> 3 MINUTOS </p>
-                    <p> 10 ITENS </p>
+                    <p> 18 ITENS </p>
                     <p> BLOQUEADOS </p>
                 </div>
             ),

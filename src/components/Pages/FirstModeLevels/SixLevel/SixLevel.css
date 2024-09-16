@@ -95,12 +95,12 @@
 
 /* Lista de itens */
 .item-list {
-    display: flex;
+    display: fixed;
     flex-direction: column; /* Alinha o tempo, contagem e lista de itens em coluna */
     align-items: center; /* Centraliza o conteúdo */
-    width: 100%; /* Largura total para ocupar o espaço */
+    width: 80%; /* Largura total para ocupar o espaço */
     background-color: #282c34;
-    padding: 15px;
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     font-family: 'Skranji', cursive;
@@ -290,12 +290,12 @@
 
 /* Controles */
 .controls-level-one {
-    position: absolute; /* Posiciona os controles de forma absoluta */
-    bottom: 70px; /* Distância do fundo da tela */
-    left: 82%; /* Posição horizontal ajustada para a direita */
-    transform: translateX(-50%); /* Centraliza horizontalmente */
-    display: flex; /* Usa layout flexível */
-    gap: 10px; /* Espaço entre os botões */
+    position: fixed; /* Posiciona o menu fixo na tela */
+    bottom: 20px; /* Distância do fundo da tela */
+    right: 10px; /* Distância da borda direita da tela */
+    display: flex; /* Usa flexbox para layout */
+    flex-direction: column; /* Alinha os itens em coluna */
+    align-items: flex-end; /* Alinha os itens à direita */
 }
 
 /* Estilo dos botões de controle */

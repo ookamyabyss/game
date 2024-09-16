@@ -95,12 +95,12 @@
 
 /* Lista de itens a serem encontrados */
 .item-list {
-    display: flex; /* Usa layout flexível */
+    display: fixed; /* Usa layout flexível */
     flex-direction: column; /* Alinha itens na vertical */
     align-items: center; /* Centraliza horizontalmente */
-    width: 100%; /* Largura total */
+    width: 80%; /* Largura total */
     background-color: #282c34; /* Cor de fundo da lista */
-    padding: 15px; /* Espaçamento interno */
+    padding: 10px; /* Espaçamento interno */
     border-radius: 10px; /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra externa */
     font-family: 'Skranji', cursive; /* Fonte usada na lista */
@@ -303,12 +303,12 @@
 
 /* Controles */
 .controls-level-one {
-    position: absolute; /* Posiciona os controles de forma absoluta */
-    bottom: 70px; /* Distância do fundo da tela */
-    left: 82%; /* Posição horizontal ajustada para a direita */
-    transform: translateX(-50%); /* Centraliza horizontalmente */
-    display: flex; /* Usa layout flexível */
-    gap: 10px; /* Espaço entre os botões */
+    position: fixed; /* Posiciona o menu fixo na tela */
+    bottom: 20px; /* Distância do fundo da tela */
+    right: 10px; /* Distância da borda direita da tela */
+    display: flex; /* Usa flexbox para layout */
+    flex-direction: column; /* Alinha os itens em coluna */
+    align-items: flex-end; /* Alinha os itens à direita */
 }
 
 /* Estilo dos botões de controle */

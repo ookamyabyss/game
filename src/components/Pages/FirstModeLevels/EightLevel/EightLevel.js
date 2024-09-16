@@ -37,13 +37,13 @@ const EightLevel = () => {
             setItems(shuffledItems);
 
             const itemsToFindSet = new Set();
-            while (itemsToFindSet.size < 10) {
+            while (itemsToFindSet.size < 18) {
                 itemsToFindSet.add(shuffledItems[Math.floor(Math.random() * shuffledItems.length)]);
             }
             setItemsToFind(Array.from(itemsToFindSet));
 
             // Selecionar itens bloqueados (primeiros 3 itens como bloqueados)
-            setLockedItems(Array.from(itemsToFindSet).slice(0, 6));
+            setLockedItems(Array.from(allItems.sort(() => 0.5 - Math.random()).slice(0, 30)).slice(0, 45));
         };
 
         initializeGame();
@@ -112,7 +112,7 @@ const EightLevel = () => {
         setItems(shuffledItems);
 
         const itemsToFindSet = new Set();
-        while (itemsToFindSet.size < 10) {
+        while (itemsToFindSet.size < 18) {
             itemsToFindSet.add(shuffledItems[Math.floor(Math.random() * shuffledItems.length)]);
         }
         setItemsToFind(Array.from(itemsToFindSet));
@@ -191,7 +191,7 @@ const EightLevel = () => {
                     {items.map((item, index) => (
                         <div
                             key={index}
-                            className={`item ${foundItems.includes(item) ? 'found' : ''} ${hintItem === item ? 'hint' : ''}`}
+                            className={`item ${foundItems.includes(item) ? 'found-one' : ''} ${hintItem === item ? 'hint' : ''}`}
                             onClick={() => handleItemClick(item)}
                         >
                             {lockedItems.includes(item) && (
@@ -210,7 +210,7 @@ const EightLevel = () => {
                     </div>
                     <ul>
                         {itemsToFind.map((item, index) => (
-                            <li key={index} className={foundItems.includes(item) ? 'found' : ''}>
+                            <li key={index} className={foundItems.includes(item) ? 'found-one' : ''}>
                                 {item.name}
                             </li>
                         ))}

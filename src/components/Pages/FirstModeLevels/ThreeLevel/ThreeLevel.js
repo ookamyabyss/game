@@ -39,7 +39,7 @@ const OneLevel = () => {
 
         // Seleciona 10 itens aleatórios para encontrar
         const itemsToFindSet = new Set();
-        while (itemsToFindSet.size < 10) {
+        while (itemsToFindSet.size < 12) {
             itemsToFindSet.add(shuffledItems[Math.floor(Math.random() * shuffledItems.length)]);
         }
         setItemsToFind(Array.from(itemsToFindSet));
@@ -106,7 +106,7 @@ const OneLevel = () => {
         setItems(shuffledItems);
 
         const itemsToFindSet = new Set();
-        while (itemsToFindSet.size < 10) {
+        while (itemsToFindSet.size < 12) {
             itemsToFindSet.add(shuffledItems[Math.floor(Math.random() * shuffledItems.length)]);
         }
         setItemsToFind(Array.from(itemsToFindSet));
@@ -128,7 +128,7 @@ const OneLevel = () => {
     // Função para avançar para o próximo nível
     const goToNextLevel = () => {
         playSound(clickSound);
-        navigate('/first-mode-level/2');
+        navigate('/first-mode-level/4');
     };
 
     // Formatação do tempo restante no formato MM:SS

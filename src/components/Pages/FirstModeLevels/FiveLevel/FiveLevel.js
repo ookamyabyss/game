@@ -37,7 +37,7 @@ const FourLevel = () => {
             setItems(shuffledItems);
 
             const itemsToFindSet = new Set();
-            while (itemsToFindSet.size < 10) {
+            while (itemsToFindSet.size < 16) {
                 itemsToFindSet.add(shuffledItems[Math.floor(Math.random() * shuffledItems.length)]);
             }
             setItemsToFind(Array.from(itemsToFindSet));
@@ -131,7 +131,7 @@ const FourLevel = () => {
         setItems(shuffledItems);
 
         const itemsToFindSet = new Set();
-        while (itemsToFindSet.size < 10) {
+        while (itemsToFindSet.size < 16) {
             itemsToFindSet.add(shuffledItems[Math.floor(Math.random() * shuffledItems.length)]);
         }
         setItemsToFind(Array.from(itemsToFindSet));
@@ -158,7 +158,7 @@ const FourLevel = () => {
 
     const goToNextLevel = () => {
         playSound(clickSound);
-        navigate('/first-mode-level/5');
+        navigate('/first-mode-level/6');
     };
 
     const formatTime = (time) => {
