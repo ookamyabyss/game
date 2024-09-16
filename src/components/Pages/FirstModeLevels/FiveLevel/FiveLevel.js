@@ -7,7 +7,7 @@ import starGrayImage from '../../../../assets/stars/star-gray.png';
 import backgroundImage from '../../../../assets/background_levels/FirstModeFive_Six.png';
 import './FiveLevel.css';
 
-const FiveLevel = () => {
+const FourLevel = () => {
     const navigate = useNavigate();
     const [items, setItems] = useState([]);
     const [itemsToFind, setItemsToFind] = useState([]);
@@ -158,7 +158,7 @@ const FiveLevel = () => {
 
     const goToNextLevel = () => {
         playSound(clickSound);
-        navigate('/first-mode-level/6');
+        navigate('/first-mode-level/5');
     };
 
     const formatTime = (time) => {
@@ -171,7 +171,7 @@ const FiveLevel = () => {
         playSound(clickSound);
         setIsPaused(true);
         clearInterval(visibilityInterval); // Para a alternância de visibilidade
-
+    
         // Define a visibilidade de todos os itens como false
         setItemVisibility((prevVisibility) => {
             const newVisibility = {};
@@ -181,7 +181,7 @@ const FiveLevel = () => {
             return newVisibility;
         });
     };
-  
+
     const handleContinue = () => {
         playSound(clickSound);
         setIsPaused(false);
@@ -217,14 +217,14 @@ const FiveLevel = () => {
     return (
         <div className={`level-container ${isPaused ? 'paused' : ''}`} style={{ backgroundImage: `url(${backgroundImage})` }}>
             <h1>NÍVEL 5</h1>
-
+        
             <div className="game-area">
                 {/* A classe paused é adicionada aqui para tornar a grade invisível */}
-                <div className={`item-grid ${isPaused ? 'paused' : ''}`}>
+                <div className={`item-grid-one ${isPaused ? 'paused' : ''}`}>
                     {items.map((item, index) => (
                         <div
                             key={index}
-                            className={`item ${foundItems.includes(item) ? 'found' : ''} ${hintItem === item ? 'hint' : ''}`}
+                            className={`item ${foundItems.includes(item) ? 'found-one' : ''} ${hintItem === item ? 'hint' : ''}`}
                             onClick={() => handleItemClick(item)}
                             style={{ visibility: itemVisibility[item.name] ? 'visible' : 'hidden' }}
                         >
@@ -232,16 +232,16 @@ const FiveLevel = () => {
                         </div>
                     ))}
                 </div>
-
+        
                 <div className="item-list">
-                    <div className="status">
+                    <div className="status-one">
                         <p>{formatTime(timeRemaining)}</p>
                         <p>Itens encontrados: </p>
                         <p>{foundItems.length}/{itemsToFind.length}</p>
                     </div>
                     <ul>
                         {itemsToFind.map((item, index) => (
-                            <li key={index} className={foundItems.includes(item) ? 'found' : ''}>
+                            <li key={index} className={foundItems.includes(item) ? 'found-one' : ''}>
                                 {item.name}
                             </li>
                         ))}
@@ -250,8 +250,8 @@ const FiveLevel = () => {
                 
                 {/* Overlay de pausa */}
                 {isPaused && (
-                    <div className="pause-overlay">
-                        <div className="pause-message">
+                    <div className="pause-overlay-one">
+                        <div className="pause-message-one">
                             <h2>Jogo Pausado</h2>
                             <button onClick={handleContinue}>Continuar</button>
                             <button onClick={goToMenu}>Desistir</button>
@@ -259,18 +259,18 @@ const FiveLevel = () => {
                     </div>
                 )}
             </div>
-
-            <div className="controls-level-five">
-                <button className="btn-control" onClick={handlePause}>||</button>
-                <button className="btn-control" onClick={handleHint}>?</button>
+        
+            <div className="controls-level-one">
+                <button className="btn-control-one" onClick={handlePause}>||</button>
+                <button className="btn-control-one" onClick={handleHint}>?</button>
             </div>
-
+        
             {gameStatus !== 'playing' && (
-                <div className="pause-overlay">
-                    <div className="game-over-message">
+                <div className="pause-overlay-one">
+                    <div className="game-over-message-one">
                         {gameStatus === 'won' ? (
                             <>
-                                {renderStars()} {/* Exibir estrelas coloridas e cinzas */}
+                                {renderStars()} {/* Exibe estrelas coloridas e cinzas */}
                                 <h2>PARABÉNS!</h2>
                                 <p>Você encontrou todos os itens.</p>
                             </>
@@ -286,8 +286,9 @@ const FiveLevel = () => {
                     </div>
                 </div>
             )}
+
         </div>
     );
 };
 
-export default FiveLevel;
+export default FourLevel;

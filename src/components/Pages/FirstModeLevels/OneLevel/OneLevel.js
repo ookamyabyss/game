@@ -185,11 +185,11 @@ const OneLevel = () => {
 
             <div className="game-area">
                 {/* Grid de itens */}
-                <div className="item-grid" style={{ visibility: isPaused ? 'hidden' : 'visible' }}>
+                <div className="item-grid-one" style={{ visibility: isPaused ? 'hidden' : 'visible' }}>
                     {items.map((item, index) => (
                         <div
                             key={index}
-                            className={`item ${foundItems.includes(item) ? 'found' : ''} ${hintItem === item ? 'hint' : ''}`}
+                            className={`item ${foundItems.includes(item) ? 'found-one' : ''} ${hintItem === item ? 'hint' : ''}`}
                             onClick={() => handleItemClick(item)}
                         >
                             <img src={item.image} alt={item.name} />
@@ -199,14 +199,14 @@ const OneLevel = () => {
 
                 {/* Lista de itens a serem encontrados */}
                 <div className="item-list">
-                    <div className="status">
+                    <div className="status-one">
                         <p>{formatTime(timeRemaining)}</p>
                         <p>Itens encontrados: </p>
                         <p>{foundItems.length}/{itemsToFind.length}</p>
                     </div>
                     <ul>
                         {itemsToFind.map((item, index) => (
-                            <li key={index} className={foundItems.includes(item) ? 'found' : ''}>
+                            <li key={index} className={foundItems.includes(item) ? 'found-one' : ''}>
                                 {item.name}
                             </li>
                         ))}
@@ -216,14 +216,14 @@ const OneLevel = () => {
 
             {/* Controles do jogo */}
             <div className="controls-level-one">
-                <button className="btn-control" onClick={handlePause}>||</button>
-                <button className="btn-control" onClick={handleHint}>?</button>
+                <button className="btn-control-one" onClick={handlePause}>||</button>
+                <button className="btn-control-one" onClick={handleHint}>?</button>
             </div>
 
             {/* Tela de Game Over ou vitória */}
             {gameStatus !== 'playing' && (
-                <div className="pause-overlay">
-                    <div className="game-over-message">
+                <div className="pause-overlay-one">
+                    <div className="game-over-message-one">
                         {gameStatus === 'won' ? (
                             <>
                                 {renderStars()} {/* Exibe estrelas coloridas e cinzas */}
@@ -245,12 +245,11 @@ const OneLevel = () => {
 
             {/* Tela de pausa */}
             {isPaused && (
-                <div className="pause-overlay">
-                    <div className="pause-message">
+                <div className="pause-overlay-one">
+                    <div className="pause-message-one">
                         <h2>Jogo Pausado</h2>
                         <button onClick={handleContinue}>Continuar</button>
-                        <button onClick={goToMenu}>Menu</button>
-                        <button onClick={restartLevel}>Reiniciar</button>
+                        <button onClick={goToMenu}>Desistir</button>
                     </div>
                 </div>
             )}

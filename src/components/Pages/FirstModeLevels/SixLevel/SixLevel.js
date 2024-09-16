@@ -4,7 +4,7 @@ import clickSound from '../../../../assets/sounds/click.mp3';
 import itemFoundSound from '../../../../assets/sounds/success.mp3';
 import starImage from '../../../../assets/stars/star.png';
 import starGrayImage from '../../../../assets/stars/star-gray.png';
-import backgroundImage from '../../../../assets/background_levels/FirstModeFive_Six.png'; // Background para a fase 4
+import backgroundImage from '../../../../assets/background_levels/FirstModeFive_Six.png';
 import './SixLevel.css';
 
 const SixLevel = () => {
@@ -137,7 +137,7 @@ const SixLevel = () => {
         setItemsToFind(Array.from(itemsToFindSet));
 
         setFoundItems([]);
-        setTimeRemaining(300);
+        setTimeRemaining(180);
         setGameStatus('playing');
         setIsPaused(false);
         setHintItem(null);
@@ -158,7 +158,7 @@ const SixLevel = () => {
 
     const goToNextLevel = () => {
         playSound(clickSound);
-        navigate('/first-mode-level/7');
+        navigate('/first-mode-level/5');
     };
 
     const formatTime = (time) => {
@@ -171,7 +171,7 @@ const SixLevel = () => {
         playSound(clickSound);
         setIsPaused(true);
         clearInterval(visibilityInterval); // Para a alternância de visibilidade
-
+    
         // Define a visibilidade de todos os itens como false
         setItemVisibility((prevVisibility) => {
             const newVisibility = {};
@@ -217,14 +217,14 @@ const SixLevel = () => {
     return (
         <div className={`level-container ${isPaused ? 'paused' : ''}`} style={{ backgroundImage: `url(${backgroundImage})` }}>
             <h1>NÍVEL 6</h1>
-
+        
             <div className="game-area">
                 {/* A classe paused é adicionada aqui para tornar a grade invisível */}
-                <div className={`item-grid ${isPaused ? 'paused' : ''}`}>
+                <div className={`item-grid-one ${isPaused ? 'paused' : ''}`}>
                     {items.map((item, index) => (
                         <div
                             key={index}
-                            className={`item ${foundItems.includes(item) ? 'found' : ''} ${hintItem === item ? 'hint' : ''}`}
+                            className={`item ${foundItems.includes(item) ? 'found-one' : ''} ${hintItem === item ? 'hint' : ''}`}
                             onClick={() => handleItemClick(item)}
                             style={{ visibility: itemVisibility[item.name] ? 'visible' : 'hidden' }}
                         >
@@ -232,26 +232,26 @@ const SixLevel = () => {
                         </div>
                     ))}
                 </div>
-
+        
                 <div className="item-list">
-                    <div className="status">
+                    <div className="status-one">
                         <p>{formatTime(timeRemaining)}</p>
                         <p>Itens encontrados: </p>
                         <p>{foundItems.length}/{itemsToFind.length}</p>
                     </div>
                     <ul>
                         {itemsToFind.map((item, index) => (
-                            <li key={index} className={foundItems.includes(item) ? 'found' : ''}>
+                            <li key={index} className={foundItems.includes(item) ? 'found-one' : ''}>
                                 {item.name}
                             </li>
                         ))}
                     </ul>
                 </div>
-
+                
                 {/* Overlay de pausa */}
                 {isPaused && (
-                    <div className="pause-overlay">
-                        <div className="pause-message">
+                    <div className="pause-overlay-one">
+                        <div className="pause-message-one">
                             <h2>Jogo Pausado</h2>
                             <button onClick={handleContinue}>Continuar</button>
                             <button onClick={goToMenu}>Desistir</button>
@@ -259,18 +259,18 @@ const SixLevel = () => {
                     </div>
                 )}
             </div>
-
-            <div className="controls-level-six">
-                <button className="btn-control" onClick={handlePause}>||</button>
-                <button className="btn-control" onClick={handleHint}>?</button>
+        
+            <div className="controls-level-one">
+                <button className="btn-control-one" onClick={handlePause}>||</button>
+                <button className="btn-control-one" onClick={handleHint}>?</button>
             </div>
-
+        
             {gameStatus !== 'playing' && (
-                <div className="pause-overlay">
-                    <div className="game-over-message">
+                <div className="pause-overlay-one">
+                    <div className="game-over-message-one">
                         {gameStatus === 'won' ? (
                             <>
-                                {renderStars()} {/* Exibir estrelas coloridas e cinzas */}
+                                {renderStars()} {/* Exibe estrelas coloridas e cinzas */}
                                 <h2>PARABÉNS!</h2>
                                 <p>Você encontrou todos os itens.</p>
                             </>
@@ -286,6 +286,7 @@ const SixLevel = () => {
                     </div>
                 </div>
             )}
+
         </div>
     );
 };

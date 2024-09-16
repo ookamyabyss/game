@@ -217,32 +217,24 @@ const SevenLevel = () => {
                     </ul>
                 </div>
                 
-                {/* Overlay de pausa */}
-                {isPaused && (
-                    <div className="pause-overlay">
-                        <div className="pause-message">
-                            <h2>Jogo Pausado</h2>
-                            <button onClick={handleContinue}>Continuar</button>
-                            <button onClick={goToMenu}>Desistir</button>
-                        </div>
-                    </div>
-                )}
             </div>
         
-            <div className="controls-level-seven">
-                <button className="btn-control" onClick={handlePause}>||</button>
-                <button className="btn-control" onClick={handleHint}>?</button>
+            {/* Controles do jogo */}
+            <div className="controls-level-one">
+                <button className="btn-control-one" onClick={handlePause}>||</button>
+                <button className="btn-control-one" onClick={handleHint}>?</button>
             </div>
+
         
+            {/* Tela de Game Over ou vitória */}
             {gameStatus !== 'playing' && (
-                <div className="pause-overlay">
-                    <div className="game-over-message">
+                <div className="pause-overlay-one">
+                    <div className="game-over-message-one">
                         {gameStatus === 'won' ? (
                             <>
-                                {renderStars()} {/* Exibir estrelas coloridas e cinzas */}
+                                {renderStars()} {/* Exibe estrelas coloridas e cinzas */}
                                 <h2>PARABÉNS!</h2>
                                 <p>Você encontrou todos os itens.</p>
-                                
                             </>
                         ) : (
                             <>
@@ -257,9 +249,10 @@ const SevenLevel = () => {
                 </div>
             )}
 
+            {/* Tela de pausa */}
             {isPaused && (
-                <div className="pause-overlay">
-                    <div className="pause-message">
+                <div className="pause-overlay-one">
+                    <div className="pause-message-one">
                         <h2>Jogo Pausado</h2>
                         <button onClick={handleContinue}>Continuar</button>
                         <button onClick={goToMenu}>Desistir</button>

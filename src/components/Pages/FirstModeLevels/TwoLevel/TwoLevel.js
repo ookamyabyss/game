@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import clickSound from '../../../../assets/sounds/click.mp3'; // Som do clique
-import itemFoundSound from '../../../../assets/sounds/success.mp3'; // Som de item encontrado
+import clickSound from '../../../../assets/sounds/click.mp3'; // Som para cliques
+import itemFoundSound from '../../../../assets/sounds/success.mp3'; // Som quando um item é encontrado
 import starImage from '../../../../assets/stars/star.png'; // Imagem da estrela colorida
 import starGrayImage from '../../../../assets/stars/star-gray.png'; // Imagem da estrela cinza
 import backgroundImage from '../../../../assets/background_levels/FirstModeOne_Two.png'; // Imagem de fundo do nível
-import './TwoLevel.css'; // Estilos específicos para o nível 2
+import './TwoLevel.css'; // Arquivo de estilos do nível
 
 const TwoLevel = () => {
     const navigate = useNavigate(); // Hook para navegação entre páginas
@@ -20,11 +20,11 @@ const TwoLevel = () => {
     const [hintItem, setHintItem] = useState(null); // Item de dica
     const [stars, setStars] = useState(0); // Contador de estrelas
 
-    // Função para importar todas as imagens dos itens de um diretório
+    // Função para importar todas as imagens de itens de um diretório
     const importAll = (r) => {
         return r.keys().map((fileName) => ({
-            name: fileName.replace('./', '').replace(/\.\w+$/, ''), // Remove './' e extensão do nome do arquivo
-            image: r(fileName) // Importa a imagem
+            name: fileName.replace('./', '').replace(/\.\w+$/, ''),
+            image: r(fileName)
         }));
     };
 
@@ -62,12 +62,12 @@ const TwoLevel = () => {
     const handleItemClick = (item) => {
         if (itemsToFind.includes(item) && !foundItems.includes(item)) {
             setFoundItems([...foundItems, item]);
-            playItemFoundSound(); // Toca o som de item encontrado
+            playItemFoundSound();
 
             // Verifica se todos os itens foram encontrados
             if (foundItems.length + 1 === itemsToFind.length) {
-                calculateStars(); // Calcula as estrelas
-                setGameStatus('won'); // Define o status do jogo como 'won'
+                calculateStars();
+                setGameStatus('won');
             }
         }
     };
@@ -78,7 +78,7 @@ const TwoLevel = () => {
         audio.play();
     };
 
-    // Função para tocar o som de item encontrado
+    // Função para tocar o som quando um item é encontrado
     const playItemFoundSound = () => {
         playSound(itemFoundSound);
     };
@@ -101,6 +101,7 @@ const TwoLevel = () => {
 
     // Função para reiniciar o nível
     const restartLevel = () => {
+        // Reinicializa os itens e o estado do jogo
         const shuffledItems = allItems.sort(() => 0.5 - Math.random()).slice(0, 60);
         setItems(shuffledItems);
 
@@ -127,7 +128,7 @@ const TwoLevel = () => {
     // Função para avançar para o próximo nível
     const goToNextLevel = () => {
         playSound(clickSound);
-        navigate('/first-mode-level/3');
+        navigate('/first-mode-level/2');
     };
 
     // Formatação do tempo restante no formato MM:SS
@@ -137,12 +138,13 @@ const TwoLevel = () => {
         return `${minutes}:${seconds}`;
     };
 
-    // Funções para pausar e continuar o jogo
+    // Função para pausar o jogo
     const handlePause = () => {
         playSound(clickSound);
         setIsPaused(true);
     };
 
+    // Função para continuar o jogo após a pausa
     const handleContinue = () => {
         playSound(clickSound);
         setIsPaused(false);
@@ -183,11 +185,11 @@ const TwoLevel = () => {
 
             <div className="game-area">
                 {/* Grid de itens */}
-                <div className="item-grid" style={{ visibility: isPaused ? 'hidden' : 'visible' }}>
+                <div className="item-grid-one" style={{ visibility: isPaused ? 'hidden' : 'visible' }}>
                     {items.map((item, index) => (
                         <div
                             key={index}
-                            className={`item ${foundItems.includes(item) ? 'found' : ''} ${hintItem === item ? 'hint' : ''}`}
+                            className={`item ${foundItems.includes(item) ? 'found-one' : ''} ${hintItem === item ? 'hint' : ''}`}
                             onClick={() => handleItemClick(item)}
                         >
                             <img src={item.image} alt={item.name} />
@@ -197,14 +199,14 @@ const TwoLevel = () => {
 
                 {/* Lista de itens a serem encontrados */}
                 <div className="item-list">
-                    <div className="status">
+                    <div className="status-one">
                         <p>{formatTime(timeRemaining)}</p>
                         <p>Itens encontrados: </p>
                         <p>{foundItems.length}/{itemsToFind.length}</p>
                     </div>
                     <ul>
                         {itemsToFind.map((item, index) => (
-                            <li key={index} className={foundItems.includes(item) ? 'found' : ''}>
+                            <li key={index} className={foundItems.includes(item) ? 'found-one' : ''}>
                                 {item.name}
                             </li>
                         ))}
@@ -213,15 +215,15 @@ const TwoLevel = () => {
             </div>
 
             {/* Controles do jogo */}
-            <div className="controls-level-two">
-                <button className="btn-control" onClick={handlePause}>||</button>
-                <button className="btn-control" onClick={handleHint}>?</button>
+            <div className="controls-level-one">
+                <button className="btn-control-one" onClick={handlePause}>||</button>
+                <button className="btn-control-one" onClick={handleHint}>?</button>
             </div>
 
-            {/* Tela de fim de jogo */}
+            {/* Tela de Game Over ou vitória */}
             {gameStatus !== 'playing' && (
-                <div className="pause-overlay">
-                    <div className="game-over-message">
+                <div className="pause-overlay-one">
+                    <div className="game-over-message-one">
                         {gameStatus === 'won' ? (
                             <>
                                 {renderStars()} {/* Exibe estrelas coloridas e cinzas */}
@@ -243,8 +245,8 @@ const TwoLevel = () => {
 
             {/* Tela de pausa */}
             {isPaused && (
-                <div className="pause-overlay">
-                    <div className="pause-message">
+                <div className="pause-overlay-one">
+                    <div className="pause-message-one">
                         <h2>Jogo Pausado</h2>
                         <button onClick={handleContinue}>Continuar</button>
                         <button onClick={goToMenu}>Desistir</button>

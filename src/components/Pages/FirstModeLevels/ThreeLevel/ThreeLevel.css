@@ -1,7 +1,7 @@
 /* Importa a fonte 'Bungee' do Google Fonts */
 @import url('https://fonts.googleapis.com/css?family=Bungee');
 
-/* Estiliza o contêiner principal do nível do jogo */
+/* Contêiner principal do nível */
 .level-container {
     display: flex; /* Utiliza flexbox para layout */
     flex-direction: column; /* Organiza os itens em coluna */
@@ -11,415 +11,404 @@
     background: transparent; /* Define o fundo como transparente */
 }
 
-/* Estiliza o título dentro do contêiner do nível */
+/* Título do nível ''*/
 .level-container h1 {
-    font-family: 'Bungee', cursive; /* Define a fonte como 'Bungee' com fallback para cursiva */
-    letter-spacing: 10px; /* Define o espaçamento entre as letras como 10px */
-    font-size: 3rem; /* Define o tamanho da fonte como 3rem para maior destaque */
-    margin-bottom: 10px; /* Adiciona uma margem inferior de 10px */
-    color: #ffb000; /* Define a cor do texto como um tom de amarelo (#ffb000) */
+    font-family: 'Bungee', cursive; /* Fonte usada para o título */
+    letter-spacing: 10px; /* Espaçamento entre letras */
+    font-size: 3rem; /* Tamanho da fonte aumentado para destaque */
+    margin-bottom: 10px; /* Espaço abaixo do título */
+    color: #ffb000; /* Cor do texto */
     text-shadow: 
-    1px 1px 0 #000,    /* Aplica uma sombra do texto de 1px para baixo e 1px para a direita, com cor preta (#000) */
-    1px -1px 0 #000,  /* Aplica uma sombra do texto de 1px para cima e 1px para a esquerda, com cor preta (#000) */
-    1px -1px 0 #000,   /* Aplica uma sombra do texto de 1px para baixo e 1px para a direita, com cor preta (#000) */
-    -2px 2px 0 #000,   /* Aplica uma sombra do texto de 2px para baixo e 2px para a esquerda, com cor preta (#000) */
-    2px 2px 2px rgba(0, 0, 0, 0.6); /* Adiciona uma sombra adicional de 2px para baixo e 2px para a direita, com uma cor preta semi-transparente (rgba(0, 0, 0, 0.6)) */
+        1px 1px 0 #000,    /* Contorno preto fino no topo e esquerda */
+        1px -1px 0 #000,  /* Contorno preto fino na parte inferior e direita */
+        1px -1px 0 #000,   /* Contorno preto fino na diagonal superior direita */
+        -2px 2px 0 #000,   /* Contorno preto fino na diagonal inferior esquerda */
+        2px 2px 2px rgba(0, 0, 0, 0.6); /* Sombra adicional para efeito de profundidade */
 }
 
-/* Estiliza a área de informações do jogo */
-.game-info {
-    margin-bottom: 20px; /* Adiciona uma margem inferior de 20px */
-    text-align: center; /* Centraliza o texto horizontalmente */
-    color: #fff; /* Define a cor do texto como branco (#fff) */
-    font-size: 1.5rem; /* Define o tamanho da fonte como 1.5rem para maior legibilidade */
+/* Informações do jogo */
+.game-info{
+    margin-bottom: 20px; /* Espaço abaixo das informações do jogo */
+    text-align: center; /* Centraliza o texto */
+    color: #fff; /* Cor do texto */
+    font-size: 1.5rem; /* Tamanho da fonte aumentado para legibilidade */
 }
 
-/* Estiliza a área do jogo, onde os itens são exibidos */
+/* Área do jogo */
 .game-area {
-    display: flex; /* Utiliza flexbox para layout */
-    justify-content: center; /* Alinha os itens horizontalmente ao centro */
-    align-items: flex-start; /* Alinha os itens verticalmente ao topo */
-    gap: 20px; /* Adiciona um espaço de 20px entre os itens */
-    width: 100%; /* Define a largura como 100% do contêiner pai */
-    max-width: 100%; /* Define a largura máxima como 100% do contêiner pai */
-    overflow-x: auto; /* Permite rolar horizontalmente se o conteúdo exceder a largura */
+    display: flex; /* Alinha os itens em uma linha flexível */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: flex-start; /* Alinha os itens no topo */
+    gap: 20px; /* Espaço entre os itens */
+    width: 100%; /* Largura total */
+    max-width: 100%; /* Largura máxima */
+    overflow-x: auto; /* Adiciona rolagem horizontal se necessário */
 }
 
-/* Estiliza a grade de itens */
-.item-grid {
-    display: grid; /* Utiliza grid layout para organizar os itens */
-    grid-template-columns: repeat(10, 100px); /* Cria 10 colunas com 100px de largura cada */
-    grid-auto-rows: 100px; /* Define a altura das linhas da grade como 100px */
-    gap: 8px; /* Adiciona um espaço de 8px entre as células da grade */
-    background-color: #f5f5f5; /* Define a cor de fundo como cinza claro (#f5f5f5) */
-    padding: 10px; /* Adiciona um espaçamento interno de 10px */
-    border-radius: 10px; /* Adiciona bordas arredondadas com raio de 10px */
-    width: fit-content; /* Ajusta a largura da grade para se ajustar ao conteúdo */
-    max-width: calc(100px * 10 + 8px * 9 + 20px); /* Define a largura máxima da grade considerando o tamanho das células e espaçamentos */
-    box-sizing: border-box; /* Inclui o padding e bordas no cálculo da largura e altura */
-    margin-right: 20px; /* Adiciona uma margem à direita de 20px */
+/* Grid de itens */
+.item-grid-one {
+    display: grid; /* Usa o layout de grid */
+    grid-template-columns: repeat(10, 100px); /* Define 10 colunas com 100px de largura cada */
+    grid-auto-rows: 100px; /* Define a altura das linhas */
+    gap: 8px; /* Espaço entre as células da grid */
+    background-color: #f5f5f5; /* Cor de fundo da grid */
+    padding: 10px; /* Espaçamento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+    width: fit-content; /* Largura ajustada ao conteúdo */
+    max-width: calc(100px * 10 + 8px * 9 + 20px); /* Largura máxima calculada */
+    box-sizing: border-box; /* Inclui bordas e padding no cálculo da largura */
+    margin-right: 20px; /* Espaço à direita da grid */
 }
 
-/* Estiliza cada item dentro da grade */
+/* Estilo de cada item na grid */
 .item {
-    position: relative; /* Define a posição como relativa para permitir o posicionamento absoluto dos filhos, se necessário */
-    width: 100px; /* Define a largura do item como 100px */
-    height: 100px; /* Define a altura do item como 100px */
-    background-color: #f0f0f0; /* Define a cor de fundo como cinza muito claro (#f0f0f0) */
-    border: 2px solid #ddd; /* Define uma borda de 2px com cor cinza claro (#ddd) */
-    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra interna de 4px com cor preta semi-transparente */
-    display: flex; /* Utiliza flexbox para o layout interno do item */
-    justify-content: center; /* Alinha o conteúdo horizontalmente ao centro */
-    align-items: center; /* Alinha o conteúdo verticalmente ao centro */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Adiciona uma transição suave para transformação e sombra */
-    box-sizing: border-box; /* Inclui o padding e bordas no cálculo da largura e altura */
-    border-radius: 5px; /* Adiciona bordas arredondadas com raio de 5px */
+    position: relative; /* Permite posicionamento absoluto dos filhos */
+    width: 100px; /* Largura do item */
+    height: 100px; /* Altura do item */
+    background-color: #f0f0f0; /* Cor de fundo do item */
+    border: 2px solid #ddd; /* Borda do item */
+    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.3); /* Sombra interna */
+    display: flex; /* Alinha o conteúdo do item */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transição para transformações e sombras */
+    box-sizing: border-box; /* Inclui bordas e padding no cálculo da largura */
+    border-radius: 5px; /* Bordas arredondadas */
 }
 
-/* Estiliza as imagens dentro dos itens */
+/* Estilo da imagem dentro do item */
 .item img {
-    max-width: 90%; /* Define a largura máxima da imagem como 90% do contêiner pai */
-    max-height: 90%; /* Define a altura máxima da imagem como 90% do contêiner pai */
-    object-fit: contain; /* Ajusta a imagem para caber no contêiner sem cortar */
-    cursor: pointer; /* Muda o cursor para indicar que a imagem é clicável */
+    max-width: 90%; /* Largura máxima da imagem */
+    max-height: 90%; /* Altura máxima da imagem */
+    object-fit: contain; /* Ajusta a imagem sem cortar */
+    cursor: pointer; /* Cursor de mão para clicar */
 }
 
-/* Estiliza o item ao passar o mouse sobre ele */
+/* Estilo do item quando hover */
 .item:hover {
-    transform: scale(1.05); /* Aumenta o item em 5% quando o mouse está sobre ele */
+    transform: scale(1.05); /* Aumenta o item */
     box-shadow: 
-        inset 0px 0px 8px rgba(0, 0, 0, 0.5), /* Adiciona uma sombra interna de 8px com cor preta semi-transparente */
-        0px 4px 10px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra externa de 4px para baixo e 10px de desfoque com cor preta semi-transparente */
-    border-color: #ffb000; /* Altera a cor da borda para amarelo (#ffb000) quando o mouse está sobre o item */
+        inset 0px 0px 8px rgba(0, 0, 0, 0.5), /* Sombra interna aumentada */
+        0px 4px 10px rgba(0, 0, 0, 0.3); /* Sombra externa */
+    border-color: #ffb000; /* Cor da borda alterada */
 }
 
-/* Estiliza a lista de itens */
+/* Lista de itens a serem encontrados */
 .item-list {
-    display: flex; /* Utiliza flexbox para layout */
-    flex-direction: column; /* Organiza os itens em coluna */
-    align-items: center; /* Alinha os itens horizontalmente ao centro */
-    width: 100%; /* Define a largura como 100% do contêiner pai */
-    background-color: #282c34; /* Define a cor de fundo como um tom escuro (#282c34) */
-    padding: 15px; /* Adiciona um espaçamento interno de 15px */
-    border-radius: 10px; /* Adiciona bordas arredondadas com raio de 10px */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra externa de 4px para baixo e 8px de desfoque com cor preta semi-transparente */
-    font-family: 'Skranji', cursive; /* Define a fonte como 'Skranji' com fallback para cursiva */
-    color: #333; /* Define a cor do texto como cinza escuro (#333) */
-    border-top: 10px ridge #ffb000; /* Adiciona uma borda superior de 10px com estilo ridge e cor amarela (#ffb000) */
-    border-left: 10px groove #ffb000; /* Adiciona uma borda esquerda de 10px com estilo groove e cor amarela (#ffb000) */
-    border-right: 10px ridge #ffb000; /* Adiciona uma borda direita de 10px com estilo ridge e cor amarela (#ffb000) */
-    border-bottom: 10px groove #ffb000; /* Adiciona uma borda inferior de 10px com estilo groove e cor amarela (#ffb000) */
-    box-sizing: border-box; /* Inclui o padding e bordas no cálculo da largura e altura */
+    display: flex; /* Usa layout flexível */
+    flex-direction: column; /* Alinha itens na vertical */
+    align-items: center; /* Centraliza horizontalmente */
+    width: 100%; /* Largura total */
+    background-color: #282c34; /* Cor de fundo da lista */
+    padding: 15px; /* Espaçamento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra externa */
+    font-family: 'Skranji', cursive; /* Fonte usada na lista */
+    color: #333; /* Cor do texto */
+    border-top: 10px ridge #ffb000; /* Borda superior */
+    border-left: 10px groove #ffb000; /* Borda esquerda */
+    border-right: 10px ridge #ffb000; /* Borda direita */
+    border-bottom: 10px groove #ffb000; /* Borda inferior */
+    box-sizing: border-box; /* Inclui bordas e padding no cálculo da largura */
 }
 
-/* Estiliza o subtítulo dentro da lista de itens */
+/* Título da lista de itens */
 .item-list h2 {
-    margin-bottom: 20px; /* Adiciona uma margem inferior de 20px */
-    font-size: 28px; /* Define o tamanho da fonte como 28px para maior destaque */
-    color: #ffb000; /* Define a cor do texto como amarelo (#ffb000) */
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Adiciona uma sombra de texto de 1px para baixo e 1px para a direita com 3px de desfoque, cor preta semi-transparente */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+    font-size: 28px; /* Tamanho da fonte aumentado */
+    color: #ffb000; /* Cor do texto */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Sombra do texto */
 }
 
-/* Estiliza a lista dentro da lista de itens */
+/* Estilo da lista não ordenada */
 .item-list ul {
-    display: flex; /* Utiliza flexbox para layout */
-    flex-wrap: wrap; /* Permite que os itens se movam para a próxima linha se não houver espaço suficiente */
-    justify-content: space-between; /* Distribui os itens nas colunas com menos espaço entre eles */
-    gap: 8px; /* Adiciona um espaço de 8px entre os itens */
-    list-style: none; /* Remove a estilização padrão da lista (marcadores) */
-    padding: 0; /* Remove o espaçamento interno da lista */
-    margin: 0; /* Remove a margem da lista */
-    width: 100%; /* Define a largura como 100% do contêiner pai */
+    display: flex; /* Usa layout flexível */
+    flex-wrap: wrap; /* Quebra a linha quando necessário */
+    justify-content: space-between; /* Distribui os itens com menos espaço entre eles */
+    gap: 8px; /* Espaço entre os itens */
+    list-style: none; /* Remove os marcadores da lista */
+    padding: 0; /* Remove o padding padrão */
+    margin: 0; /* Remove a margem padrão */
+    width: 100%; /* Largura total */
 }
 
-/* Estiliza cada item da lista */
+/* Estilo de cada item da lista */
 .item-list li {
-    font-size: 24px; /* Define o tamanho da fonte como 24px */
-    letter-spacing: 3px; /* Adiciona um espaçamento entre as letras de 3px */
-    margin-bottom: 10px; /* Adiciona uma margem inferior de 10px */
-    color: #ffb000; /* Define a cor do texto como amarelo (#ffb000) */
-    text-shadow: 0 1px 3px #000; /* Adiciona uma sombra de texto de 1px para baixo com 3px de desfoque e cor preta */
-    transition: color 0.3s ease; /* Adiciona uma transição suave para a cor do texto */
-    flex: 1 1 45%; /* Permite que o item ocupe 45% do espaço disponível e se ajuste conforme necessário */
-    max-width: 45%; /* Define a largura máxima do item como 45% do contêiner pai */
-}
-
-/* Estiliza os itens da lista que estão marcados como encontrados */
-.item-list li.found {
-    text-decoration: line-through; /* Adiciona uma linha através do texto */
-    color: #ff0000; /* Define a cor do texto como vermelho (#ff0000) */
-}
-
-/* Estiliza o status dentro da lista de itens */
-.item-list .status {
-    margin-bottom: 20px; /* Adiciona uma margem inferior de 20px */
-    font-size: 24px; /* Define o tamanho da fonte como 24px */
-    color: #ffb000; /* Define a cor do texto como amarelo (#ffb000) */
-    text-align: center; /* Centraliza o texto horizontalmente */
-    background-color: #333; /* Define a cor de fundo como um tom escuro (#333) */
-    padding: 10px; /* Adiciona um espaçamento interno de 10px */
-    border-radius: 5px; /* Adiciona bordas arredondadas com raio de 5px */
-    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra interna de 4px com cor preta semi-transparente */
-    width: 100%; /* Define a largura como 100% do contêiner pai */
-}
-/* Estilo para itens encontrados */
-.found {
-    opacity: 0.5; /* Torna os itens encontrados semi-transparentes */
-}
-
-/* Estilo da mensagem de fim de jogo */
-.game-over-message {
-    position: fixed; /* Mantém a mensagem fixa na tela */
-    top: 50%; /* Centraliza verticalmente */
-    left: 50%; /* Centraliza horizontalmente */
-    transform: translate(-50%, -50%); /* Ajusta a posição para o centro */
-    background-color: #333; /* Cor de fundo escura */
-    padding: 20px; /* Espaçamento interno */
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra externa */
-    text-align: center; /* Centraliza o texto */
-    color: #fff; /* Cor do texto branco */
-    border-top: 8px ridge #ffb000; /* Borda superior com estilo ridge e cor amarela */
-    border-left: 8px groove #ffb000; /* Borda esquerda com estilo groove e cor amarela */
-    border-right: 8px ridge #ffb000; /* Borda direita com estilo ridge e cor amarela */
-    border-bottom: 8px groove #ffb000; /* Borda inferior com estilo groove e cor amarela */
-    z-index: 1000; /* Garante que a mensagem fique acima de outros elementos */
-    width: 80%; /* Ajusta a largura para 80% do contêiner pai */
-    max-width: 600px; /* Limita a largura máxima */
-}
-
-/* Estilo para o título dentro da mensagem de fim de jogo */
-.game-over-message h2 {
-    font-family: 'Skranji', cursive; /* Fonte personalizada */
-    font-size: 1.6rem; /* Tamanho da fonte */
-    margin-bottom: 10px; /* Margem inferior */
-    letter-spacing: 6px; /* Espaçamento entre letras */
-    color: #ffb000; /* Cor do texto amarela */
-}
-
-/* Estilo para o parágrafo dentro da mensagem de fim de jogo */
-.game-over-message p {
-    font-family: 'Skranji', cursive; /* Fonte personalizada */
-    font-size: 1.2rem; /* Tamanho da fonte */
-    margin-bottom: 20px; /* Margem inferior */
-    letter-spacing: 2px; /* Espaçamento entre letras */
-    color: #ffb000; /* Cor do texto amarela */
-}
-
-/* Estilo para os botões dentro da mensagem de fim de jogo */
-.game-over-message button {
-    margin: 10px 20px; /* Margem ao redor do botão */
-    width: 150px; /* Largura do botão */
-    letter-spacing: 2px; /* Espaçamento entre letras */
-    border-radius: 8px; /* Bordas arredondadas */
-    font-family: 'Skranji', cursive; /* Fonte personalizada */
-    color: #ffc000; /* Cor do texto amarela */
-    font-size: 25px; /* Tamanho da fonte */
-    font-weight: 400; /* Peso da fonte */
+    font-size: 24px; /* Tamanho da fonte */
+    letter-spacing: 3px; /* Espaçamento entre letras */
+    margin-bottom: 10px; /* Espaço abaixo do item */
+    color: #ffb000; /* Cor do texto */
     text-shadow: 0 1px 3px #000; /* Sombra do texto */
+    transition: color 0.3s ease; /* Transição para mudança de cor */
+    flex: 1 1 45%; /* Flexível com largura mínima de 45% */
+    max-width: 45%; /* Largura máxima */
+}
+
+
+/* Status do jogo */
+.item-list .status-one {
+    margin-bottom: 20px; /* Espaço abaixo do status */
+    font-size: 24px; /* Tamanho da fonte */
+    color: #ffb000; /* Cor do texto */
     text-align: center; /* Centraliza o texto */
-    padding: 10px 0; /* Espaçamento interno */
-    background: radial-gradient(circle, #8b0000, #8b0000); /* Gradiente radial de cor vermelha escura */
-    border-top: 8px ridge #ffb000; /* Borda superior com estilo ridge e cor amarela */
-    border-left: 8px groove #ffb000; /* Borda esquerda com estilo groove e cor amarela */
-    border-right: 8px ridge #ffb000; /* Borda direita com estilo ridge e cor amarela */
-    border-bottom: 8px groove #ffb000; /* Borda inferior com estilo groove e cor amarela */
-    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3); /* Sombra interna */
-    cursor: pointer; /* Cursor indicando que o botão é clicável */
-    transition: background-color 0.3s, box-shadow 0.3s; /* Transições suaves para cor de fundo e sombra */
-}
-
-/* Estilo para o botão ao passar o mouse */
-.game-over-message button:hover {
-    background-color: #ff9c00; /* Altera a cor de fundo para um tom laranja */
-}
-
-/* Estilo para os controles do jogo */
-.controls {
-    margin-top: 20px; /* Margem superior para separar dos elementos acima */
-}
-
-/* Estilo para os botões de controle */
-.controls button {
-    margin: 0 10px; /* Margem lateral ao redor do botão */
-    padding: 10px 20px; /* Espaçamento interno */
-    font-size: 1rem; /* Tamanho da fonte */
-    border: none; /* Remove a borda padrão */
+    background-color: #333; /* Cor de fundo */
+    padding: 10px; /* Espaçamento interno */
     border-radius: 5px; /* Bordas arredondadas */
-    background-color: #4CAF50; /* Cor de fundo verde */
-    color: white; /* Cor do texto branca */
-    cursor: pointer; /* Cursor indicando que o botão é clicável */
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5); /* Sombra interna */
+    width: 100%; /* Largura total */
 }
 
-/* Estilo para o botão de controle ao passar o mouse */
-.controls button:hover {
-    background-color: #45a049; /* Altera a cor de fundo para um verde mais escuro */
+
+
+
+/* ACHOU O ITEM */
+
+/* Estilo para itens encontrados */
+.found-one {
+    opacity: 0.5; /* Reduz a opacidade */
 }
 
-/* Estilo para a sobreposição de pausa */
-.pause-overlay {
-    position: fixed; /* Mantém a sobreposição fixa na tela */
-    top: 0; /* Posiciona no topo da tela */
-    left: 0; /* Posiciona à esquerda da tela */
-    width: 100%; /* Largura total da tela */
-    height: 100%; /* Altura total da tela */
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente preto */
-    display: flex; /* Utiliza flexbox para centralizar o conteúdo */
-    align-items: center; /* Alinha verticalmente ao centro */
-    justify-content: center; /* Alinha horizontalmente ao centro */
-    z-index: 1000; /* Garante que a sobreposição fique acima de outros elementos */
-}
-
-/* Estilo da mensagem de pausa */
-.pause-message {
-    background-color: #333; /* Cor de fundo escura */
-    padding: 20px; /* Espaçamento interno */
-    border-radius: 10px; /* Bordas arredondadas */
-    text-align: center; /* Centraliza o texto */
-    color: #fff; /* Cor do texto branca */
-}
-
-/* Estilo para os botões dentro da mensagem de pausa */
-.pause-message button {
-    margin: 10px; /* Margem ao redor do botão */
-    padding: 10px 20px; /* Espaçamento interno */
-    border: none; /* Remove a borda padrão */
-    border-radius: 5px; /* Bordas arredondadas */
-    background-color: #f44336; /* Cor de fundo vermelha */
-    color: white; /* Cor do texto branca */
-    cursor: pointer; /* Cursor indicando que o botão é clicável */
-}
-
-/* Estilo para o botão de pausa ao passar o mouse */
-.pause-message button:hover {
-    background-color: #d32f2f; /* Altera a cor de fundo para um tom de vermelho mais escuro */
+/* Estilo para nome de iten */
+.item-list li.found-one {
+    text-decoration: line-through; /* Linha no meio do texto */
+    color: #ff0000; /* Cor do texto alterada */
 }
 
 /* Estilo para itens com dica */
-.item-grid .item.hint {
-    border: 6px solid green; /* Borda verde para itens com dica */
+.item-grid-one .item.hint {
+    border: 8px solid green; /* Borda verde para itens com dica */
 }
 
-/* Estilo dos controles de nível três */
-.controls-level-three {
-    position: absolute; /* Posiciona absolutamente em relação ao contêiner pai */
-    bottom: 70px; /* Distância do fundo da tela */
-    left: 82%; /* Ajusta a posição horizontal para a direita */
-    transform: translateX(-50%); /* Centraliza horizontalmente */
-    display: flex; /* Utiliza flexbox para layout */
-    gap: 10px; /* Espaço entre os controles */
-}
+/* ACHOU O ITEM */
 
-/* Estilo dos botões de controle de nível três */
-.controls-level-three .btn-control {
-    margin: 10px; /* Margem ao redor do botão */
-    width: 70px; /* Largura do botão */
-    letter-spacing: 2px; /* Espaçamento entre letras */
-    border-radius: 8px; /* Bordas arredondadas */
-    font-family: 'Skranji', cursive; /* Fonte personalizada */
-    color: #ffc000; /* Cor do texto amarela */
-    font-size: 25px; /* Tamanho da fonte */
-    font-weight: 400; /* Peso da fonte */
-    text-shadow: 0 1px 3px #000; /* Sombra do texto */
-    text-align: center; /* Centraliza o texto */
-    padding: 10px 0; /* Espaçamento interno */
-    background: radial-gradient(circle, #8b0000, #8b0000); /* Gradiente radial de cor vermelha escura */
-    border-top: 8px ridge #ffb000; /* Borda superior com estilo ridge e cor amarela */
-    border-left: 8px groove #ffb000; /* Borda esquerda com estilo groove e cor amarela */
-    border-right: 8px ridge #ffb000; /* Borda direita com estilo ridge e cor amarela */
-    border-bottom: 8px groove #ffb000; /* Borda inferior com estilo groove e cor amarela */
-    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3); /* Sombra interna */
-    cursor: pointer; /* Cursor indicando que o botão é clicável */
-    transition: background-color 0.3s, box-shadow 0.3s; /* Transições suaves para cor de fundo e sombra */
-}
 
-/* Estilo para o botão de controle ao passar o mouse */
-.btn-control:hover {
-    background: radial-gradient(circle, #e52b2b, #8b0000); /* Gradiente radial de cor vermelha escura */
-    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2); /* Sombra externa */
-}
 
-/* Estilo para o botão de controle ao ser clicado */
-.btn-control:active {
-    background: radial-gradient(circle, #ec6a6a, #e52b2b); /* Gradiente radial de cor vermelha mais clara */
-    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2); /* Sombra externa */
-}
 
-/* Estilo da sobreposição de pausa (duplicado, pode ser removido) */
-.pause-overlay {
-    position: fixed; /* Mantém a sobreposição fixa na tela */
-    top: 0; /* Posiciona no topo da tela */
-    left: 0; /* Posiciona à esquerda da tela */
-    width: 100%; /* Largura total da tela */
-    height: 100%; /* Altura total da tela */
-    background: rgba(0, 0, 0, 0.7); /* Fundo semitransparente preto */
-    display: flex; /* Utiliza flexbox para centralizar o conteúdo */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-}
+/* TELA DE FIM DE JOGO MENSAGEM */
 
-/* Estilo da mensagem de pausa (duplicado, pode ser removido) */
-.pause-message {
+/* Mensagem de fim de jogo */
+.game-over-message-one {
     position: fixed; /* Mantém a mensagem fixa na tela */
     top: 50%; /* Centraliza verticalmente */
     left: 50%; /* Centraliza horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta a posição para o centro */
-    background-color: #333; /* Cor de fundo escura */
+    background-color: #333; /* Fundo escuro */
     padding: 20px; /* Espaçamento interno */
     border-radius: 10px; /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra externa */
     text-align: center; /* Centraliza o texto */
-    color: #fff; /* Cor do texto branca */
-    border-top: 8px ridge #ffb000; /* Borda superior com estilo ridge e cor amarela */
-    border-left: 8px groove #ffb000; /* Borda esquerda com estilo groove e cor amarela */
-    border-right: 8px ridge #ffb000; /* Borda direita com estilo ridge e cor amarela */
-    border-bottom: 8px groove #ffb000; /* Borda inferior com estilo groove e cor amarela */
+    color: #fff; /* Cor do texto */
+    border-top: 8px ridge #ffb000; /* Borda superior */
+    border-left: 8px groove #ffb000; /* Borda esquerda */
+    border-right: 8px ridge #ffb000; /* Borda direita */
+    border-bottom: 8px groove #ffb000; /* Borda inferior */
     z-index: 1000; /* Garante que a mensagem fique acima de outros elementos */
-    width: 80%; /* Ajusta a largura para 80% do contêiner pai */
-    max-width: 500px; /* Limita a largura máxima */
+    width: 80%; /* Largura ajustada conforme necessário */
+    max-width: 600px; /* Largura máxima */
 }
 
-/* Estilo para o título dentro da mensagem de pausa */
-.pause-message h2 {
-    font-family: 'Skranji', cursive; /* Fonte personalizada */
+/* Estilo do título da mensagem de fim de jogo */
+.game-over-message-one h2 {
+    font-family: 'Skranji', cursive; /* Fonte usada */
     font-size: 1.6rem; /* Tamanho da fonte */
-    margin-bottom: 10px; /* Margem inferior */
+    margin-bottom: 10px; /* Espaço abaixo do título */
     letter-spacing: 6px; /* Espaçamento entre letras */
-    color: #ffb000; /* Cor do texto amarela */
+    color: #ffb000; /* Cor do texto */
 }
 
-/* Estilo para os botões dentro da mensagem de pausa */
-.pause-message button {
-    margin: 10px 20px; /* Margem ao redor do botão */
-    width: 200px; /* Largura do botão */
+/* Estilo do parágrafo da mensagem de fim de jogo */
+.game-over-message-one p {
+    font-family: 'Skranji', cursive; /* Fonte usada */
+    font-size: 1.2rem; /* Tamanho da fonte */
+    margin-bottom: 20px; /* Espaço abaixo do parágrafo */
+    letter-spacing: 2px; /* Espaçamento entre letras */
+    color: #ffb000; /* Cor do texto */
+}
+
+/* Estilo dos botões na mensagem de fim de jogo */
+.game-over-message-one button {
+    margin: 10px 20px; /* Espaço ao redor do botão */
+    width: 150px; /* Largura do botão */
     letter-spacing: 2px; /* Espaçamento entre letras */
     border-radius: 8px; /* Bordas arredondadas */
-    font-family: 'Skranji', cursive; /* Fonte personalizada */
-    color: #ffc000; /* Cor do texto amarela */
+    font-family: 'Skranji', cursive; /* Fonte usada */
+    color: #ffc000; /* Cor do texto */
     font-size: 25px; /* Tamanho da fonte */
     font-weight: 400; /* Peso da fonte */
     text-shadow: 0 1px 3px #000; /* Sombra do texto */
     text-align: center; /* Centraliza o texto */
     padding: 10px 0; /* Espaçamento interno */
-    background: radial-gradient(circle, #8b0000, #8b0000); /* Gradiente radial de cor vermelha escura */
-    border-top: 8px ridge #ffb000; /* Borda superior com estilo ridge e cor amarela */
-    border-left: 8px groove #ffb000; /* Borda esquerda com estilo groove e cor amarela */
-    border-right: 8px ridge #ffb000; /* Borda direita com estilo ridge e cor amarela */
-    border-bottom: 8px groove #ffb000; /* Borda inferior com estilo groove e cor amarela */
+    background: radial-gradient(circle, #8b0000, #8b0000); /* Gradiente de fundo */
+    border-top: 8px ridge #ffb000; /* Borda superior */
+    border-left: 8px groove #ffb000; /* Borda esquerda */
+    border-right: 8px ridge #ffb000; /* Borda direita */
+    border-bottom: 8px groove #ffb000; /* Borda inferior */
     box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3); /* Sombra interna */
-    cursor: pointer; /* Cursor indicando que o botão é clicável */
-    transition: background-color 0.3s, box-shadow 0.3s; /* Transições suaves para cor de fundo e sombra */
+    cursor: pointer; /* Cursor de mão para clicar */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Transição para mudanças de cor e sombra */
 }
 
-/* Estilo para a área de feedback com estrelas */
+/* Estilo do botão ao passar o mouse sobre ele */
+.game-over-message-one button:hover {
+    background-color: #ff9c00; /* Cor de fundo ao passar o mouse */
+}
+
+/* TELA DE FIM DE JOGO MENSAGEM */
+
+
+
+
+/* FUNDO DA TELA DE PAUSE TRANSPARENTE */
+
+/* Sobreposição de pausa */
+.pause-overlay-one {
+    position: fixed; /* Mantém a sobreposição fixa na tela */
+    top: 0; /* Alinha ao topo */
+    left: 0; /* Alinha à esquerda */
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro com opacidade */
+    display: flex; /* Usa layout flexível */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    z-index: 1000; /* Garante que a sobreposição fique acima de outros elementos */
+}
+
+/* FUNDO DA TELA DE PAUSE TRANSPARENTE */
+
+
+
+
+/* ESTRELAS FINAL */
+
+/* Estilo das estrelas de feedback */
 .star-feedback {
-    display: flex; /* Utiliza flexbox para layout */
+    display: flex; /* Usa layout flexível */
     justify-content: center; /* Centraliza horizontalmente */
 }
 
-/* Estilo para o ícone de estrela */
+/* Estilo das estrelas individuais */
 .star-icon {
-    margin: 0 10px; /* Espaço de 10px entre as estrelas */
-    width: 70px; /* Largura da estrela */
-    height: auto; /* Mantém a proporção da altura */
+    margin: 0 10px; /* Espaço entre as estrelas */
+    width: 70px; /* Largura das estrelas */
+    height: auto; /* Altura ajustada automaticamente */
 }
+
+/* ESTRELAS FINAL */
+
+
+
+
+/* PAUSE E DICA*/
+
+/* Controles */
+.controls-level-one {
+    position: absolute; /* Posiciona os controles de forma absoluta */
+    bottom: 70px; /* Distância do fundo da tela */
+    left: 82%; /* Posição horizontal ajustada para a direita */
+    transform: translateX(-50%); /* Centraliza horizontalmente */
+    display: flex; /* Usa layout flexível */
+    gap: 10px; /* Espaço entre os botões */
+}
+
+/* Estilo dos botões de controle */
+.btn-control-one {
+    margin: 10px; /* Espaço ao redor do botão */
+    width: 70px; /* Largura do botão */
+    letter-spacing: 2px; /* Espaçamento entre letras */
+    border-radius: 8px; /* Bordas arredondadas */
+    font-family: 'Skranji', cursive; /* Fonte usada */
+    color: #ffc000; /* Cor do texto */
+    font-size: 25px; /* Tamanho da fonte */
+    font-weight: 400; /* Peso da fonte */
+    text-shadow: 0 1px 3px #000; /* Sombra do texto */
+    text-align: center; /* Centraliza o texto */
+    padding: 10px 0; /* Espaçamento interno */
+    background: radial-gradient(circle, #8b0000, #8b0000); /* Gradiente de fundo */
+    border-top: 8px ridge #ffb000; /* Borda superior */
+    border-left: 8px groove #ffb000; /* Borda esquerda */
+    border-right: 8px ridge #ffb000; /* Borda direita */
+    border-bottom: 8px groove #ffb000; /* Borda inferior */
+    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3); /* Sombra interna */
+    cursor: pointer; /* Cursor de mão para clicar */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Transição para mudanças de cor e sombra */
+}
+
+/* Estilo do botão ao passar o mouse sobre ele */
+.btn-control-one:hover {
+    background: radial-gradient(circle, #e52b2b, #8b0000); /* Cor de fundo ao passar o mouse */
+    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2); /* Sombra ao passar o mouse */
+}
+
+/* Estilo do botão ao ser clicado */
+.btn-control-one:active {
+    background: radial-gradient(circle, #ec6a6a, #e52b2b); /* Cor de fundo ao clicar */
+    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2); /* Sombra ao clicar */
+}
+
+/* PAUSE E DICA*/
+
+
+
+
+/* TELA DE PAUSE BOTÕES E MENSGAME */
+
+/* Mensagem de pausa */
+.pause-message-one {
+    position: fixed; /* Mantém a mensagem fixa na tela */
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta a posição para o centro */
+    background-color: #333; /* Fundo escuro */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra externa */
+    text-align: center; /* Centraliza o texto */
+    color: #fff; /* Cor do texto */
+    border-top: 8px ridge #ffb000; /* Borda superior */
+    border-left: 8px groove #ffb000; /* Borda esquerda */
+    border-right: 8px ridge #ffb000; /* Borda direita */
+    border-bottom: 8px groove #ffb000; /* Borda inferior */
+    z-index: 1000; /* Garante que a mensagem fique acima de outros elementos */
+    width: 80%; /* Largura ajustada conforme necessário */
+    max-width: 500px; /* Largura máxima */
+}
+
+/* Estilo do título da mensagem de pausa */
+.pause-message-one h2 {
+    font-family: 'Skranji', cursive; /* Fonte usada */
+    font-size: 1.6rem; /* Tamanho da fonte */
+    margin-bottom: 10px; /* Espaço abaixo do título */
+    letter-spacing: 6px; /* Espaçamento entre letras */
+    color: #ffb000; /* Cor do texto */
+}
+
+/* Estilo dos botões na mensagem de pausa */
+.pause-message-one button {
+    margin: 10px 20px; /* Espaço ao redor do botão */
+    width: 200px; /* Largura do botão */
+    letter-spacing: 2px; /* Espaçamento entre letras */
+    border-radius: 8px; /* Bordas arredondadas */
+    font-family: 'Skranji', cursive; /* Fonte usada */
+    color: #ffc000; /* Cor do texto */
+    font-size: 25px; /* Tamanho da fonte */
+    font-weight: 400; /* Peso da fonte */
+    text-shadow: 0 1px 3px #000; /* Sombra do texto */
+    text-align: center; /* Centraliza o texto */
+    padding: 10px 0; /* Espaçamento interno */
+    background: radial-gradient(circle, #8b0000, #8b0000); /* Gradiente de fundo */
+    border-top: 8px ridge #ffb000; /* Borda superior */
+    border-left: 8px groove #ffb000; /* Borda esquerda */
+    border-right: 8px ridge #ffb000; /* Borda direita */
+    border-bottom: 8px groove #ffb000; /* Borda inferior */
+    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3); /* Sombra interna */
+    cursor: pointer; /* Cursor de mão para clicar */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Transição para mudanças de cor e sombra */
+}
+
+/* Estilo do botão ao passar o mouse sobre ele na mensagem de pausa */
+.pause-message-one button:hover {
+    background-color: #d32f2f; /* Cor de fundo ao passar o mouse */
+}
+
+/* TELA DE PAUSE BOTÕES E MENSGAME */

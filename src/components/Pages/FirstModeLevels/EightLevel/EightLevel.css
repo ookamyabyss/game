@@ -1,17 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Bungee');
 
-:root {
-    --primary-color: #ffb000;
-    --secondary-color: #8b0000;
-    --text-color: #fff;
-    --background-color: #333;
-    --highlight-color: #f44336;
-    --button-hover-color: #ff9c00;
-    --button-active-color: #ec6a6a;
-    --border-color: #ffb000;
-    --shadow-color: rgba(0, 0, 0, 0.3);
-}
-
+/* Container do nível */
 .level-container {
     display: flex;
     flex-direction: column;
@@ -24,19 +13,26 @@
 .level-container h1 {
     font-family: 'Bungee', cursive;
     letter-spacing: 10px;
-    font-size: 3rem;
+    font-size: 3rem; /* Aumentado para maior destaque */
     margin-bottom: 10px;
-    color: var(--primary-color);
-    text-shadow: 1px 1px 0 #000, 1px -1px 0 #000, 1px -1px 0 #000, -2px 2px 0 #000, 2px 2px 2px rgba(0, 0, 0, 0.6);
+    color: #ffb000;
+    text-shadow: 
+        1px 1px 0 #000,    /* Contorno preto fino no topo e esquerda */
+        1px -1px 0 #000,  /* Contorno preto fino na parte inferior e direita */
+        1px -1px 0 #000,   /* Contorno preto fino na diagonal superior direita */
+        -2px 2px 0 #000,   /* Contorno preto fino na diagonal inferior esquerda */
+        2px 2px 2px rgba(0, 0, 0, 0.6); /* Sombra adicional para efeito de profundidade */
 }
 
+/* Informações do jogo */
 .game-info {
     margin-bottom: 20px;
     text-align: center;
-    color: var(--text-color);
-    font-size: 1.5rem;
+    color: #fff;
+    font-size: 1.5rem; /* Aumentado para maior legibilidade */
 }
 
+/* Área do jogo */
 .game-area {
     display: flex;
     justify-content: center;
@@ -47,27 +43,29 @@
     overflow-x: auto;
 }
 
+/* Grade de itens */
 .item-grid {
     display: grid;
-    grid-template-columns: repeat(10, 100px);
-    grid-auto-rows: 100px;
-    gap: 8px;
+    grid-template-columns: repeat(10, 100px); /* Aumentado o tamanho das células */
+    grid-auto-rows: 100px; /* Aumentado o tamanho das células */
+    gap: 8px; /* Aumentado o espaço entre as células */
     background-color: #f5f5f5;
     padding: 10px;
     border-radius: 10px;
     width: fit-content;
-    max-width: calc(100px * 10 + 8px * 9 + 20px);
+    max-width: calc(100px * 10 + 8px * 9 + 20px); /* Ajustado para acomodar o novo tamanho das células */
     box-sizing: border-box;
     margin-right: 20px;
 }
 
+/* Itens da grade */
 .item {
     position: relative;
-    width: 100px;
-    height: 100px;
+    width: 100px; /* Aumentado o tamanho do item */
+    height: 100px; /* Aumentado o tamanho do item */
     background-color: #f0f0f0;
     border: 2px solid #ddd;
-    box-shadow: inset 0px 0px 4px var(--shadow-color);
+    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,40 +83,47 @@
 
 .item:hover {
     transform: scale(1.05);
-    box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.5), 0px 4px 10px var(--shadow-color);
-    border-color: var(--primary-color);
+    box-shadow: 
+        inset 0px 0px 8px rgba(0, 0, 0, 0.5),
+        0px 4px 10px rgba(0, 0, 0, 0.3);
+    border-color: #ffb000;
 }
 
+.item.hint {
+    border: 6px solid green; /* Borda verde para dica */
+}
+
+/* Lista de itens */
 .item-list {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+    flex-direction: column; /* Alinha o tempo, contagem e lista de itens em coluna */
+    align-items: center; /* Centraliza o conteúdo */
+    width: 100%; /* Largura total para ocupar o espaço */
     background-color: #282c34;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px var(--shadow-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     font-family: 'Skranji', cursive;
     color: #333;
-    border-top: 10px ridge var(--primary-color);
-    border-left: 10px groove var(--primary-color);
-    border-right: 10px ridge var(--primary-color);
-    border-bottom: 10px groove var(--primary-color);
+    border-top: 10px ridge #ffb000;
+    border-left: 10px groove #ffb000;
+    border-right: 10px ridge #ffb000;
+    border-bottom: 10px groove #ffb000;
     box-sizing: border-box;
 }
 
 .item-list h2 {
     margin-bottom: 20px;
-    font-size: 28px;
-    color: var(--primary-color);
+    font-size: 28px; /* Aumentado para maior destaque */
+    color: #ffb000;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
 .item-list ul {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 8px;
+    justify-content: space-between; /* Distribui os itens nas colunas com menos espaço entre eles */
+    gap: 8px; /* Diminuído o espaço entre as colunas */
     list-style: none;
     padding: 0;
     margin: 0;
@@ -129,7 +134,7 @@
     font-size: 24px;
     letter-spacing: 3px;
     margin-bottom: 10px;
-    color: var(--primary-color);
+    color: #ffb000;
     text-shadow: 0 1px 3px #000;
     transition: color 0.3s ease;
     flex: 1 1 45%;
@@ -143,8 +148,8 @@
 
 .item-list .status {
     margin-bottom: 20px;
-    font-size: 24px;
-    color: var(--primary-color);
+    font-size: 24px; /* Aumentado o tamanho da fonte */
+    color: #ffb000;
     text-align: center;
     background-color: #333;
     padding: 10px;
@@ -153,120 +158,261 @@
     width: 100%;
 }
 
-.found {
-    opacity: 0.5;
-}
-
-.game-over-message {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--background-color);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px var(--shadow-color);
-    text-align: center;
-    color: var(--text-color);
-    border-top: 8px ridge var(--primary-color);
-    border-left: 8px groove var(--primary-color);
-    border-right: 8px ridge var(--primary-color);
-    border-bottom: 8px groove var(--primary-color);
-    z-index: 1000;
-    width: 80%;
-    max-width: 600px;
-}
-
-.game-over-message h2, .pause-message h2 {
-    font-family: 'Skranji', cursive;
-    font-size: 1.6rem;
-    margin-bottom: 10px;
-    letter-spacing: 6px;
-    color: var(--primary-color);
-}
-
-.game-over-message p, .pause-message p {
-    font-family: 'Skranji', cursive;
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-    color: var(--primary-color);
-}
-
-.game-over-message button, .pause-message button, .btn-control {
-    margin: 10px 20px;
-    width: 150px;
-    letter-spacing: 2px;
-    border-radius: 8px;
-    font-family: 'Skranji', cursive;
-    color: #ffc000;
-    font-size: 25px;
-    font-weight: 400;
-    text-shadow: 0 1px 3px #000;
-    text-align: center;
-    padding: 10px 0;
-    background: radial-gradient(circle, var(--secondary-color), var(--secondary-color));
-    border-top: 8px ridge var(--primary-color);
-    border-left: 8px groove var(--primary-color);
-    border-right: 8px ridge var(--primary-color);
-    border-bottom: 8px groove var(--primary-color);
-    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
-    cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-}
-
-.game-over-message button:hover, .pause-message button:hover, .btn-control:hover {
-    background-color: var(--button-hover-color);
-}
-
-.game-over-message button:active, .pause-message button:active, .btn-control:active {
-    background-color: var(--button-active-color);
-    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
-}
-
-.pause-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.pause-message {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--background-color);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px var(--shadow-color);
-    text-align: center;
-    color: var(--text-color);
-    border-top: 8px ridge var(--primary-color);
-    border-left: 8px groove var(--primary-color);
-    border-right: 8px ridge var(--primary-color);
-    border-bottom: 8px groove var(--primary-color);
-    z-index: 1000;
-    width: 80%;
-    max-width: 500px;
-}
-
+/* Estilo das estrelas de feedback */
 .star-feedback {
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Centraliza as estrelas */
 }
 
 .star-icon {
-    margin: 0 10px;
-    width: 70px;
+    margin: 0 10px; /* Adiciona espaço de 10px entre as estrelas */
+    width: 70px; /* Ajuste o tamanho da estrela, se necessário */
     height: auto;
 }
+
+
+
+/* Estado de pausa da grade de itens */
+.item-grid.paused {
+    visibility: hidden; /* Esconder a grade de itens quando em pausa */
+}
+
+
+/* ACHOU O ITEM */
+
+/* Estilo para itens encontrados */
+.found-one {
+    opacity: 0.5; /* Reduz a opacidade */
+}
+
+/* Estilo para nome de iten */
+.item-list li.found-one {
+    text-decoration: line-through; /* Linha no meio do texto */
+    color: #ff0000; /* Cor do texto alterada */
+}
+
+/* Estilo para itens com dica */
+.item-grid-one .item.hint {
+    border: 8px solid green; /* Borda verde para itens com dica */
+}
+
+/* ACHOU O ITEM */
+
+
+
+
+/* FUNDO DA TELA DE PAUSE TRANSPARENTE */
+
+/* Sobreposição de pausa */
+.pause-overlay-one {
+    position: fixed; /* Mantém a sobreposição fixa na tela */
+    top: 0; /* Alinha ao topo */
+    left: 0; /* Alinha à esquerda */
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro com opacidade */
+    display: flex; /* Usa layout flexível */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    z-index: 1000; /* Garante que a sobreposição fique acima de outros elementos */
+}
+
+/* Ocultação da grade de itens quando em pausa */
+.item-grid-one.paused {
+    visibility: hidden; /* Esconder a grade de itens quando em pausa */
+}
+/* FUNDO DA TELA DE PAUSE TRANSPARENTE */
+
+
+
+
+
+/* TELA DE PAUSE BOTÕES E MENSGAME */
+
+/* Mensagem de pausa */
+.pause-message-one {
+    position: fixed; /* Mantém a mensagem fixa na tela */
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta a posição para o centro */
+    background-color: #333; /* Fundo escuro */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra externa */
+    text-align: center; /* Centraliza o texto */
+    color: #fff; /* Cor do texto */
+    border-top: 8px ridge #ffb000; /* Borda superior */
+    border-left: 8px groove #ffb000; /* Borda esquerda */
+    border-right: 8px ridge #ffb000; /* Borda direita */
+    border-bottom: 8px groove #ffb000; /* Borda inferior */
+    z-index: 1000; /* Garante que a mensagem fique acima de outros elementos */
+    width: 80%; /* Largura ajustada conforme necessário */
+    max-width: 500px; /* Largura máxima */
+}
+
+/* Estilo do título da mensagem de pausa */
+.pause-message-one h2 {
+    font-family: 'Skranji', cursive; /* Fonte usada */
+    font-size: 1.6rem; /* Tamanho da fonte */
+    margin-bottom: 10px; /* Espaço abaixo do título */
+    letter-spacing: 6px; /* Espaçamento entre letras */
+    color: #ffb000; /* Cor do texto */
+}
+
+/* Estilo dos botões na mensagem de pausa */
+.pause-message-one button {
+    margin: 10px 20px; /* Espaço ao redor do botão */
+    width: 200px; /* Largura do botão */
+    letter-spacing: 2px; /* Espaçamento entre letras */
+    border-radius: 8px; /* Bordas arredondadas */
+    font-family: 'Skranji', cursive; /* Fonte usada */
+    color: #ffc000; /* Cor do texto */
+    font-size: 25px; /* Tamanho da fonte */
+    font-weight: 400; /* Peso da fonte */
+    text-shadow: 0 1px 3px #000; /* Sombra do texto */
+    text-align: center; /* Centraliza o texto */
+    padding: 10px 0; /* Espaçamento interno */
+    background: radial-gradient(circle, #8b0000, #8b0000); /* Gradiente de fundo */
+    border-top: 8px ridge #ffb000; /* Borda superior */
+    border-left: 8px groove #ffb000; /* Borda esquerda */
+    border-right: 8px ridge #ffb000; /* Borda direita */
+    border-bottom: 8px groove #ffb000; /* Borda inferior */
+    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3); /* Sombra interna */
+    cursor: pointer; /* Cursor de mão para clicar */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Transição para mudanças de cor e sombra */
+}
+
+/* Estilo do botão ao passar o mouse sobre ele na mensagem de pausa */
+.pause-message-one button:hover {
+    background-color: #d32f2f; /* Cor de fundo ao passar o mouse */
+}
+
+/* TELA DE PAUSE BOTÕES E MENSGAME */
+
+
+
+
+/* PAUSE E DICA*/
+
+/* Controles */
+.controls-level-one {
+    position: absolute; /* Posiciona os controles de forma absoluta */
+    bottom: 70px; /* Distância do fundo da tela */
+    left: 82%; /* Posição horizontal ajustada para a direita */
+    transform: translateX(-50%); /* Centraliza horizontalmente */
+    display: flex; /* Usa layout flexível */
+    gap: 10px; /* Espaço entre os botões */
+}
+
+/* Estilo dos botões de controle */
+.btn-control-one {
+    margin: 10px; /* Espaço ao redor do botão */
+    width: 70px; /* Largura do botão */
+    letter-spacing: 2px; /* Espaçamento entre letras */
+    border-radius: 8px; /* Bordas arredondadas */
+    font-family: 'Skranji', cursive; /* Fonte usada */
+    color: #ffc000; /* Cor do texto */
+    font-size: 25px; /* Tamanho da fonte */
+    font-weight: 400; /* Peso da fonte */
+    text-shadow: 0 1px 3px #000; /* Sombra do texto */
+    text-align: center; /* Centraliza o texto */
+    padding: 10px 0; /* Espaçamento interno */
+    background: radial-gradient(circle, #8b0000, #8b0000); /* Gradiente de fundo */
+    border-top: 8px ridge #ffb000; /* Borda superior */
+    border-left: 8px groove #ffb000; /* Borda esquerda */
+    border-right: 8px ridge #ffb000; /* Borda direita */
+    border-bottom: 8px groove #ffb000; /* Borda inferior */
+    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3); /* Sombra interna */
+    cursor: pointer; /* Cursor de mão para clicar */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Transição para mudanças de cor e sombra */
+}
+
+/* Estilo do botão ao passar o mouse sobre ele */
+.btn-control-one:hover {
+    background: radial-gradient(circle, #e52b2b, #8b0000); /* Cor de fundo ao passar o mouse */
+    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2); /* Sombra ao passar o mouse */
+}
+
+/* Estilo do botão ao ser clicado */
+.btn-control-one:active {
+    background: radial-gradient(circle, #ec6a6a, #e52b2b); /* Cor de fundo ao clicar */
+    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2); /* Sombra ao clicar */
+}
+
+/* PAUSE E DICA*/
+
+
+/* TELA DE FIM DE JOGO MENSAGEM */
+
+/* Mensagem de fim de jogo */
+.game-over-message-one {
+    position: fixed; /* Mantém a mensagem fixa na tela */
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta a posição para o centro */
+    background-color: #333; /* Fundo escuro */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra externa */
+    text-align: center; /* Centraliza o texto */
+    color: #fff; /* Cor do texto */
+    border-top: 8px ridge #ffb000; /* Borda superior */
+    border-left: 8px groove #ffb000; /* Borda esquerda */
+    border-right: 8px ridge #ffb000; /* Borda direita */
+    border-bottom: 8px groove #ffb000; /* Borda inferior */
+    z-index: 1000; /* Garante que a mensagem fique acima de outros elementos */
+    width: 80%; /* Largura ajustada conforme necessário */
+    max-width: 600px; /* Largura máxima */
+}
+
+/* Estilo do título da mensagem de fim de jogo */
+.game-over-message-one h2 {
+    font-family: 'Skranji', cursive; /* Fonte usada */
+    font-size: 1.6rem; /* Tamanho da fonte */
+    margin-bottom: 10px; /* Espaço abaixo do título */
+    letter-spacing: 6px; /* Espaçamento entre letras */
+    color: #ffb000; /* Cor do texto */
+}
+
+/* Estilo do parágrafo da mensagem de fim de jogo */
+.game-over-message-one p {
+    font-family: 'Skranji', cursive; /* Fonte usada */
+    font-size: 1.2rem; /* Tamanho da fonte */
+    margin-bottom: 20px; /* Espaço abaixo do parágrafo */
+    letter-spacing: 2px; /* Espaçamento entre letras */
+    color: #ffb000; /* Cor do texto */
+}
+
+/* Estilo dos botões na mensagem de fim de jogo */
+.game-over-message-one button {
+    margin: 10px 20px; /* Espaço ao redor do botão */
+    width: 150px; /* Largura do botão */
+    letter-spacing: 2px; /* Espaçamento entre letras */
+    border-radius: 8px; /* Bordas arredondadas */
+    font-family: 'Skranji', cursive; /* Fonte usada */
+    color: #ffc000; /* Cor do texto */
+    font-size: 25px; /* Tamanho da fonte */
+    font-weight: 400; /* Peso da fonte */
+    text-shadow: 0 1px 3px #000; /* Sombra do texto */
+    text-align: center; /* Centraliza o texto */
+    padding: 10px 0; /* Espaçamento interno */
+    background: radial-gradient(circle, #8b0000, #8b0000); /* Gradiente de fundo */
+    border-top: 8px ridge #ffb000; /* Borda superior */
+    border-left: 8px groove #ffb000; /* Borda esquerda */
+    border-right: 8px ridge #ffb000; /* Borda direita */
+    border-bottom: 8px groove #ffb000; /* Borda inferior */
+    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3); /* Sombra interna */
+    cursor: pointer; /* Cursor de mão para clicar */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Transição para mudanças de cor e sombra */
+}
+
+/* Estilo do botão ao passar o mouse sobre ele */
+.game-over-message-one button:hover {
+    background-color: #ff9c00; /* Cor de fundo ao passar o mouse */
+}
+
+/* TELA DE FIM DE JOGO MENSAGEM */
+
 
 .lock-icon {
     position: absolute;
@@ -276,45 +422,4 @@
     width: 60px; /* Ajuste conforme necessário */
     height: auto;
     z-index: 1; /* Para garantir que fique sobre o item */
-}
-
-.controls-level-eight {
-    position: absolute;
-    bottom: 70px; /* Distância do fundo da tela, ajustada para subir mais um pouco */
-    left: 82%; /* Ajusta a posição horizontal para a direita */
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-}
-
-.controls-level-eight .btn-control {
-    margin: 10px;
-    width: 70px;
-    letter-spacing: 2px;
-    border-radius: 8px;
-    font-family: 'Skranji', cursive;
-    color: #ffc000;
-    font-size: 25px;
-    font-weight: 400;
-    text-shadow: 0 1px 3px #000;
-    text-align: center;
-    padding: 10px 0;
-    background: radial-gradient(circle, #8b0000, #8b0000);
-    border-top: 8px ridge #ffb000;
-    border-left: 8px groove #ffb000;
-    border-right: 8px ridge #ffb000;
-    border-bottom: 8px groove #ffb000;
-    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
-    cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-}
-
-.btn-control:hover {
-    background: radial-gradient(circle, #e52b2b, #8b0000);
-    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
-}
-
-.btn-control:active {
-    background: radial-gradient(circle, #ec6a6a, #e52b2b);
-    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
 }
