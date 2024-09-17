@@ -55,3 +55,52 @@
 .close-button:focus {
     outline: none;
 }
+
+.btn-tutorial {
+    margin: 1rem auto; /* Usando rem em vez de px */
+    width: 75px; /* Usando % da largura da viewport */
+    letter-spacing: 0.1rem; /* Usando rem para espaçamento de letras */
+    border-radius: 0.5rem; /* Usando rem para o raio da borda */
+    font-family: 'Skranji', cursive;
+    color: #ffc000;
+    font-size: 1.6rem; /* Ajuste proporcional da fonte */
+    font-weight: 400;
+    text-shadow: 0 0.1rem 0.2rem #000;
+    text-align: center;
+    padding: 0.8rem 0; /* Ajuste proporcional no padding */
+    background: radial-gradient(circle, #8b0000, #8b0000);
+    border-top: 0.5rem ridge #ffb000; /* Ajuste proporcional na borda */
+    border-left: 0.5rem groove #ffb000;
+    border-right: 0.5rem ridge #ffb000;
+    border-bottom: 0.5rem groove #ffb000;
+    box-shadow: inset 0 0 0.3rem 0.2rem rgba(1, 1, 1, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-tutorial:hover {
+    background: radial-gradient(circle, #e52b2b, #8b0000);
+    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
+}
+
+.btn-tutorial:active {
+    background: radial-gradient(circle, #ec6a6a, #e52b2b);
+    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
+}
+
+.back-tutorial {
+    position: fixed; /* Fixado na tela */
+    bottom: 20px;
+    left: 20px; /* Alinhado à esquerda */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha os itens à esquerda */
+}
+
+.back-tutorial button {
+    margin: 0.2em 0;
+}
+
+.back-tutorial .btn-tutorial {
+    margin-bottom: 0.5em; /* Ajuste o espaço entre o botão de toggle e o menu */
+}

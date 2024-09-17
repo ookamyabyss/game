@@ -14,8 +14,8 @@
 /* Contêiner individual para cada imagem de seleção */
 .selection-image-container {
     position: relative; /* Necessário para posicionar o balão de chat relativo à imagem */
-    width: 120px; /* Define a largura do contêiner da imagem */
-    height: 120px; /* Define a altura do contêiner da imagem */
+    width: 100px; /* Define a largura do contêiner da imagem */
+    height: 100px; /* Define a altura do contêiner da imagem */
     background-color: white; /* Cor de fundo do contêiner */
     border-top: 8px ridge #ffb000; /* Borda superior com estilo ridge */
     border-left: 8px groove #ffb000; /* Borda esquerda com estilo groove */
@@ -34,8 +34,8 @@
 
 /* Imagem dentro do contêiner de seleção */
 .selection-image {
-    max-width: 100%; /* Garante que a imagem não exceda a largura do contêiner */
-    max-height: 100%; /* Garante que a imagem não exceda a altura do contêiner */
+    max-width: 70%; /* Garante que a imagem não exceda a largura do contêiner */
+    max-height: 70%; /* Garante que a imagem não exceda a altura do contêiner */
     object-fit: contain; /* Mantém a proporção da imagem */
     cursor: pointer; /* Muda o cursor para indicar que a imagem é clicável */
 }
@@ -53,12 +53,12 @@
 .message-box {
     font-family: 'Skranji', cursive; /* Fonte personalizada para a mensagem */
     color: #ffc000; /* Cor do texto */
-    font-size: 35px; /* Tamanho da fonte */
+    font-size: 25px; /* Tamanho da fonte */
     font-weight: 400; /* Peso da fonte */
     text-shadow: 0 1px 3px #000; /* Sombra no texto para destaque */
     text-align: center; /* Centraliza o texto dentro da caixa */
-    padding: 5px 0; /* Espaçamento interno acima e abaixo do texto */
-    margin-top: -20px; /* Margem negativa para ajustar a posição vertical da caixa */
+    padding: 2px 0; /* Espaçamento interno acima e abaixo do texto */
+    margin-top: -30px; /* Margem negativa para ajustar a posição vertical da caixa */
 }
 
 /* Estilização do balão de chat */

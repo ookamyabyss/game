@@ -1,0 +1,82 @@
+/* Container principal do tutorial de digitação */
+.typing-tutorial-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: radial-gradient(circle, #282c34, #1b1e23);
+    padding: 20px;
+    color: #ffb000;
+    font-family: 'Skranji', cursive;
+}
+  
+/* Texto de instrução */
+.typing-tutorial-container p {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #ffb000;
+    text-shadow: 
+      1px 1px 0 #000, 
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      -1px -1px 0 #000, 
+      1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+  
+  /* Estilização do campo de entrada de texto */
+.typing-input {
+    font-size: 1.5rem;
+    padding: 10px;
+    border: 2px solid #ffb000;
+    border-radius: 8px;
+    width: 300px;
+    color: #282c34;
+    text-align: center;
+    font-family: 'Bungee', cursive;
+    background-color: #fff;
+    margin-top: 20px;
+}
+  
+  /* Mensagem de sucesso */
+.success-message {
+    margin-top: 20px;
+    font-size: 1.6rem;
+    font-family: 'Skranji', cursive;
+    color: #00ff00;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+  
+  /* Feedback visual de correção */
+.correct {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    background-color: #fff;
+    border: 6px solid green;
+    font-size: 1.5rem;
+    color: #ffb000;
+    font-family: 'Bungee', cursive;
+    padding: 5px;
+}
+  
+  /* Para manter consistência com os botões em outras áreas do projeto */
+.typing-tutorial-container button {
+    width: 150px;
+    padding: 10px;
+    font-family: 'Skranji', cursive;
+    font-size: 25px;
+    color: #ffc000;
+    background: radial-gradient(circle, #8b0000, #8b0000);
+    border-radius: 8px;
+    border: 8px ridge #ffb000;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+  
+.typing-tutorial-container button:hover {
+    background: radial-gradient(circle, #e52b2b, #8b0000);
+}
+  

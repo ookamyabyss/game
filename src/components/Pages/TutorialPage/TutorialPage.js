@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-
-// Importação de componentes utilitários
+import { useNavigate } from 'react-router-dom';
 import BackgroundVideo from '../../Utils/BackgroundVideo/BackgroundVideo';
-import './TutorialPage.css';
-import BackButton from '../../Utils/BackButton/BackButton';
+import clickSound from '../../../assets/sounds/click.mp3'; 
 import Carousel from '../../Utils/Carousel/Carousel';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import './TutorialPage.css';
 
 const TutorialPage = () => {
     // Estado para controlar o passo atual no carrossel
@@ -25,41 +26,26 @@ const TutorialPage = () => {
 
     // Função que lida com a finalização do tutorial
     const handleFinish = () => {
-        const confirmFinish = window.confirm('Você realmente quer terminar o tutorial?');
-        if (confirmFinish) {
-            // Lógica para finalizar o tutorial
-            // Ex: redirecionar para a página principal ou salvar preferências
-        }
+        playSound();
+        navigate("/"); // Volta para a página anterior
     };
 
-    // Função para habilitar ou desabilitar o tutorial
-    const handleDisableTutorial = (e) => {
-        setDisableTutorial(e.target.checked);
+    const navigate = useNavigate();
+
+    const playSound = () => {
+        const audio = new Audio(clickSound);
+        audio.play();
     };
 
-    // Função para fechar a mensagem que pergunta se o usuário quer desabilitar o tutorial
-    const closeMessage = () => {
-        setDisableTutorial(false);
+    const handleBackClick = () => {
+        playSound();
+        navigate("/"); // Volta para a página anterior
     };
 
     return (
         <div className="tutorial-container">
             {/* Vídeo de fundo para a página de tutorial */}
             <BackgroundVideo />
-
-            {/* Mensagem perguntando se o usuário quer desabilitar o tutorial */}
-            {disableTutorial && (
-                <div className="disable-message">
-                    <p>Você quer desabilitar o tutorial?</p>
-                    <input 
-                        type="checkbox" 
-                        checked={disableTutorial} 
-                        onChange={handleDisableTutorial} 
-                    /> Sim
-                    {/* Botão para fechar a mensagem */}
-                    <button onClick={closeMessage} className="close-button">X</button>
-                </div>
-            )}
 
             {/* Carrossel do tutorial que navega entre os passos */}
             <Carousel 
@@ -70,7 +56,11 @@ const TutorialPage = () => {
             />
 
             {/* Botão de voltar para a página anterior */}
-            <BackButton />
+            <div className="back-tutorial">
+                <button className="btn-tutorial" onClick={handleBackClick}>
+                    <FontAwesomeIcon icon={faArrowLeft} />
+                </button>
+            </div>
         </div>
     );
 };

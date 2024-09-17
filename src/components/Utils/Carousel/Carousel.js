@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import clickSound from '../../../assets/sounds/click.mp3'; 
 import ImageSelection from '../ImageSelection/ImageSelection';
+import TypingTutorial from '../TypingTutorial/TypingTutorial';
 import './Carousel.css'; 
 
 const Carousel = ({ currentStep, handleNext, handlePrevious, handleFinish }) => {
@@ -52,6 +53,11 @@ const Carousel = ({ currentStep, handleNext, handlePrevious, handleFinish }) => 
         alert('Você escolheu corretamente!'); 
     };
 
+    // **Função chamada quando a palavra correta for digitada**
+    const handleCorrectTyping = () => {
+        alert('Você digitou a palavra corretamente!'); 
+    };
+
     // Definição dos títulos e do conteúdo das etapas
     const steps = [
         {
@@ -59,8 +65,9 @@ const Carousel = ({ currentStep, handleNext, handlePrevious, handleFinish }) => 
             content: <ImageSelection onCorrectSelection={handleCorrectSelection} />
         },
         {
-            title: "Parte 2 do Tutorial: Como Usar o Painel",
-            content: <p>Conteúdo explicando como usar o painel.</p>
+            title: "Parte 2 : Escrevendo",
+            // Aqui, passe a função handleCorrectTyping para o componente TypingTutorial
+            content: <TypingTutorial onCorrectTyping={handleCorrectTyping} />
         },
         {
             title: "Parte 3 do Tutorial: Resolvendo Desafios",
@@ -80,10 +87,10 @@ const Carousel = ({ currentStep, handleNext, handlePrevious, handleFinish }) => 
             <div className={`carousel-step step-${currentStep}`}>
                 {steps[currentStep - 1].content}
             </div>
-            <div className="navigation-buttons">
+            <div className="tutorial-navigation-buttons">
                 {/* Botão para ir para o passo anterior */}
                 <button
-                    className="btn-nav"
+                    className="btn-tutorial-nav"
                     onClick={handlePreviousClick}
                     disabled={currentStep === 1}
                 >
@@ -91,11 +98,11 @@ const Carousel = ({ currentStep, handleNext, handlePrevious, handleFinish }) => 
                 </button>
                 {/* Botão para terminar o tutorial ou para ir para o próximo passo */}
                 {currentStep === steps.length ? (
-                    <button className="btn-finish" onClick={handleFinish}>
-                        Terminar Tutorial
+                    <button className="btn-tutorial-fim" onClick={handleFinish}>
+                        FIM
                     </button>
                 ) : (
-                    <button className="btn-nav" onClick={handleNextClick}>
+                    <button className="btn-tutorial-nav" onClick={handleNextClick}>
                         <FontAwesomeIcon icon={faArrowRight} />
                     </button>
                 )}

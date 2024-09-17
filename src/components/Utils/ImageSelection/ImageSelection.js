@@ -3,6 +3,8 @@ import gaivotaImg from '../../../assets/imagens_tutorial/gaviota.png'; // Import
 import skateImg from '../../../assets/imagens_tutorial/skate.png'; // Importa a imagem do skate
 import morangoImg from '../../../assets/imagens_tutorial/morango.png'; // Importa a imagem do morango
 import picoleImg from '../../../assets/imagens_tutorial/picole.png'; // Importa a imagem do picolé
+import barcoImg from '../../../assets/itensFirstMode/Barco.png' // Importa a imagem do barco
+import melanciaImg from '../../../assets/itensFirstMode/Melancia.png' // Importa a imagem do barco
 import successSound from '../../../assets/sounds/success.mp3'; // Importa o som de sucesso
 import failSound from '../../../assets/sounds/fail.mp3'; // Importa o som de falha
 import './ImageSelection.css'; // Importa o CSS para estilização
@@ -39,14 +41,18 @@ const ImageSelection = () => {
     return (
         <div className="image-selection-container">
             {/* Caixa de mensagem instruindo o usuário a escolher a imagem do picolé */}
-            <p className="message-box">Escolha a imagem do picolé</p>
+            <p className="message-box">Mova o mouse para que o curso fique em cima da imagem correta.</p>
+            <p className="message-box">Depois aperte o botão esquerdo do mouse. ESCOLHA O PICOLÉ</p>
+
             <div className="image-grid">
                 {/* Mapeia as imagens e cria um contêiner para cada uma */}
                 {[ 
                     { name: 'gaivota', src: gaivotaImg }, 
                     { name: 'skate', src: skateImg }, 
                     { name: 'morango', src: morangoImg }, 
-                    { name: 'picole', src: picoleImg }
+                    { name: 'picole', src: picoleImg },
+                    { name: 'barco', src: barcoImg },
+                    { name: 'melancia', src: melanciaImg }
                 ].map((image, index) => (
                     <div 
                         key={index} 

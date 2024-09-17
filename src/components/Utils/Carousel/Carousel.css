@@ -28,7 +28,7 @@
     font-size: 35px; /* Ajuste o tamanho da fonte conforme necessário */
     font-weight: 400;
     text-shadow: 0 1px 3px #000; /* Sombra do texto */
-    padding: 10px 0; /* Espaço acima e abaixo do texto */
+    padding: 5px 0; /* Espaço acima e abaixo do texto */
     z-index: 1; /* Garante que o título fique acima de outros elementos */
 }
 
@@ -43,89 +43,80 @@
     color: #333; /* Cor do texto */
     background-color: #282c34; /* Cor de fundo */
     box-sizing: border-box; /* Inclui padding e borda na largura total */
-    margin-top: 40px; /* Adiciona espaço abaixo do título */
+    margin-top: 5px; /* Adiciona espaço abaixo do título */
 }
 
 /* Contêiner para os botões de navegação */
-.navigation-buttons {
+.tutorial-navigation-buttons {
     position: absolute; /* Posiciona os botões na parte inferior do carrossel */
-    bottom: 20px; /* Espaço da parte inferior do carrossel */
-    width: calc(50% - 40px); /* Ajusta a largura para incluir o espaçamento lateral */
+    bottom: 5px; /* Espaço da parte inferior do carrossel */
+    width: calc(50% - 20px); /* Ajusta a largura para incluir o espaçamento lateral */
     display: flex;
     justify-content: space-between; /* Espaça os botões para os lados */
     padding: 0 20px; /* Espaço nas laterais dos botões */
 }
 
 /* Estilo dos botões de navegação */
-.btn-nav {
-    width: 70px; /* Largura do botão */
-    height: 70px; /* Altura do botão */
-    border-radius: 8px; /* Bordas arredondadas */
-    font-family: 'Skranji', cursive; /* Fonte dos ícones */
-    color: #ffc000; /* Cor do ícone */
-    font-size: 25px; /* Tamanho do ícone */
+.btn-tutorial-nav {
+    margin: 1rem auto; /* Usando rem em vez de px */
+    width: 75px; /* Usando % da largura da viewport */
+    letter-spacing: 0.1rem; /* Usando rem para espaçamento de letras */
+    border-radius: 0.5rem; /* Usando rem para o raio da borda */
+    font-family: 'Skranji', cursive;
+    color: #ffc000;
+    font-size: 1.6rem; /* Ajuste proporcional da fonte */
     font-weight: 400;
-    text-shadow: 0 1px 3px #000; /* Sombra do texto */
-    text-align: center; /* Alinha o texto no centro */
-    padding: 10px; /* Espaço interno do botão */
-    background: radial-gradient(circle, #8b0000, #8b0000); /* Gradiente de fundo */
-    border-top: 8px ridge #ffb000; /* Borda superior */
-    border-left: 8px groove #ffb000; /* Borda esquerda */
-    border-right: 8px ridge #ffb000; /* Borda direita */
-    border-bottom: 8px groove #ffb000; /* Borda inferior */
-    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3); /* Sombra interna */
-    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
-    transition: background-color 0.3s, box-shadow 0.3s; /* Transições suaves */
-    display: flex;
-    align-items: center; /* Centraliza verticalmente */
-    justify-content: center; /* Centraliza horizontalmente */
+    text-shadow: 0 0.1rem 0.2rem #000;
+    text-align: center;
+    padding: 0.8rem 0; /* Ajuste proporcional no padding */
+    background: radial-gradient(circle, #8b0000, #8b0000);
+    border-top: 0.5rem ridge #ffb000; /* Ajuste proporcional na borda */
+    border-left: 0.5rem groove #ffb000;
+    border-right: 0.5rem ridge #ffb000;
+    border-bottom: 0.5rem groove #ffb000;
+    box-shadow: inset 0 0 0.3rem 0.2rem rgba(1, 1, 1, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
-
 /* Estilo dos botões de navegação ao passar o mouse */
-.btn-nav:hover {
+.btn-tutorial-nav:hover {
     background: radial-gradient(circle, #e52b2b, #8b0000); /* Escurece o gradiente ao passar o mouse */
     box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2); /* Sombra externa ao passar o mouse */
 }
-
 /* Estilo dos botões de navegação ao clicar */
-.btn-nav:active {
+.btn-tutorial-nav:active {
     background: radial-gradient(circle, #ec6a6a, #e52b2b); /* Escurece ainda mais ao clicar */
     box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2); /* Sombra externa ao clicar */
 }
-
 /* Estilo específico para o botão de finalizar */
-.btn-finish {
-    width: 160px; /* Largura do botão de finalizar */
-    height: 70px; /* Altura do botão de finalizar */
-    border-radius: 8px; /* Bordas arredondadas */
-    font-family: 'Skranji', cursive; /* Fonte dos ícones */
-    color: #ffc000; /* Cor do ícone */
-    font-size: 22px; /* Tamanho do ícone */
+.btn-tutorial-fim {
+    margin: 1rem auto; /* Usando rem em vez de px */
+    width: 75px; /* Usando % da largura da viewport */
+    letter-spacing: 0.1rem; /* Usando rem para espaçamento de letras */
+    border-radius: 0.5rem; /* Usando rem para o raio da borda */
+    font-family: 'Skranji', cursive;
+    color: #ffc000;
+    font-size: 1.6rem; /* Ajuste proporcional da fonte */
     font-weight: 400;
-    text-shadow: 0 1px 3px #000; /* Sombra do texto */
-    text-align: center; /* Alinha o texto no centro */
-    padding: 10px; /* Espaço interno do botão */
-    background: radial-gradient(circle, #8b0000, #8b0000); /* Gradiente de fundo */
-    border-top: 8px ridge #ffb000; /* Borda superior */
-    border-left: 8px groove #ffb000; /* Borda esquerda */
-    border-right: 8px ridge #ffb000; /* Borda direita */
-    border-bottom: 8px groove #ffb000; /* Borda inferior */
-    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3); /* Sombra interna */
-    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
-    transition: background-color 0.3s, box-shadow 0.3s; /* Transições suaves */
-    display: flex;
-    align-items: center; /* Centraliza verticalmente */
-    justify-content: center; /* Centraliza horizontalmente */
+    text-shadow: 0 0.1rem 0.2rem #000;
+    text-align: center;
+    padding: 0.8rem 0; /* Ajuste proporcional no padding */
+    background: radial-gradient(circle, #8b0000, #8b0000);
+    border-top: 0.5rem ridge #ffb000; /* Ajuste proporcional na borda */
+    border-left: 0.5rem groove #ffb000;
+    border-right: 0.5rem ridge #ffb000;
+    border-bottom: 0.5rem groove #ffb000;
+    box-shadow: inset 0 0 0.3rem 0.2rem rgba(1, 1, 1, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
-
 /* Estilo dos botões de finalizar ao passar o mouse */
-.btn-finish:hover {
+.btn-tutorial-fim:hover {
     background: radial-gradient(circle, #003300, #003300); /* Escurece o verde ao passar o mouse */
     box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2); /* Sombra externa ao passar o mouse */
 }
-
 /* Estilo dos botões de finalizar ao clicar */
-.btn-finish:active {
+.btn-tutorial-fim:active {
     background: radial-gradient(circle, #002200, #002200); /* Escurece ainda mais ao clicar */
     box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2); /* Sombra externa ao clicar */
 }
