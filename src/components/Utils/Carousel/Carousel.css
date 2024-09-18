@@ -9,13 +9,13 @@
     flex-direction: column; /* Organiza os elementos em coluna */
     align-items: center;
     justify-content: center;
-    background-color: #282c34; /* Cor de fundo do carrossel */
-    border-top: 10px ridge #ffb000; /* Borda superior */
-    border-left: 10px groove #ffb000; /* Borda esquerda */
-    border-right: 10px ridge #ffb000; /* Borda direita */
-    border-bottom: 10px groove #ffb000; /* Borda inferior */
+    background: rgba(40, 44, 52, 0.7); /* Cor de fundo com transparência */
+    border: 10px ridge #ffb000; /* Borda uniforme em todos os lados */
     border-radius: 10px; /* Borda arredondada */
+    backdrop-filter: blur(10px); /* Efeito de desfoque no fundo */
+    -webkit-backdrop-filter: blur(10px); /* Compatibilidade com Webkit */
 }
+
 
 /* Estiliza o título do carrossel */
 .carousel-title {

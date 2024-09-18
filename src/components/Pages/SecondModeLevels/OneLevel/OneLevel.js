@@ -177,11 +177,11 @@ const OneLevel = () => {
 
         <div className="item-list">
           <div className="status">
-            <p>Tempo restante: {formatTime(timeRemaining)}</p>
-            <p>Palavras digitadas: {palavrasDigitadas.length}/{palavras.length}</p>
+            <p>{formatTime(timeRemaining)}</p>
+            <p>Palavras digitadas: </p>
+            <p>{palavrasDigitadas.length}/{palavras.length}</p>
           </div>
 
-          <h2>Palavras para digitar</h2>
           <ul>
             {palavras.map((palavra, index) => (
               <li key={index} className={palavrasDigitadas.includes(palavra) ? 'found' : ''}>

@@ -57,8 +57,8 @@ const ImageSelection = () => {
 
     return (
         <div className="image-selection-container">
-            <p className="message-box">Escolha a imagem correta: </p>
-            <p className="message-box">{correctAnswer.toUpperCase()}</p>
+            <p className="message-box">Escolha a imagem correta :</p>
+            <p className="message-box-2">{correctAnswer.toUpperCase()}</p>
             <div className="image-grid">
                 {shuffledImages.map((image, index) => (
                     <div

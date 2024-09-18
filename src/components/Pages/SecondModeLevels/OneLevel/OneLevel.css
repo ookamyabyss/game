@@ -1,3 +1,75 @@
+/* Definindo o estilo geral */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden; /* Impede rolagem */
+    height: 100vh;
+  }
+  
+  /* Contêiner principal usando flex */
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw; /* Largura total da tela */
+    height: 100vh; /* Altura total da tela */
+    padding: 10px;
+  }
+  
+  /* Ajuste para que o conteúdo fique dentro da tela */
+  .content {
+    width: 80%; /* Ocupa 80% da largura da tela */
+    max-width: 1200px; /* Limita o tamanho máximo */
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  /* Ajustando o tamanho e disposição dos itens */
+  .item {
+    width: 25%; /* Cada item ocupa 25% da largura */
+    max-width: 200px; /* Limita o tamanho máximo */
+    margin: 10px;
+    box-sizing: border-box;
+  }
+  
+  /* Responsividade: ajusta o layout para telas menores */
+  @media (max-width: 768px) {
+    .item {
+      width: 45%; /* Em telas menores, 2 itens por linha */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .item {
+      width: 100%; /* Em telas muito pequenas, 1 item por linha */
+    }
+  }
+  
+  /* Prevenindo que os itens saiam da tela */
+  .item img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  /* Garantindo que as divs não se sobreponham */
+  .main-container, .content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  
+
+
+
+
+
+
 @import url('https://fonts.googleapis.com/css?family=Bungee');
 
 .level-container {
@@ -133,32 +205,41 @@
 }
 
 .game-over-message, .pause-message {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #333;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    color: #fff;
-    border-top: 8px ridge #ffb000;
-    border-left: 8px groove #ffb000;
-    border-right: 8px ridge #ffb000;
-    border-bottom: 8px groove #ffb000;
-    z-index: 1000;
-    width: 80%;
-    max-width: 600px;
+    position: fixed; /* Mantém a mensagem fixa na tela */
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta a posição para o centro */
+    background-color: #333; /* Fundo escuro */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra externa */
+    text-align: center; /* Centraliza o texto */
+    color: #fff; /* Cor do texto */
+    border-top: 8px ridge #ffb000; /* Borda superior */
+    border-left: 8px groove #ffb000; /* Borda esquerda */
+    border-right: 8px ridge #ffb000; /* Borda direita */
+    border-bottom: 8px groove #ffb000; /* Borda inferior */
+    z-index: 1000; /* Garante que a mensagem fique acima de outros elementos */
+    width: 80%; /* Largura ajustada conforme necessário */
+    max-width: 600px; /* Largura máxima */
 }
 
 .game-over-message h2, .pause-message h2 {
-    font-family: 'Skranji', cursive;
-    font-size: 1.6rem;
-    margin-bottom: 10px;
-    letter-spacing: 6px;
-    color: #ffb000;
+    font-family: 'Skranji', cursive; /* Fonte usada */
+    font-size: 1.6rem; /* Tamanho da fonte */
+    margin-bottom: 10px; /* Espaço abaixo do título */
+    letter-spacing: 6px; /* Espaçamento entre letras */
+    color: #ffb000; /* Cor do texto */
 }
+
+.game-over-message p {
+    font-family: 'Skranji', cursive; /* Fonte usada */
+    font-size: 1.2rem; /* Tamanho da fonte */
+    margin-bottom: 20px; /* Espaço abaixo do parágrafo */
+    letter-spacing: 2px; /* Espaçamento entre letras */
+    color: #ffb000; /* Cor do texto */
+}
+
 
 .game-over-message button, .pause-message button {
     margin: 10px 20px;
@@ -184,33 +265,34 @@
 }
 
 .controls-second {
-    position: fixed; /* Fixa o menu na tela */
-    bottom: 60px; /* Alinha o menu 20px do fundo da tela */
-    left: 960px; /* Alinha o menu 20px da esquerda da tela */
-    display: flex; /* Exibe o contêiner como flexbox */
-    flex-direction: flex; /* Alinha os itens em uma coluna */
-    align-items: flex-start; /* Alinha os itens à esquerda */
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+    position: fixed; /* Posiciona o menu fixo na tela */
+    bottom: 20px; /* Distância do fundo da tela */
+    right: 0px; /* Distância da borda direita da tela */
+    display: flex; /* Usa flexbox para layout */
+    flex-direction: column; /* Alinha os itens em coluna */
+    align-items: flex-end; /* Alinha os itens à direita */
 }
 
 .second-btn-control {
-    width: 70px;
-    letter-spacing: 2px;
-    border-radius: 8px;
-    font-family: 'Skranji', cursive;
-    color: #ffc000;
-    font-size: 25px;
-    text-shadow: 0 1px 3px #000;
-    padding: 10px 0;
-    background: radial-gradient(circle, #8b0000, #8b0000);
-    border-top: 8px ridge #ffb000;
-    border-left: 8px groove #ffb000;
-    border-right: 8px ridge #ffb000;
-    border-bottom: 8px groove #ffb000;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    margin: 10px; /* Espaço ao redor do botão */
+    width: 70px; /* Largura do botão */
+    letter-spacing: 2px; /* Espaçamento entre letras */
+    border-radius: 8px; /* Bordas arredondadas */
+    font-family: 'Skranji', cursive; /* Fonte usada */
+    color: #ffc000; /* Cor do texto */
+    font-size: 25px; /* Tamanho da fonte */
+    font-weight: 400; /* Peso da fonte */
+    text-shadow: 0 1px 3px #000; /* Sombra do texto */
+    text-align: center; /* Centraliza o texto */
+    padding: 10px 0; /* Espaçamento interno */
+    background: radial-gradient(circle, #8b0000, #8b0000); /* Gradiente de fundo */
+    border-top: 8px ridge #ffb000; /* Borda superior */
+    border-left: 8px groove #ffb000; /* Borda esquerda */
+    border-right: 8px ridge #ffb000; /* Borda direita */
+    border-bottom: 8px groove #ffb000; /* Borda inferior */
+    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3); /* Sombra interna */
+    cursor: pointer; /* Cursor de mão para clicar */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Transição para mudanças de cor e sombra */
 }
 
 .second-btn-control:hover {

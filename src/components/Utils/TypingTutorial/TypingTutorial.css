@@ -7,20 +7,14 @@
   height: 100vh;
   padding: 20px;
   color: #ffb000;
-  font-family: 'Skranji', cursive;
+
   position: relative; /* Permite posicionamento absoluto do balão */
   margin-top: -60px; /* Exemplo de margem superior negativa */
 
 }
 
 /* Texto de instrução */
-.typing-tutorial-container p {
-  font-size: 1.5rem;
-  letter-spacing: 1px;
-  text-align: center;
-  color: #ffc000;
-  margin: 10px 0; /* Reduz o espaçamento entre os textos */
-}
+
 
 /* Destaque para a palavra SUCESSO */
 .typing-tutorial-container .highlight {
@@ -90,4 +84,28 @@
   border-width: 10px; /* Define a largura das bordas do triângulo */
   border-style: solid; /* Estilo sólido para as bordas */
   border-color: white transparent transparent transparent; /* Define as cores das bordas do triângulo */
+}
+
+.message-box-4 {
+  font-family: 'Bungee', cursive; /* Define a fonte usada no título */
+  color: #ffc000; /* Cor do texto */
+  font-size: 35px; /* Tamanho da fonte */
+  font-weight: 400; /* Peso da fonte */
+  text-shadow: 0 1px 3px #000; /* Sombra no texto para destaque */
+  text-align: center; /* Centraliza o texto dentro da caixa */
+  padding: 2px 0; /* Espaçamento interno acima e abaixo do texto */
+  margin-top: -30px; /* Margem negativa para ajustar a posição vertical da caixa */
+  margin: 10px 0;
+}
+
+.message-box-3 {
+  font-family: 'Bungee', cursive; /* Define a fonte usada no título */
+  color: #00FC00; /* Cor do texto */
+  font-size: 35px; /* Tamanho da fonte */
+  font-weight: 400; /* Peso da fonte */
+  text-shadow: 0 1px 3px #000; /* Sombra no texto para destaque */
+  text-align: center; /* Centraliza o texto dentro da caixa */
+  padding: 2px 0; /* Espaçamento interno acima e abaixo do texto */
+  margin-top: -30px; /* Margem negativa para ajustar a posição vertical da caixa */
+  margin: 10px 0;
 }

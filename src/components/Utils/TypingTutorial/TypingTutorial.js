@@ -48,8 +48,8 @@ const TypingTutorial = () => {
 
   return (
     <div className="typing-tutorial-container">
-      <p>Usando o teclado, digite a palavra abaixo:</p>
-      <p>{correctWord}</p>
+      <p className="message-box-4" >Usando o teclado, digite a palavra abaixo :</p>
+      <p className="message-box-3">{correctWord}</p>
 
       <div className="input-container">
         <input
