@@ -9,6 +9,8 @@
   color: #ffb000;
   font-family: 'Skranji', cursive;
   position: relative; /* Permite posicionamento absoluto do balão */
+  margin-top: -60px; /* Exemplo de margem superior negativa */
+
 }
 
 /* Texto de instrução */
@@ -16,13 +18,7 @@
   font-size: 1.5rem;
   letter-spacing: 1px;
   text-align: center;
-  color: #ffb000;
-  text-shadow: 
-      1px 1px 0 #000, 
-      1px -1px 0 #000,
-      -1px 1px 0 #000,
-      -1px -1px 0 #000, 
-      1px 1px 2px rgba(0, 0, 0, 0.6);
+  color: #ffc000;
   margin: 10px 0; /* Reduz o espaçamento entre os textos */
 }
 

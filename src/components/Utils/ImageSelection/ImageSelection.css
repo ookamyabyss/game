@@ -1,6 +1,7 @@
 /* Container principal para a seleção de imagens */
 .image-selection-container {
     text-align: center; /* Centraliza o texto dentro do container */
+    margin-top: -60px; /* Exemplo de margem superior negativa */
 }
 
 /* Grid que exibe as imagens de seleção */
