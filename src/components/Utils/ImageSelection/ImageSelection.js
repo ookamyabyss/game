@@ -41,8 +41,8 @@ const ImageSelection = () => {
     return (
         <div className="image-selection-container">
             {/* Caixa de mensagem instruindo o usuário a escolher a imagem do picolé */}
-            <p className="message-box">Mova o mouse para que o curso fique em cima da imagem correta.</p>
-            <p className="message-box">Depois aperte o botão esquerdo do mouse. ESCOLHA O PICOLÉ</p>
+            <p className="message-box">Usando o mouse escolha a imagem abaixo:</p>
+            <p className="message-box">PICOLÉ</p>
 
             <div className="image-grid">
                 {/* Mapeia as imagens e cria um contêiner para cada uma */}
@@ -67,7 +67,7 @@ const ImageSelection = () => {
                         />
                         {/* Mostra a bolha de chat se a imagem selecionada estiver correta */}
                         {selectedImage === image.name && image.name === correctAnswer && (
-                            <div className="chat-bubble">
+                            <div className="chat-bubble-fist">
                                 Você escolheu certo.
                             </div>
                         )}

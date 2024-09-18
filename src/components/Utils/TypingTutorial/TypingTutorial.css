@@ -1,82 +1,97 @@
 /* Container principal do tutorial de digitação */
 .typing-tutorial-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: radial-gradient(circle, #282c34, #1b1e23);
-    padding: 20px;
-    color: #ffb000;
-    font-family: 'Skranji', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  color: #ffb000;
+  font-family: 'Skranji', cursive;
+  position: relative; /* Permite posicionamento absoluto do balão */
 }
-  
+
 /* Texto de instrução */
 .typing-tutorial-container p {
-    font-size: 1.8rem;
-    letter-spacing: 2px;
-    text-align: center;
-    color: #ffb000;
-    text-shadow: 
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  text-align: center;
+  color: #ffb000;
+  text-shadow: 
       1px 1px 0 #000, 
       1px -1px 0 #000,
       -1px 1px 0 #000,
       -1px -1px 0 #000, 
       1px 1px 2px rgba(0, 0, 0, 0.6);
+  margin: 10px 0; /* Reduz o espaçamento entre os textos */
 }
-  
-  /* Estilização do campo de entrada de texto */
+
+/* Destaque para a palavra SUCESSO */
+.typing-tutorial-container .highlight {
+  font-weight: bold;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+}
+
+/* Estilização do campo de entrada de texto */
 .typing-input {
-    font-size: 1.5rem;
-    padding: 10px;
-    border: 2px solid #ffb000;
-    border-radius: 8px;
-    width: 300px;
-    color: #282c34;
-    text-align: center;
-    font-family: 'Bungee', cursive;
-    background-color: #fff;
-    margin-top: 20px;
+  font-size: 1.5rem;
+  padding: 10px;
+  border: 8px solid white;
+  box-shadow: 
+  inset 0px 0px 7px 4px rgba(0, 0, 0, 0.4), /* Sombra interna para efeito de profundidade */
+  0px 4px 15px rgba(0, 0, 0, 0.2); /* Sombra externa para efeito de profundidade */
+  border-radius: 0px;
+  width: 400px;
+  color: black;
+  text-align: center;
+  font-family: 'Bungee', cursive;
+  background-color: #fff;
+  margin-top: 10px; /* Ajusta o espaçamento superior */
+  position: relative;
 }
-  
-  /* Mensagem de sucesso */
-.success-message {
-    margin-top: 20px;
-    font-size: 1.6rem;
-    font-family: 'Skranji', cursive;
-    color: #00ff00;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+
+.typing-tutorial-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  color: #ffb000;
+  font-family: 'Skranji', cursive;
 }
-  
-  /* Feedback visual de correção */
-.correct {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    background-color: #fff;
-    border: 6px solid green;
-    font-size: 1.5rem;
-    color: #ffb000;
-    font-family: 'Bungee', cursive;
-    padding: 5px;
+
+/* Estilização do campo de entrada e do balão */
+.input-container {
+  position: relative; /* Para posicionar o balão em relação ao campo de digitação */
 }
-  
-  /* Para manter consistência com os botões em outras áreas do projeto */
-.typing-tutorial-container button {
-    width: 150px;
-    padding: 10px;
-    font-family: 'Skranji', cursive;
-    font-size: 25px;
-    color: #ffc000;
-    background: radial-gradient(circle, #8b0000, #8b0000);
-    border-radius: 8px;
-    border: 8px ridge #ffb000;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s;
+
+/* Estilização do balão de chat */
+.chat-bubble {
+  position: absolute; /* Posiciona o balão de forma absoluta em relação ao contêiner da imagem */
+  top: -45px; /* Ajusta a posição vertical do balão */
+  left: 100%; /* Centraliza o balão horizontalmente */
+  transform: translateX(-50%); /* Ajusta o alinhamento horizontal */
+  background-color: white; /* Cor de fundo do balão */
+  border: 4px solid #ffb000; /* Borda do balão */
+  border-radius: 0px; /* Arredonda os cantos do balão */
+  padding: 10px; /* Espaçamento interno dentro do balão */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Sombra ao redor do balão */
+  font-family: 'Bungee', cursive; /* Define a fonte usada no título */
+  font-size: 14px; /* Tamanho da fonte */
+  color: black; /* Cor do texto */
+  white-space: nowrap; /* Impede que o texto quebre em várias linhas */
 }
-  
-.typing-tutorial-container button:hover {
-    background: radial-gradient(circle, #e52b2b, #8b0000);
+
+/* Triângulo que aponta para o balão de chat */
+.chat-bubble::after {
+  content: ''; /* Necessário para criar o triângulo */
+  position: absolute; /* Posiciona o triângulo de forma absoluta dentro do balão */
+  bottom: -10px; /* Ajusta a posição vertical do triângulo */
+  left: 50%; /* Centraliza o triângulo horizontalmente */
+  transform: translateX(-50%); /* Ajusta o alinhamento horizontal */
+  border-width: 10px; /* Define a largura das bordas do triângulo */
+  border-style: solid; /* Estilo sólido para as bordas */
+  border-color: white transparent transparent transparent; /* Define as cores das bordas do triângulo */
 }
-  
