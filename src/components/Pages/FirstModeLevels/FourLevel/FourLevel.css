@@ -161,9 +161,9 @@
 }
 
 .star-icon {
-    margin: 0 10px; /* Adiciona espaço de 10px entre as estrelas */
-    width: 70px; /* Ajuste o tamanho da estrela, se necessário */
-    height: auto;
+    margin: 0 10px; /* Espaço entre as estrelas */
+    width: 100px; /* Largura das estrelas */
+    height: auto; /* Altura ajustada automaticamente */
 }
 
 
@@ -231,7 +231,6 @@
     top: 50%; /* Centraliza verticalmente */
     left: 50%; /* Centraliza horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta a posição para o centro */
-    background-color: #333; /* Fundo escuro */
     padding: 20px; /* Espaçamento interno */
     border-radius: 10px; /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra externa */
@@ -244,6 +243,9 @@
     z-index: 1000; /* Garante que a mensagem fique acima de outros elementos */
     width: 80%; /* Largura ajustada conforme necessário */
     max-width: 500px; /* Largura máxima */
+    backdrop-filter: blur(10px); /* Efeito de desfoque no fundo */
+    background: rgba(40, 44, 52, 0.7); /* Cor de fundo com transparência */
+    -webkit-backdrop-filter: blur(10px); /* Compatibilidade com Webkit */
 }
 
 /* Estilo do título da mensagem de pausa */
@@ -296,7 +298,7 @@
     bottom: 20px; /* Distância do fundo da tela */
     right: 10px; /* Distância da borda direita da tela */
     display: flex; /* Usa flexbox para layout */
-    flex-direction: column; /* Alinha os itens em coluna */
+    flex-direction: row; /* Alinha os itens em coluna */
     align-items: flex-end; /* Alinha os itens à direita */
 }
 
@@ -346,7 +348,6 @@
     top: 50%; /* Centraliza verticalmente */
     left: 50%; /* Centraliza horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta a posição para o centro */
-    background-color: #333; /* Fundo escuro */
     padding: 20px; /* Espaçamento interno */
     border-radius: 10px; /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra externa */
@@ -359,7 +360,11 @@
     z-index: 1000; /* Garante que a mensagem fique acima de outros elementos */
     width: 80%; /* Largura ajustada conforme necessário */
     max-width: 600px; /* Largura máxima */
+    backdrop-filter: blur(10px); /* Efeito de desfoque no fundo */
+    background: rgba(40, 44, 52, 0.7); /* Cor de fundo com transparência */
+    -webkit-backdrop-filter: blur(10px); /* Compatibilidade com Webkit */
 }
+
 
 /* Estilo do título da mensagem de fim de jogo */
 .game-over-message-one h2 {

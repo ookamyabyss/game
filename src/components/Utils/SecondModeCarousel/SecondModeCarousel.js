@@ -65,15 +65,105 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
         };
     }, [currentStep]);
 
-    // Define os passos do carrossel
-    const steps = Array.from({ length: 10 }, (_, index) => ({
-        title: `LEVEL ${index + 1}`,
-        content: (
-            <div>
-               {/* Conteúdo do nível pode ser adicionado aqui */}
-            </div>
-        ) 
-    }));
+    const steps = [
+        {
+            title: 'LEVEL 1',
+            content: (
+                <div className="level-description">
+                    <p> 8 MINUTOS </p>
+                    <p> 10 PALAVRAS </p>
+                </div>
+            ),
+        },
+        {
+            title: 'LEVEL 2',
+            content: (
+                <div className="level-description">
+                    <p> 5 MINUTOS </p>
+                    <p> 10 ITENS </p>
+                </div>
+            ),
+        },
+        {
+            title: 'LEVEL 3',
+            content: (
+                <div className="level-description">
+                    <p> 3 MINUTOS </p>
+                    <p> 10 ITENS </p>
+                </div>
+            ),
+        },
+        {
+            title: 'LEVEL 4',
+            content: (
+                <div className="level-description">
+                    <p> 8 MINUTOS </p>
+                    <p> 10 ITENS </p>
+                    <p> DESAPARECENDO </p>
+                </div>
+            ),
+        },
+        {
+            title: 'LEVEL 5',
+            content: (
+                <div className="level-description">
+                    <p> 5 MINUTOS </p>
+                    <p> 10 ITENS </p>
+                    <p> DESAPARECENDO </p>
+                </div>
+            ),
+        },
+        {
+            title: 'LEVEL 6',
+            content: (
+                <div className="level-description">
+                    <p> 3 MINUTOS </p>
+                    <p> 10 ITENS </p>
+                    <p> DESAPARECENDO </p>
+                </div>
+            ),
+        },
+        {
+            title: 'LEVEL 7',
+            content: (
+                <div className="level-description">
+                    <p> 8 MINUTOS </p>
+                    <p> 10 ITENS </p>
+                    <p> BLOQUEADOS </p>
+                </div>
+            ),
+        },
+        {
+            title: 'LEVEL 8',
+            content: (
+                <div className="level-description">
+                    <p> 5 MINUTOS </p>
+                    <p> 10 ITENS </p>
+                    <p> BLOQUEADOS </p>
+                </div>
+            ),
+        },
+        {
+            title: 'LEVEL 9',
+            content: (
+                <div className="level-description">
+                    <p> 3 MINUTOS </p>
+                    <p> 10 ITENS </p>
+                    <p> BLOQUEADOS </p>
+                </div>
+            ),
+        },
+        {
+            title: 'LEVEL 10',
+            content: (
+                <div className="level-description">
+                    <p> 5 MINUTOS </p>
+                    <p> 10 ITENS </p>
+                    <p> DESAPARECENDO + BLOQUEADOS </p>
+                </div>
+            ),
+        },
+    ];
 
     // Retorna null se o passo atual estiver fora do intervalo
     if (currentStep < 1 || currentStep > steps.length) {

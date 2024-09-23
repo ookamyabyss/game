@@ -9,17 +9,24 @@ import './OneLevel.css';
 
 const OneLevel = () => {
   const navigate = useNavigate();
-  const [palavras] = useState(['BANANA', 'AMIGOS', 'GAROTO', 'FUTURO', 'BRASIL', 'CARROS', 'PRAIAS', 'LIVROS']);
+  const [palavras] = useState(['BANANA', 'AMIGOS', 'GAROTO', 'FUTURO', 'BRASIL', 'CARROS', 'PRAIAS', 'LIVROS', 'FELINO', 'JANELA']);
   const [indicePalavraAtual, setIndicePalavraAtual] = useState(0);
   const [textoDigitado, setTextoDigitado] = useState('');
   const [palavrasDigitadas, setPalavrasDigitadas] = useState([]);
-  const [timeRemaining, setTimeRemaining] = useState(60); // Tempo alterado para 1 minuto
+  const [timeRemaining, setTimeRemaining] = useState(480);
   const [gameStatus, setGameStatus] = useState('playing');
   const [isPaused, setIsPaused] = useState(false);
   const [hintPalavra, setHintPalavra] = useState(null);
   const [stars, setStars] = useState(0);
-  const [highlightedSquares, setHighlightedSquares] = useState([]); // Palavras acertadas
+  const [highlightedSquares, setHighlightedSquares] = useState([]);
+  const [hintIndex, setHintIndex] = useState(0);
+  const [cursorPosition, setCursorPosition] = useState(0); // Adicionado
 
+  useEffect(() => {
+    // Atualiza a posição do cursor
+    setCursorPosition(textoDigitado.length);
+  }, [textoDigitado]);
+  
   useEffect(() => {
     if (gameStatus === 'playing' && timeRemaining > 0 && !isPaused) {
       const timer = setInterval(() => {
@@ -33,11 +40,13 @@ const OneLevel = () => {
 
   useEffect(() => {
     if (textoDigitado.length === 6) {
-      const palavraAtual = palavras.find((p) => p === textoDigitado.toUpperCase()); // Maiúsculas não importam
+      const palavraAtual = palavras.find((p) => p === textoDigitado.toUpperCase());
       if (palavraAtual) {
         setPalavrasDigitadas([...palavrasDigitadas, textoDigitado]);
-        setHighlightedSquares([...highlightedSquares, textoDigitado]); // Adiciona a palavra correta nos quadrados de baixo
+        setHighlightedSquares([...highlightedSquares, textoDigitado]);
         playSuccessSound();
+
+        setHintIndex(0);
 
         if (palavrasDigitadas.length + 1 === palavras.length) {
           calculateStars();
@@ -60,8 +69,8 @@ const OneLevel = () => {
   };
 
   const calculateStars = () => {
-    const timeSpent = 60 - timeRemaining;
-    const percentageUsed = (timeSpent / 60) * 100;
+    const timeSpent = 480 - timeRemaining;
+    const percentageUsed = (timeSpent / 480) * 100;
 
     if (percentageUsed <= 20) {
       setStars(3);
@@ -75,18 +84,20 @@ const OneLevel = () => {
   };
 
   const handleClickOnSquare = () => {
-    document.querySelector('.hidden-input').focus(); // Força o foco no campo de input
+    document.querySelector('.hidden-input').focus();
   };
 
   const restartLevel = () => {
     setIndicePalavraAtual(0);
     setPalavrasDigitadas([]);
-    setTimeRemaining(60); // Reset tempo para 1 minuto
+    setTimeRemaining(480);
     setGameStatus('playing');
     setIsPaused(false);
     setHintPalavra(null);
     setStars(0);
-    setHighlightedSquares([]); // Limpa as palavras destacadas
+    setHighlightedSquares([]);
+    setTextoDigitado('');
+    setHintIndex(0);
   };
 
   const goToMenu = () => {
@@ -117,9 +128,24 @@ const OneLevel = () => {
 
   const handleHint = () => {
     playSound(clickSound);
-    const randomPalavra = palavras[indicePalavraAtual];
-    setHintPalavra(randomPalavra);
-    setTimeout(() => setHintPalavra(null), 3000);
+    let palavraEmProgresso = palavras.find(
+      (p) => p.startsWith(textoDigitado) && !palavrasDigitadas.includes(p)
+    );
+
+    if (!palavraEmProgresso) {
+      palavraEmProgresso = palavras.find((p) => !palavrasDigitadas.includes(p));
+      setTextoDigitado('');
+    }
+
+    if (palavraEmProgresso) {
+      const letrasRestantes = palavraEmProgresso.slice(textoDigitado.length);
+      if (letrasRestantes.length > 0) {
+        const novaLetra = letrasRestantes[0];
+        setTextoDigitado((prevTexto) => prevTexto + novaLetra);
+        setHintIndex(hintIndex + 1);
+        setTimeout(() => setHintPalavra(null), 3000);
+      }
+    }
   };
 
   const renderStars = () => {
@@ -135,6 +161,12 @@ const OneLevel = () => {
     return <div className="star-feedback">{starsArray}</div>;
   };
 
+  const handleInputChange = (e) => {
+    setTextoDigitado(e.target.value.toUpperCase());
+    setCursorPosition(e.target.value.length); // Atualiza a posição do cursor
+  };
+
+
   return (
     <div className="level-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
       <h1>NÍVEL 1</h1>
@@ -145,6 +177,7 @@ const OneLevel = () => {
             {Array(6).fill('').map((_, index) => (
               <div key={index} className="input-square">
                 {textoDigitado[index] || ''}
+                {index === cursorPosition && <span className="cursor" />}
               </div>
             ))}
           </div>
@@ -153,24 +186,21 @@ const OneLevel = () => {
             type="text"
             className="hidden-input"
             value={textoDigitado}
-            onChange={(e) => setTextoDigitado(e.target.value.toUpperCase())} // Converte para maiúsculo
+            onChange={handleInputChange}
             autoFocus
           />
 
-          {/* Renderizar a palavra correta com borda verde */}
           {highlightedSquares.length > 0 && (
             <div className="correto-grid">
               {highlightedSquares.map((palavra, index) => (
                 <div key={index} className="correct">
                   {palavra.split('').map((letra, letraIndex) => (
                     <span key={letraIndex}>{letra}</span>
-                  ))} {/* Renderiza cada letra separadamente */}
+                  ))}
                 </div>
               ))}
             </div>
           )}
-
-
 
           {hintPalavra && <p className="hint-text">Dica: {hintPalavra}</p>}
         </div>
@@ -178,18 +208,25 @@ const OneLevel = () => {
         <div className="item-list">
           <div className="status">
             <p>{formatTime(timeRemaining)}</p>
-            <p>Palavras digitadas: </p>
+            <p>Palavras digitadas:</p>
             <p>{palavrasDigitadas.length}/{palavras.length}</p>
           </div>
 
-          <ul>
+          {/* Aplique a classe hidden-TWO diretamente no contêiner da lista de palavras */}
+          <ul className={`palavras-list ${isPaused ? 'hidden' : ''}`}>
             {palavras.map((palavra, index) => (
-              <li key={index} className={palavrasDigitadas.includes(palavra) ? 'found' : ''}>
+              <li
+                key={index}
+                className={`${
+                  palavrasDigitadas.includes(palavra) ? 'found-one' : ''
+                } ${palavra === hintPalavra ? 'highlight' : ''}`}
+              >
                 {palavra}
               </li>
             ))}
           </ul>
         </div>
+
       </div>
 
       <div className="controls-second">
@@ -198,8 +235,8 @@ const OneLevel = () => {
       </div>
 
       {gameStatus !== 'playing' && (
-        <div className="pause-overlay">
-          <div className="game-over-message">
+        <div className="pause-overlay-two">
+          <div className="game-over-message-two">
             {gameStatus === 'won' ? (
               <>
                 {renderStars()}
@@ -220,8 +257,8 @@ const OneLevel = () => {
       )}
 
       {isPaused && (
-        <div className="pause-overlay">
-          <div className="pause-message">
+        <div className="pause-overlay-two">
+          <div className="pause-message-two">
             <h2>Jogo Pausado</h2>
             <button onClick={handleContinue}>Continuar</button>
             <button onClick={goToMenu}>Desistir</button>

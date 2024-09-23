@@ -39,7 +39,7 @@ const OneLevel = () => {
 
         // Seleciona 10 itens aleatórios para encontrar
         const itemsToFindSet = new Set();
-        while (itemsToFindSet.size < 12) {
+        while (itemsToFindSet.size < 10) {
             itemsToFindSet.add(shuffledItems[Math.floor(Math.random() * shuffledItems.length)]);
         }
         setItemsToFind(Array.from(itemsToFindSet));
@@ -106,7 +106,7 @@ const OneLevel = () => {
         setItems(shuffledItems);
 
         const itemsToFindSet = new Set();
-        while (itemsToFindSet.size < 12) {
+        while (itemsToFindSet.size < 10) {
             itemsToFindSet.add(shuffledItems[Math.floor(Math.random() * shuffledItems.length)]);
         }
         setItemsToFind(Array.from(itemsToFindSet));

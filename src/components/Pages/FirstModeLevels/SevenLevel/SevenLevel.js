@@ -37,7 +37,7 @@ const SevenLevel = () => {
             setItems(shuffledItems);
 
             const itemsToFindSet = new Set();
-            while (itemsToFindSet.size < 18) {
+            while (itemsToFindSet.size < 10) {
                 itemsToFindSet.add(shuffledItems[Math.floor(Math.random() * shuffledItems.length)]);
             }
             setItemsToFind(Array.from(itemsToFindSet));
@@ -112,7 +112,7 @@ const SevenLevel = () => {
         setItems(shuffledItems);
 
         const itemsToFindSet = new Set();
-        while (itemsToFindSet.size < 18) {
+        while (itemsToFindSet.size < 10) {
             itemsToFindSet.add(shuffledItems[Math.floor(Math.random() * shuffledItems.length)]);
         }
         setItemsToFind(Array.from(itemsToFindSet));
