@@ -9,11 +9,11 @@ import './OneLevel.css';
 
 const OneLevel = () => {
   const navigate = useNavigate();
-  const [palavras] = useState(['BANANA', 'AMIGOS', 'GAROTO', 'FUTURO', 'BRASIL', 'CARROS', 'PRAIAS', 'LIVROS', 'FELINO', 'JANELA']);
+  const [palavras] = useState(['BANANA', 'AMIGOS', 'GAROTO', 'FUTURO', 'BRASIL', 'CARROS']);
   const [indicePalavraAtual, setIndicePalavraAtual] = useState(0);
   const [textoDigitado, setTextoDigitado] = useState('');
   const [palavrasDigitadas, setPalavrasDigitadas] = useState([]);
-  const [timeRemaining, setTimeRemaining] = useState(480);
+  const [timeRemaining, setTimeRemaining] = useState(300);
   const [gameStatus, setGameStatus] = useState('playing');
   const [isPaused, setIsPaused] = useState(false);
   const [hintPalavra, setHintPalavra] = useState(null);
@@ -21,6 +21,14 @@ const OneLevel = () => {
   const [highlightedSquares, setHighlightedSquares] = useState([]);
   const [hintIndex, setHintIndex] = useState(0);
   const [cursorPosition, setCursorPosition] = useState(0); // Adicionado
+
+  useEffect(() => {
+    const inputField = document.querySelector('.hidden-input');
+    if (inputField && !isPaused) {
+      inputField.focus();
+      inputField.setSelectionRange(textoDigitado.length, textoDigitado.length); // Coloca o cursor no final
+    }
+  }, [textoDigitado, isPaused]);
 
   useEffect(() => {
     // Atualiza a posição do cursor
@@ -69,8 +77,8 @@ const OneLevel = () => {
   };
 
   const calculateStars = () => {
-    const timeSpent = 480 - timeRemaining;
-    const percentageUsed = (timeSpent / 480) * 100;
+    const timeSpent = 300 - timeRemaining;
+    const percentageUsed = (timeSpent / 300) * 100;
 
     if (percentageUsed <= 20) {
       setStars(3);
@@ -90,7 +98,7 @@ const OneLevel = () => {
   const restartLevel = () => {
     setIndicePalavraAtual(0);
     setPalavrasDigitadas([]);
-    setTimeRemaining(480);
+    setTimeRemaining(300);
     setGameStatus('playing');
     setIsPaused(false);
     setHintPalavra(null);
@@ -165,7 +173,6 @@ const OneLevel = () => {
     setTextoDigitado(e.target.value.toUpperCase());
     setCursorPosition(e.target.value.length); // Atualiza a posição do cursor
   };
-
 
   return (
     <div className="level-container" style={{ backgroundImage: `url(${backgroundImage})` }}>

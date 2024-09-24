@@ -70,8 +70,8 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
             title: 'LEVEL 1',
             content: (
                 <div className="level-description">
-                    <p> 8 MINUTOS </p>
-                    <p> 10 PALAVRAS </p>
+                    <p> 5 MINUTOS </p>
+                    <p> 6 PALAVRAS </p>
                 </div>
             ),
         },
@@ -79,8 +79,8 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
             title: 'LEVEL 2',
             content: (
                 <div className="level-description">
-                    <p> 5 MINUTOS </p>
-                    <p> 10 ITENS </p>
+                    <p> 3 MINUTOS </p>
+                    <p> 8 PALAVRAS </p>
                 </div>
             ),
         },
@@ -89,7 +89,7 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
             content: (
                 <div className="level-description">
                     <p> 3 MINUTOS </p>
-                    <p> 10 ITENS </p>
+                    <p> 5 SENHAS </p>
                 </div>
             ),
         },
