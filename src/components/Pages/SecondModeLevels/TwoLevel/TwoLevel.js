@@ -13,7 +13,7 @@ const TwoLevel = () => {
   const [indicePalavraAtual, setIndicePalavraAtual] = useState(0);
   const [textoDigitado, setTextoDigitado] = useState('');
   const [palavrasDigitadas, setPalavrasDigitadas] = useState([]);
-  const [timeRemaining, setTimeRemaining] = useState(180);
+  const [timeRemaining, setTimeRemaining] = useState(300);
   const [gameStatus, setGameStatus] = useState('playing');
   const [isPaused, setIsPaused] = useState(false);
   const [hintPalavra, setHintPalavra] = useState(null);
@@ -77,8 +77,8 @@ const TwoLevel = () => {
   };
 
   const calculateStars = () => {
-    const timeSpent = 180 - timeRemaining;
-    const percentageUsed = (timeSpent / 180) * 100;
+    const timeSpent = 300 - timeRemaining;
+    const percentageUsed = (timeSpent / 300) * 100;
 
     if (percentageUsed <= 20) {
       setStars(3);
@@ -98,7 +98,7 @@ const TwoLevel = () => {
   const restartLevel = () => {
     setIndicePalavraAtual(0);
     setPalavrasDigitadas([]);
-    setTimeRemaining(180);
+    setTimeRemaining(300);
     setGameStatus('playing');
     setIsPaused(false);
     setHintPalavra(null);
@@ -115,7 +115,7 @@ const TwoLevel = () => {
 
   const goToNextLevel = () => {
     playSound(clickSound);
-    navigate('/first-mode-level/2');
+    navigate('/second-mode-level/3');
   };
 
   const formatTime = (time) => {

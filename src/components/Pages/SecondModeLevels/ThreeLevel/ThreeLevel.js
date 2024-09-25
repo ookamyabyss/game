@@ -9,7 +9,7 @@ import './ThreeLevel.css';
 
 const ThreeLevel = () => {
   const navigate = useNavigate();
-  const [palavras] = useState(['ADVOGADO', 'ANALISAR', 'AMARELOS', 'CANTORAS', 'CENOURAS', 'DISTANTE']);
+  const [palavras] = useState(['ADVOGADO', 'ANALISAR', 'AMARELOS', 'CANTORAS', 'CENOURAS', 'DISTANTE', 'MELANCIA', 'ENCONTRA']);
   const [indicePalavraAtual, setIndicePalavraAtual] = useState(0);
   const [textoDigitado, setTextoDigitado] = useState('');
   const [palavrasDigitadas, setPalavrasDigitadas] = useState([]);
@@ -115,7 +115,7 @@ const ThreeLevel = () => {
 
   const goToNextLevel = () => {
     playSound(clickSound);
-    navigate('/first-mode-level/2');
+    navigate('/second-mode-level/4');
   };
 
   const formatTime = (time) => {

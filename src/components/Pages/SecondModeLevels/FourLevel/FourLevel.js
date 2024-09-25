@@ -1,12 +1,301 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import clickSound from '../../../../assets/sounds/click.mp3';
+import successSound from '../../../../assets/sounds/success.mp3';
+import starImage from '../../../../assets/stars/star.png';
+import starGrayImage from '../../../../assets/stars/star-gray.png';
+import backgroundImage from '../../../../assets/background_levels/SecondModeOne_Two.png';
+import './FourLevel.css';
 
 const FourLevel = () => {
-    return (
-        <div>
-            <h1>Nível 4</h1>
-            <p>Conteúdo do Nível 4.</p>
-        </div>
+  const navigate = useNavigate();
+  const [palavras] = useState(['ADVOGADO', 'ANALISAR', 'AMARELOS', 'CANTORAS', 'CENOURAS', 'DISTANTE']);
+  const [indicePalavraAtual, setIndicePalavraAtual] = useState(0);
+  const [textoDigitado, setTextoDigitado] = useState('');
+  const [palavrasDigitadas, setPalavrasDigitadas] = useState([]);
+  const [timeRemaining, setTimeRemaining] = useState(300);
+  const [gameStatus, setGameStatus] = useState('playing');
+  const [isPaused, setIsPaused] = useState(false);
+  const [hintPalavra, setHintPalavra] = useState(null);
+  const [stars, setStars] = useState(0);
+  const [highlightedSquares, setHighlightedSquares] = useState([]);
+  const [hintIndex, setHintIndex] = useState(0);
+  const [cursorPosition, setCursorPosition] = useState(0); // Adicionado
+  const [isWordsVisible, setIsWordsVisible] = useState(true); // Nova variável de estado
+
+  useEffect(() => {
+    const inputField = document.querySelector('.hidden-input');
+    if (inputField && !isPaused) {
+      inputField.focus();
+      inputField.setSelectionRange(textoDigitado.length, textoDigitado.length); // Coloca o cursor no final
+    }
+  }, [textoDigitado, isPaused]);
+
+  useEffect(() => {
+    // Atualiza a posição do cursor
+    setCursorPosition(textoDigitado.length);
+  }, [textoDigitado]);
+  
+  useEffect(() => {
+    if (gameStatus === 'playing' && timeRemaining > 0 && !isPaused) {
+      const timer = setInterval(() => {
+        setTimeRemaining((prevTime) => prevTime - 1);
+      }, 1000);
+      return () => clearInterval(timer);
+    } else if (timeRemaining === 0 && gameStatus === 'playing') {
+      setGameStatus('lost');
+    }
+  }, [timeRemaining, gameStatus, isPaused]);
+
+  useEffect(() => {
+    if (gameStatus === 'playing' && !isPaused) {
+      const visibilityTimer = setInterval(() => {
+        setIsWordsVisible((prev) => !prev); // Alterna a visibilidade
+      }, 30000); // 30 segundos
+  
+      // Timer para voltar a visibilidade após 5 segundos
+      const returnTimer = setTimeout(() => {
+        setIsWordsVisible(true); // Garante que a lista de palavras volte
+      }, 30000 + 5000); // 30 segundos + 5 segundos
+  
+      return () => {
+        clearInterval(visibilityTimer);
+        clearTimeout(returnTimer);
+      };
+    }
+  }, [gameStatus, isPaused]);  
+
+  useEffect(() => {
+    if (textoDigitado.length === 8) {
+      const palavraAtual = palavras.find((p) => p === textoDigitado.toUpperCase());
+      if (palavraAtual) {
+        setPalavrasDigitadas([...palavrasDigitadas, palavraAtual]);
+        setHighlightedSquares((prev) => [...prev, palavraAtual]); // Atualizando a lista de palavras destacadas
+        playSuccessSound();
+  
+        setHintIndex(0);
+  
+        if (palavrasDigitadas.length + 1 === palavras.length) {
+          calculateStars();
+          setGameStatus('won');
+        }
+        setTextoDigitado(''); // Limpar o campo de texto após acertar
+      } else {
+        setTextoDigitado(''); // Limpa o texto se a palavra estiver incorreta
+      }
+    }
+  }, [textoDigitado, palavrasDigitadas]); // Remover highlightedSquares do array de dependências
+  
+  const playSound = (soundFile) => {
+    const audio = new Audio(soundFile);
+    audio.play();
+  };
+
+  const playSuccessSound = () => {
+    playSound(successSound);
+  };
+
+  const calculateStars = () => {
+    const timeSpent = 300 - timeRemaining;
+    const percentageUsed = (timeSpent / 300) * 100;
+
+    if (percentageUsed <= 20) {
+      setStars(3);
+    } else if (percentageUsed <= 50) {
+      setStars(2);
+    } else if (percentageUsed <= 80) {
+      setStars(1);
+    } else {
+      setStars(0);
+    }
+  };
+
+  const handleClickOnSquare = () => {
+    document.querySelector('.hidden-input').focus();
+  };
+
+  const restartLevel = () => {
+    setIndicePalavraAtual(0);
+    setPalavrasDigitadas([]);
+    setTimeRemaining(300);
+    setGameStatus('playing');
+    setIsPaused(false);
+    setHintPalavra(null);
+    setStars(0);
+    setHighlightedSquares([]);
+    setTextoDigitado('');
+    setHintIndex(0);
+    setIsWordsVisible(true); // Resetar visibilidade da lista
+    
+    // Focar no campo de entrada após reiniciar
+    setTimeout(() => {
+      document.querySelector('.hidden-input').focus();
+    }, 0); // Use um timeout de 0 para garantir que isso ocorra após o estado ser atualizado
+  };  
+
+  const goToMenu = () => {
+    playSound(clickSound);
+    navigate('/second-mode');
+  };
+
+  const goToNextLevel = () => {
+    playSound(clickSound);
+    navigate('/first-mode-level/2');
+  };
+
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60).toString().padStart(2, '0');
+    const seconds = (time % 60).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
+  };
+
+  const handlePause = () => {
+    playSound(clickSound);
+    setIsPaused(true);
+  };
+
+  const handleContinue = () => {
+    playSound(clickSound);
+    setIsPaused(false);
+  };
+
+  const handleHint = () => {
+    playSound(clickSound);
+    let palavraEmProgresso = palavras.find(
+      (p) => p.startsWith(textoDigitado) && !palavrasDigitadas.includes(p)
     );
+
+    if (!palavraEmProgresso) {
+      palavraEmProgresso = palavras.find((p) => !palavrasDigitadas.includes(p));
+      setTextoDigitado('');
+    }
+
+    if (palavraEmProgresso) {
+      const letrasRestantes = palavraEmProgresso.slice(textoDigitado.length);
+      if (letrasRestantes.length > 0) {
+        const novaLetra = letrasRestantes[0];
+        setTextoDigitado((prevTexto) => prevTexto + novaLetra);
+        setHintIndex(hintIndex + 1);
+        setTimeout(() => setHintPalavra(null), 3000);
+      }
+    }
+  };
+
+  const renderStars = () => {
+    const totalStars = 3;
+    const starsArray = [];
+
+    for (let i = 0; i < totalStars; i++) {
+      starsArray.push(
+        <img key={i} src={i < stars ? starImage : starGrayImage} alt="Estrela" className="star-icon" />
+      );
+    }
+
+    return <div className="star-feedback">{starsArray}</div>;
+  };
+
+  const handleInputChange = (e) => {
+    setTextoDigitado(e.target.value.toUpperCase());
+    setCursorPosition(e.target.value.length); // Atualiza a posição do cursor
+  };
+
+  return (
+    <div className="level-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
+      <h1>NÍVEL 4</h1>
+  
+      <div className="game-area">
+        <div className="typing-area">
+          <div className="input-grid-8" onClick={handleClickOnSquare}>
+            {Array(8).fill('').map((_, index) => (
+              <div key={index} className="input-square">
+                {textoDigitado[index] || ''}
+                {index === cursorPosition && <span className="cursor" />}
+              </div>
+            ))}
+          </div>
+  
+          <input
+            type="text"
+            className="hidden-input"
+            value={textoDigitado}
+            onChange={handleInputChange}
+            maxLength={8}
+            autoComplete="off"
+            disabled={isPaused}
+          />
+  
+          {highlightedSquares.length > 0 && (
+            <div className="correto-grid">
+              {highlightedSquares.map((palavra, index) => (
+                <div key={index} className="correct">
+                  {palavra.split('').map((letra, letraIndex) => (
+                    <span key={letraIndex}>{letra}</span>
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {hintPalavra && <p className="hint-text">Dica: {hintPalavra}</p>}
+        </div>
+  
+        <div className="item-list">
+          <div className="status">
+            <p>{formatTime(timeRemaining)}</p>
+            <p>Palavras digitadas:</p>
+            <p>{palavrasDigitadas.length}/{palavras.length}</p>
+          </div>
+  
+          {/* Lista de palavras com controle de visibilidade */}
+          <ul className={`palavras-list ${isPaused || !isWordsVisible ? 'hidden' : ''}`}>
+            {palavras.map((palavra, index) => (
+              <li key={index} className={palavrasDigitadas.includes(palavra) ? 'found-one' : ''}>
+                {palavra}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+  
+      <div className="controls-second">
+        <button className="second-btn-control" onClick={handlePause}>||</button>
+        <button className="second-btn-control" onClick={handleHint}>?</button>
+      </div>
+  
+      {gameStatus !== 'playing' && (
+        <div className="pause-overlay-two">
+          <div className="game-over-message-two">
+            {gameStatus === 'won' ? (
+              <>
+                {renderStars()}
+                <h2>PARABÉNS!</h2>
+                <p>Você digitou todas as palavras corretamente.</p>
+              </>
+            ) : (
+              <>
+                <h2>QUE PENA!</h2>
+                <p>Você não conseguiu digitar todas as palavras a tempo.</p>
+              </>
+            )}
+            <button onClick={goToMenu}>Menu</button>
+            <button onClick={goToNextLevel}>Próximo</button>
+            <button onClick={restartLevel}>Reiniciar</button>
+          </div>
+        </div>
+      )}
+  
+      {isPaused && (
+        <div className="pause-overlay-two">
+          <div className="pause-message-two">
+            <h2>Jogo Pausado</h2>
+            <button onClick={handleContinue}>Continuar</button>
+            <button onClick={goToMenu}>Desistir</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+  
 };
 
 export default FourLevel;
