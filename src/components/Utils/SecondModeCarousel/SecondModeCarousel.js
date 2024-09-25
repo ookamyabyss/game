@@ -33,12 +33,6 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
         navigate(`/second-mode-level/${level}`);
     };
 
-    // Manipulador de clique para voltar para a página anterior
-    const handleBackClick = () => {
-        playSound();
-        navigate(-1); // Volta para a página anterior
-    };
-
     // Função para lidar com as teclas de seta do teclado
     const handleKeyDown = (event) => {
         switch (event.key) {
@@ -118,7 +112,7 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
             content: (
                 <div className="level-description">
                     <p> 3 MINUTOS </p>
-                    <p> 8 CÓDIGOS </p>
+                    <p> 6 CÓDIGOS </p>
                     <p> DESAPARECENDO </p>
                 </div>
             ),
@@ -127,9 +121,9 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
             title: 'LEVEL 7',
             content: (
                 <div className="level-description">
-                    <p> 8 MINUTOS </p>
-                    <p> 10 ITENS </p>
-                    <p> BLOQUEADOS </p>
+                    <p> -------- </p>
+                    <p> -------- </p>
+                    <p> -------- </p>
                 </div>
             ),
         },
@@ -137,9 +131,9 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
             title: 'LEVEL 8',
             content: (
                 <div className="level-description">
-                    <p> 5 MINUTOS </p>
-                    <p> 10 ITENS </p>
-                    <p> BLOQUEADOS </p>
+                    <p> -------- </p>
+                    <p> -------- </p>
+                    <p> -------- </p>
                 </div>
             ),
         },
@@ -147,9 +141,9 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
             title: 'LEVEL 9',
             content: (
                 <div className="level-description">
-                    <p> 3 MINUTOS </p>
-                    <p> 10 ITENS </p>
-                    <p> BLOQUEADOS </p>
+                    <p> -------- </p>
+                    <p> -------- </p>
+                    <p> -------- </p>
                 </div>
             ),
         },
@@ -157,9 +151,9 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
             title: 'LEVEL 10',
             content: (
                 <div className="level-description">
-                    <p> 5 MINUTOS </p>
-                    <p> 10 ITENS </p>
-                    <p> DESAPARECENDO + BLOQUEADOS </p>
+                    <p> -------- </p>
+                    <p> -------- </p>
+                    <p> -------- </p>
                 </div>
             ),
         },

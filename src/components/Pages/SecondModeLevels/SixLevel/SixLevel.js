@@ -9,7 +9,7 @@ import './SixLevel.css';
 
 const SixLevel = () => {
   const navigate = useNavigate();
-  const [palavras] = useState(['1234ABCD', '5678EFGH', '9101IJKL', '2345MNOP', '7261ZPZP', 'UFKA-2954']);
+  const [palavras] = useState(['5T8R1V9X2L', 'K2M7N8P4W3', '9G4X7Y2A1F', 'T6J9L3C8B2', '4D1K8R2Z7X', '3P9V6W1Q4S']);
   const [indicePalavraAtual, setIndicePalavraAtual] = useState(0);
   const [textoDigitado, setTextoDigitado] = useState('');
   const [palavrasDigitadas, setPalavrasDigitadas] = useState([]);
@@ -66,7 +66,7 @@ const SixLevel = () => {
   }, [gameStatus, isPaused]);  
 
   useEffect(() => {
-    if (textoDigitado.length === 8) {
+    if (textoDigitado.length ===10) {
       const palavraAtual = palavras.find((p) => p === textoDigitado.toUpperCase());
       if (palavraAtual) {
         setPalavrasDigitadas([...palavrasDigitadas, palavraAtual]);
@@ -213,7 +213,7 @@ const SixLevel = () => {
                   {index === cursorPosition && <span className="cursor" />}
                 </div>
                 {/* Exibir o traço entre o quarto e o quinto quadrado */}
-                {index === 3 && <span className="dash">-</span>}
+                {index === 4 && <span className="dash-6">-</span>}
               </React.Fragment>
             ))}
           </div>
@@ -223,7 +223,7 @@ const SixLevel = () => {
             className="hidden-input"
             value={textoDigitado}
             onChange={handleInputChange}
-            maxLength={8}
+            maxLength={10}
             autoComplete="off"
             disabled={isPaused}
           />
@@ -254,7 +254,7 @@ const SixLevel = () => {
           <ul className={`palavras-list ${isPaused || !isWordsVisible ? 'hidden' : ''}`}>
             {palavras.map((palavra, index) => (
               <li key={index} className={palavrasDigitadas.includes(palavra) ? 'found-one' : ''}>
-                {palavra.slice(0, 4) + '-' + palavra.slice(4)} {/* Adiciona o traço */}
+                {palavra.slice(0, 5) + '-' + palavra.slice(5)} {/* Adiciona o traço */}
               </li>
             ))}
           </ul>

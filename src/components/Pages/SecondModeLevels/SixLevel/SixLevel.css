@@ -117,7 +117,11 @@
     gap: 10px;
     margin-bottom: 20px;
     width: 100%;
-    max-width: 500px; /* Limita o tamanho máximo da grid */
+    max-width: 700px; /* Limita o tamanho máximo da grid */
+    justify-content: start; /* Isso move o grid mais para a esquerda */
+    margin-right: auto; /* Garante que o grid não se sobreponha ao lado direito */
+
+
 }
 
 .input-square {
@@ -385,14 +389,14 @@
     }
   }
 
-.dash {
+.dash-6 {
     display: inline-block;
-    width: 5px; /* Tamanho do espaço do traço */
+    width: 50px; /* Tamanho do espaço do traço */
     text-align: center;
     font-size: 40px; /* Tamanho da fonte para o traço */
-    margin: 0 10px; /* Espaçamento ao redor do traço */
+    margin: 0 1px; /* Espaçamento ao redor do traço */
     color: #ffc000;
 
   }
-  
+
   
