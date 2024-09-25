@@ -111,9 +111,9 @@
     text-align: center;
 }
 
-.input-grid {
+.input-grid-3 {
     display: grid;
-    grid-template-columns: repeat(6, 1fr); /* Ajusta a grid para 6 colunas */
+    grid-template-columns: repeat(8, 1fr); /* Ajusta a grid para 6 colunas */
     gap: 10px;
     margin-bottom: 20px;
     width: 100%;

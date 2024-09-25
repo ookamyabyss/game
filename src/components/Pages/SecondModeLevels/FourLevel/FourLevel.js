@@ -9,7 +9,7 @@ import './FourLevel.css';
 
 const FourLevel = () => {
   const navigate = useNavigate();
-  const [palavras] = useState(['ADVOGADO', 'ANALISAR', 'AMARELOS', 'CANTORAS', 'CENOURAS', 'DISTANTE']);
+  const [palavras] = useState(['1234ABCD', '5678EFGH', '9101IJKL', '2345MNOP']);
   const [indicePalavraAtual, setIndicePalavraAtual] = useState(0);
   const [textoDigitado, setTextoDigitado] = useState('');
   const [palavrasDigitadas, setPalavrasDigitadas] = useState([]);
@@ -51,12 +51,12 @@ const FourLevel = () => {
     if (gameStatus === 'playing' && !isPaused) {
       const visibilityTimer = setInterval(() => {
         setIsWordsVisible((prev) => !prev); // Alterna a visibilidade
-      }, 30000); // 30 segundos
+      }, 20000); // 30 segundos
   
       // Timer para voltar a visibilidade após 5 segundos
       const returnTimer = setTimeout(() => {
         setIsWordsVisible(true); // Garante que a lista de palavras volte
-      }, 30000 + 5000); // 30 segundos + 5 segundos
+      }, 5000); // 30 segundos + 5 segundos
   
       return () => {
         clearInterval(visibilityTimer);
@@ -140,7 +140,7 @@ const FourLevel = () => {
 
   const goToNextLevel = () => {
     playSound(clickSound);
-    navigate('/first-mode-level/2');
+    navigate('/second-mode-level/5');
   };
 
   const formatTime = (time) => {
@@ -205,12 +205,16 @@ const FourLevel = () => {
   
       <div className="game-area">
         <div className="typing-area">
-          <div className="input-grid-8" onClick={handleClickOnSquare}>
+          <div className="input-grid-4" onClick={handleClickOnSquare}>
             {Array(8).fill('').map((_, index) => (
-              <div key={index} className="input-square">
-                {textoDigitado[index] || ''}
-                {index === cursorPosition && <span className="cursor" />}
-              </div>
+              <React.Fragment key={index}>
+                <div className="input-square">
+                  {textoDigitado[index] || ''}
+                  {index === cursorPosition && <span className="cursor" />}
+                </div>
+                {/* Exibir o traço entre o quarto e o quinto quadrado */}
+                {index === 3 && <span className="dash">-</span>}
+              </React.Fragment>
             ))}
           </div>
   
@@ -250,7 +254,7 @@ const FourLevel = () => {
           <ul className={`palavras-list ${isPaused || !isWordsVisible ? 'hidden' : ''}`}>
             {palavras.map((palavra, index) => (
               <li key={index} className={palavrasDigitadas.includes(palavra) ? 'found-one' : ''}>
-                {palavra}
+                {palavra.slice(0, 4) + '-' + palavra.slice(4)} {/* Adiciona o traço */}
               </li>
             ))}
           </ul>

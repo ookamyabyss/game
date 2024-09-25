@@ -180,7 +180,7 @@ const ThreeLevel = () => {
 
       <div className="game-area">
         <div className="typing-area">
-          <div className="input-grid-8" onClick={handleClickOnSquare}>
+          <div className="input-grid-3" onClick={handleClickOnSquare}>
             {Array(8).fill('').map((_, index) => (
               <div key={index} className="input-square">
                 {textoDigitado[index] || ''}

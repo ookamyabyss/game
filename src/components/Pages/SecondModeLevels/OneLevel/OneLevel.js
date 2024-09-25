@@ -9,11 +9,11 @@ import './OneLevel.css';
 
 const OneLevel = () => {
   const navigate = useNavigate();
-  const [palavras] = useState(['BANANA', 'AMIGOS', 'GAROTO', 'FUTURO', 'BRASIL', 'CARROS']);
+  const [palavras] = useState(['BANANA', 'AMIGOS', 'GAROTO', 'FUTURO']);
   const [indicePalavraAtual, setIndicePalavraAtual] = useState(0);
   const [textoDigitado, setTextoDigitado] = useState('');
   const [palavrasDigitadas, setPalavrasDigitadas] = useState([]);
-  const [timeRemaining, setTimeRemaining] = useState(480);
+  const [timeRemaining, setTimeRemaining] = useState(300);
   const [gameStatus, setGameStatus] = useState('playing');
   const [isPaused, setIsPaused] = useState(false);
   const [hintPalavra, setHintPalavra] = useState(null);
@@ -77,8 +77,8 @@ const OneLevel = () => {
   };
 
   const calculateStars = () => {
-    const timeSpent = 480 - timeRemaining;
-    const percentageUsed = (timeSpent / 480) * 100;
+    const timeSpent = 300 - timeRemaining;
+    const percentageUsed = (timeSpent / 300) * 100;
 
     if (percentageUsed <= 20) {
       setStars(3);
@@ -98,7 +98,7 @@ const OneLevel = () => {
   const restartLevel = () => {
     setIndicePalavraAtual(0);
     setPalavrasDigitadas([]);
-    setTimeRemaining(480);
+    setTimeRemaining(300);
     setGameStatus('playing');
     setIsPaused(false);
     setHintPalavra(null);

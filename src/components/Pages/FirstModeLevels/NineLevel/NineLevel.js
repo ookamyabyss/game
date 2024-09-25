@@ -135,7 +135,7 @@ const NineLevel = () => {
 
     const goToNextLevel = () => {
         playSound(clickSound);
-        navigate('/first-mode-level/8');
+        navigate('/first-mode-level/10');
     };
 
     const formatTime = (time) => {

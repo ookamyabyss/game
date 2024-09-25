@@ -111,9 +111,9 @@
     text-align: center;
 }
 
-.input-grid-8{
+.input-grid-4{
     display: grid;
-    grid-template-columns: repeat(8, 1fr); /* Ajusta a grid para 6 colunas */
+    grid-template-columns: repeat(9, 1fr); /* Ajusta a grid para 6 colunas */
     gap: 10px;
     margin-bottom: 20px;
     width: 100%;
@@ -384,4 +384,15 @@
       opacity: 0; /* Faz o traço desaparecer no meio do ciclo de animação */
     }
   }
+
+.dash {
+    display: inline-block;
+    width: 5px; /* Tamanho do espaço do traço */
+    text-align: center;
+    font-size: 40px; /* Tamanho da fonte para o traço */
+    margin: 0 10px; /* Espaçamento ao redor do traço */
+    color: #ffc000;
+
+  }
+  
   
