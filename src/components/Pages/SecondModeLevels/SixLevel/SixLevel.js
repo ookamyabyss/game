@@ -4,12 +4,19 @@ import clickSound from '../../../../assets/sounds/click.mp3';
 import successSound from '../../../../assets/sounds/success.mp3';
 import starImage from '../../../../assets/stars/star.png';
 import starGrayImage from '../../../../assets/stars/star-gray.png';
-import backgroundImage from '../../../../assets/background_levels/SecondModeOne_Two.png';
+import backgroundImage from '../../../../assets/background_levels/SecondModeFive_Six.png';
 import './SixLevel.css';
 
 const SixLevel = () => {
   const navigate = useNavigate();
-  const [palavras] = useState(['5T8R1V9X2L', 'K2M7N8P4W3', '9G4X7Y2A1F', 'T6J9L3C8B2', '4D1K8R2Z7X', '3P9V6W1Q4S']);
+  const todasPalavras = [ 
+    '1234ABCD90', '2345EFGH01', '3456IJKL12', '4567MNOP23', '5678QRST34',
+    '6789UVWX45', '7890YZAB56', '8901CDEF67', '9012GHIJ78', '0123JKLM89',
+    '1357NOPQ01', '2468RSTU12', '3579VWXY23', '4680ZABC34', '5791DEFG45',
+    '6802HIJK56', '7913LMNO67', '8024PQRS78', '9135TUVW89', '0246XYZA90',
+    '1358BCDE12', '2469FGHI34', '3570JKLM56', '4681NOPQ78', '5792RSTU90',
+    '6803VWXY12', '7914ZABC34', '8025DEFG56', '9136HIJK78', '0247LMNO90' ];
+  const [palavras, setPalavras] = useState([]); // Corrigido: estado para as palavras selecionadas
   const [indicePalavraAtual, setIndicePalavraAtual] = useState(0);
   const [textoDigitado, setTextoDigitado] = useState('');
   const [palavrasDigitadas, setPalavrasDigitadas] = useState([]);
@@ -20,8 +27,30 @@ const SixLevel = () => {
   const [stars, setStars] = useState(0);
   const [highlightedSquares, setHighlightedSquares] = useState([]);
   const [hintIndex, setHintIndex] = useState(0);
-  const [cursorPosition, setCursorPosition] = useState(0); // Adicionado
+  const [cursorPosition, setCursorPosition] = useState(0);
+
   const [isWordsVisible, setIsWordsVisible] = useState(true); // Nova variável de estado
+
+  const selecionarPalavrasAleatorias = () => {
+    const palavrasSelecionadas = [];
+
+    // Enquanto houver menos de 4 palavras selecionadas, continua escolhendo
+    while (palavrasSelecionadas.length < 8) {
+      const indexAleatorio = Math.floor(Math.random() * todasPalavras.length);
+      const palavraSelecionada = todasPalavras[indexAleatorio];
+
+      // Evita adicionar palavras duplicadas
+      if (!palavrasSelecionadas.includes(palavraSelecionada)) {
+        palavrasSelecionadas.push(palavraSelecionada);
+      }
+    }
+
+    setPalavras(palavrasSelecionadas);
+  };
+
+  useEffect(() => {
+    selecionarPalavrasAleatorias(); // Seleciona novas palavras aleatórias ao iniciar o componente
+  }, []);
 
   useEffect(() => {
     const inputField = document.querySelector('.hidden-input');
@@ -125,13 +154,15 @@ const SixLevel = () => {
     setHighlightedSquares([]);
     setTextoDigitado('');
     setHintIndex(0);
+    selecionarPalavrasAleatorias();
+
     setIsWordsVisible(true); // Resetar visibilidade da lista
     
     // Focar no campo de entrada após reiniciar
     setTimeout(() => {
       document.querySelector('.hidden-input').focus();
     }, 0); // Use um timeout de 0 para garantir que isso ocorra após o estado ser atualizado
-  };  
+  };    
 
   const goToMenu = () => {
     playSound(clickSound);
@@ -273,12 +304,12 @@ const SixLevel = () => {
               <>
                 {renderStars()}
                 <h2>PARABÉNS!</h2>
-                <p>Você digitou todas as palavras corretamente.</p>
+                <p>Você digitou todas os códigos corretamente.</p>
               </>
             ) : (
               <>
                 <h2>QUE PENA!</h2>
-                <p>Você não conseguiu digitar todas as palavras a tempo.</p>
+                <p>Você não conseguiu digitar todas os códigos a tempo.</p>
               </>
             )}
             <button onClick={goToMenu}>Menu</button>

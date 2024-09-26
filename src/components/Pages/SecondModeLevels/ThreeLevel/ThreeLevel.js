@@ -4,23 +4,51 @@ import clickSound from '../../../../assets/sounds/click.mp3';
 import successSound from '../../../../assets/sounds/success.mp3';
 import starImage from '../../../../assets/stars/star.png';
 import starGrayImage from '../../../../assets/stars/star-gray.png';
-import backgroundImage from '../../../../assets/background_levels/SecondModeOne_Two.png';
+import backgroundImage from '../../../../assets/background_levels/SecondModeThree_Four.png';
 import './ThreeLevel.css';
 
 const ThreeLevel = () => {
   const navigate = useNavigate();
-  const [palavras] = useState(['ADVOGADO', 'ANALISAR', 'AMARELOS', 'CANTORAS', 'CENOURAS', 'DISTANTE', 'MELANCIA', 'ENCONTRA']);
+  const todasPalavras = [
+    'FANTASIA', 'CACHORRO', 'ABACATES', 'FRUTINHA', 'SARDINHA', 'CAMPANHA', 'DISPONHA', 'AMISTOSO', 
+    'ARTEFATO', 'MONTANHA', 'ACIDENTE', 'TRADUZIR', 'PENDENTE', 'PADRINHO', 'RELOGIOS', 'RESPEITO',
+    'OBJETIVO', 'OTIMISTA', 'IMINENTE', 'INFERIOR', 'LIMITADA', 'LEALDADE', 'MATUTINO', 'ELEGANTE', 
+    'ESCASSEZ', 'ENCANTOS', 'COMPOSTO', 'OFICINAS', 'CAPRICHO', 'CANTINHO', 'PADRINHO'
+];
+  
+  const [palavras, setPalavras] = useState([]); // Corrigido: estado para as palavras selecionadas
   const [indicePalavraAtual, setIndicePalavraAtual] = useState(0);
   const [textoDigitado, setTextoDigitado] = useState('');
   const [palavrasDigitadas, setPalavrasDigitadas] = useState([]);
-  const [timeRemaining, setTimeRemaining] = useState(180);
+  const [timeRemaining, setTimeRemaining] = useState(300);
   const [gameStatus, setGameStatus] = useState('playing');
   const [isPaused, setIsPaused] = useState(false);
   const [hintPalavra, setHintPalavra] = useState(null);
   const [stars, setStars] = useState(0);
   const [highlightedSquares, setHighlightedSquares] = useState([]);
   const [hintIndex, setHintIndex] = useState(0);
-  const [cursorPosition, setCursorPosition] = useState(0); // Adicionado
+  const [cursorPosition, setCursorPosition] = useState(0);
+
+  const selecionarPalavrasAleatorias = () => {
+    const palavrasSelecionadas = [];
+
+    // Enquanto houver menos de 4 palavras selecionadas, continua escolhendo
+    while (palavrasSelecionadas.length < 8) {
+      const indexAleatorio = Math.floor(Math.random() * todasPalavras.length);
+      const palavraSelecionada = todasPalavras[indexAleatorio];
+
+      // Evita adicionar palavras duplicadas
+      if (!palavrasSelecionadas.includes(palavraSelecionada)) {
+        palavrasSelecionadas.push(palavraSelecionada);
+      }
+    }
+
+    setPalavras(palavrasSelecionadas);
+  };
+
+  useEffect(() => {
+    selecionarPalavrasAleatorias(); // Seleciona novas palavras aleatórias ao iniciar o componente
+  }, []);
 
   useEffect(() => {
     const inputField = document.querySelector('.hidden-input');
@@ -98,7 +126,7 @@ const ThreeLevel = () => {
   const restartLevel = () => {
     setIndicePalavraAtual(0);
     setPalavrasDigitadas([]);
-    setTimeRemaining(180);
+    setTimeRemaining(300);
     setGameStatus('playing');
     setIsPaused(false);
     setHintPalavra(null);
@@ -106,6 +134,12 @@ const ThreeLevel = () => {
     setHighlightedSquares([]);
     setTextoDigitado('');
     setHintIndex(0);
+    selecionarPalavrasAleatorias();
+
+    // Focar no campo de entrada após reiniciar
+    setTimeout(() => {
+      document.querySelector('.hidden-input').focus();
+    }, 0); // Use um timeout de 0 para garantir que isso ocorra após o estado ser atualizado
   };
 
   const goToMenu = () => {

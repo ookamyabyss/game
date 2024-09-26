@@ -9,7 +9,13 @@ import './TwoLevel.css';
 
 const TwoLevel = () => {
   const navigate = useNavigate();
-  const [palavras] = useState(['PEIXES', 'LIVROS', 'FELINO', 'JANELA', 'FESTAS', 'FOLHAS']);
+  const todasPalavras = [
+    'BANANA', 'AMIGOS', 'GAROTO', 'FUTURO', 'ESCOLA', 'LIVROS', 'TREMES', 'JANELA', 'CARROS', 'PRATOS',
+    'CASACO', 'SAPATO', 'OVELHA', 'CACHOS', 'OUTROS', 'PASSOS', 'CAMISA', 'MARCAS', 'VENTOS', 'BONECO',
+    'LUCROS', 'BOVINO', 'FLORES', 'RUIDOS', 'CAMPOS', 'MANTOS', 'CANTOS', 'MESADA', 'QUADRO', 'BARCOS', 'LIMPOS'
+  ];
+  
+  const [palavras, setPalavras] = useState([]); // Corrigido: estado para as palavras selecionadas
   const [indicePalavraAtual, setIndicePalavraAtual] = useState(0);
   const [textoDigitado, setTextoDigitado] = useState('');
   const [palavrasDigitadas, setPalavrasDigitadas] = useState([]);
@@ -20,7 +26,28 @@ const TwoLevel = () => {
   const [stars, setStars] = useState(0);
   const [highlightedSquares, setHighlightedSquares] = useState([]);
   const [hintIndex, setHintIndex] = useState(0);
-  const [cursorPosition, setCursorPosition] = useState(0); // Adicionado
+  const [cursorPosition, setCursorPosition] = useState(0);
+
+  const selecionarPalavrasAleatorias = () => {
+    const palavrasSelecionadas = [];
+
+    // Enquanto houver menos de 4 palavras selecionadas, continua escolhendo
+    while (palavrasSelecionadas.length < 6) {
+      const indexAleatorio = Math.floor(Math.random() * todasPalavras.length);
+      const palavraSelecionada = todasPalavras[indexAleatorio];
+
+      // Evita adicionar palavras duplicadas
+      if (!palavrasSelecionadas.includes(palavraSelecionada)) {
+        palavrasSelecionadas.push(palavraSelecionada);
+      }
+    }
+
+    setPalavras(palavrasSelecionadas);
+  };
+
+  useEffect(() => {
+    selecionarPalavrasAleatorias(); // Seleciona novas palavras aleatórias ao iniciar o componente
+  }, []);
 
   useEffect(() => {
     const inputField = document.querySelector('.hidden-input');
@@ -106,6 +133,12 @@ const TwoLevel = () => {
     setHighlightedSquares([]);
     setTextoDigitado('');
     setHintIndex(0);
+    selecionarPalavrasAleatorias();
+
+    // Focar no campo de entrada após reiniciar
+    setTimeout(() => {
+      document.querySelector('.hidden-input').focus();
+    }, 0); // Use um timeout de 0 para garantir que isso ocorra após o estado ser atualizado
   };
 
   const goToMenu = () => {
