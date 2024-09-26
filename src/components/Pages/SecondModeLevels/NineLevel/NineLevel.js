@@ -243,7 +243,7 @@ const NineLevel = () => {
 
       <div className="game-area">
         <div className="typing-area">
-          <div className="input-grid-8" onClick={handleClickOnSquare}>
+          <div className="input-grid-9" onClick={handleClickOnSquare}>
             {Array(8).fill('').map((_, index) => (
               <React.Fragment key={index}>
                 <div className="input-square">
@@ -251,7 +251,7 @@ const NineLevel = () => {
                   {index === cursorPosition && <span className="cursor" />}
                 </div>
                 {/* Exibir o traço entre o quarto e o quinto quadrado */}
-                {index === 3 && <span className="dash-8">-</span>}
+                {index === 3 && <span className="dash-9">-</span>}
               </React.Fragment>
             ))}
           </div>
@@ -287,12 +287,12 @@ const NineLevel = () => {
           </div>
 
           {/* Aplique a classe hidden-TWO diretamente no contêiner da lista de palavras */}
-          <ul className={`palavras-list ${isPaused ? 'hidden' : ''}`}>
-            {palavras.map((palavra, index) => (
-                <li key={index} className={palavrasDigitadas.includes(palavra) ? 'found-one' : ''}>
-                  {palavra.slice(0, 4) + '-' + palavra.slice(4)} {/* Adiciona o traço */}
-                </li>
-              ))}
+          <ul className={`palavras-list ${isPaused ? 'hidden' : ''}`}> 
+            {palavrasOcultadas.map((palavra, index) => (
+              <li key={index} className={palavrasDigitadas.includes(palavras[index]) ? 'found-one' : ''}>
+                {palavra.slice(0, 4) + '-' + palavra.slice(4)} {/* Adiciona o traço */}
+              </li>
+            ))}
           </ul>
         </div>
 

@@ -117,11 +117,9 @@
     gap: 10px;
     margin-bottom: 20px;
     width: 100%;
-    max-width: 700px; /* Limita o tamanho máximo da grid */
+    max-width: 650px; /* Limita o tamanho máximo da grid */
     justify-content: start; /* Isso move o grid mais para a esquerda */
     margin-right: auto; /* Garante que o grid não se sobreponha ao lado direito */
-
-
 }
 
 .input-square {

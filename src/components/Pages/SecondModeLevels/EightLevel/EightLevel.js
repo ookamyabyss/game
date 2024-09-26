@@ -287,12 +287,12 @@ const EightLevel = () => {
           </div>
 
           {/* Aplique a classe hidden-TWO diretamente no contêiner da lista de palavras */}
-          <ul className={`palavras-list ${isPaused ? 'hidden' : ''}`}>
-            {palavras.map((palavra, index) => (
-                <li key={index} className={palavrasDigitadas.includes(palavra) ? 'found-one' : ''}>
-                  {palavra.slice(0, 4) + '-' + palavra.slice(4)} {/* Adiciona o traço */}
-                </li>
-              ))}
+          <ul className={`palavras-list ${isPaused ? 'hidden' : ''}`}> 
+            {palavrasOcultadas.map((palavra, index) => (
+              <li key={index} className={palavrasDigitadas.includes(palavras[index]) ? 'found-one' : ''}>
+                {palavra.slice(0, 4) + '-' + palavra.slice(4)} {/* Adiciona o traço */}
+              </li>
+            ))}
           </ul>
         </div>
 
