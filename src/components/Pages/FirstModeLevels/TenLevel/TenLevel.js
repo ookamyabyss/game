@@ -13,7 +13,7 @@ const TenLevel = () => {
     const [items, setItems] = useState([]);
     const [itemsToFind, setItemsToFind] = useState([]);
     const [foundItems, setFoundItems] = useState([]);
-    const [timeRemaining, setTimeRemaining] = useState(200);
+    const [timeRemaining, setTimeRemaining] = useState(300);
     const [gameStatus, setGameStatus] = useState('playing');
     const [isPaused, setIsPaused] = useState(false);
     const [hintItem, setHintItem] = useState(null);
@@ -33,28 +33,36 @@ const TenLevel = () => {
     const allItems = importAll(require.context('../../../../assets/itensFirstMode', false, /\.(png|jpe?g|svg)$/));
 
     useEffect(() => {
-        const initializeGame = () => {
+        const initializeGame = () => { 
             const shuffledItems = allItems.sort(() => 0.5 - Math.random()).slice(0, 60);
             setItems(shuffledItems);
-    
+        
+            // Selecionar 10 itens aleatórios para serem encontrados
             const itemsToFindSet = new Set();
             while (itemsToFindSet.size < 10) {
                 itemsToFindSet.add(shuffledItems[Math.floor(Math.random() * shuffledItems.length)]);
             }
-            setItemsToFind(Array.from(itemsToFindSet));
-    
-            // Inicializa a visibilidade dos itens
-            const visibility = {};
-            shuffledItems.forEach(item => {
-                visibility[item.name] = true;
-            });
-            setItemVisibility(visibility);
-    
-            // Inicializa itens bloqueados
-            const initialLockedItems = Array.from(itemsToFindSet).slice(0, 6); // Ajuste a quantidade conforme necessário
-            setLockedItems(Array.from(allItems.sort(() => 0.5 - Math.random()).slice(0, 30)).slice(0, 45));
+            const itemsToFindArray = Array.from(itemsToFindSet);
+            setItemsToFind(itemsToFindArray);
+        
+            // Selecionar 15 itens bloqueados aleatoriamente
+            const lockedItemsSet = new Set();
+            while (lockedItemsSet.size < 20) { // Define quantos itens serão bloqueados
+                const randomItem = shuffledItems[Math.floor(Math.random() * shuffledItems.length)];
+                lockedItemsSet.add(randomItem);
+            }
+        
+            // Verificar se todos os itens a serem encontrados estão bloqueados
+            const allFoundItemsBlocked = itemsToFindArray.every(item => lockedItemsSet.has(item));
+        
+            // Se todos os itens a serem encontrados estão bloqueados, desbloquear pelo menos 1
+            if (allFoundItemsBlocked) {
+                // Desbloquear um item encontrado, removendo-o da lista de bloqueados
+                lockedItemsSet.delete(itemsToFindArray[0]); // Desbloqueia o primeiro item
+            }
+        
+            setLockedItems(Array.from(lockedItemsSet)); // Armazena os itens bloqueados
         };
-    
         initializeGame();
     }, []);
 
@@ -94,18 +102,19 @@ const TenLevel = () => {
 
     const handleItemClick = (item) => {
         if (lockedItems.includes(item)) {
-            return; // Não faz nada se o item estiver bloqueado
+            return; // Não permite clicar em itens bloqueados
         }
         if (itemsToFind.includes(item) && !foundItems.includes(item)) {
             setFoundItems([...foundItems, item]);
             playItemFoundSound();
-
-            // Desbloquear itens conforme encontrados
+    
+            // Desbloquear itens à medida que o jogador encontra outros
+            const numItemsToUnlock = 3; // Exemplo: desbloquear 3 itens de cada vez
             if (lockedItems.length > 0) {
-                const newLockedItems = lockedItems.slice(1); // Remove o item bloqueado mais à frente
+                const newLockedItems = lockedItems.slice(numItemsToUnlock); // Desbloqueia vários itens de uma vez
                 setLockedItems(newLockedItems);
             }
-
+    
             if (foundItems.length + 1 === itemsToFind.length) {
                 calculateStars();
                 setGameStatus('won');
@@ -123,8 +132,8 @@ const TenLevel = () => {
     };
 
     const calculateStars = () => {
-        const timeSpent = 200 - timeRemaining;
-        const percentageUsed = (timeSpent / 200) * 100;
+        const timeSpent = 300 - timeRemaining;
+        const percentageUsed = (timeSpent / 300) * 100;
 
         if (percentageUsed <= 20) {
             setStars(3);
@@ -138,32 +147,31 @@ const TenLevel = () => {
     };
 
     const restartLevel = () => {
+        // Reinicia o jogo mantendo o estado original
         const shuffledItems = allItems.sort(() => 0.5 - Math.random()).slice(0, 60);
         setItems(shuffledItems);
-
+    
         const itemsToFindSet = new Set();
         while (itemsToFindSet.size < 10) {
             itemsToFindSet.add(shuffledItems[Math.floor(Math.random() * shuffledItems.length)]);
         }
         setItemsToFind(Array.from(itemsToFindSet));
-
+    
         setFoundItems([]);
-        setTimeRemaining(200);
+        setTimeRemaining(300);
         setGameStatus('playing');
         setIsPaused(false);
         setHintItem(null);
         setStars(0);
-
-        // Reinicializa a visibilidade
-        const visibility = {};
-        shuffledItems.forEach(item => {
-            visibility[item.name] = true;
-        });
-        setItemVisibility(visibility);
-
-        // Reinicia os itens bloqueados
-        const initialLockedItems = Array.from(itemsToFindSet).slice(0, 6); // Ajuste a quantidade conforme necessário
-        setLockedItems(initialLockedItems);
+    
+        // Seleciona 30% dos itens de forma aleatória para bloqueá-los
+        const numLockedItems = Math.floor(shuffledItems.length * 0.3);
+        const lockedItemsSet = new Set();
+        while (lockedItemsSet.size < numLockedItems) {
+            const randomItem = shuffledItems[Math.floor(Math.random() * shuffledItems.length)];
+            lockedItemsSet.add(randomItem);
+        }
+        setLockedItems(Array.from(lockedItemsSet));
     };
 
     const goToMenu = () => {
