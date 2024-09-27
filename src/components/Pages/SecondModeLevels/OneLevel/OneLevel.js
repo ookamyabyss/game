@@ -27,7 +27,7 @@ const OneLevel = () => {
   const [cursorPosition, setCursorPosition] = useState(0);
   const [hintsUsed, setHintsUsed] = useState(0); // Número de dicas usadas
   const [showHintLimitMessage, setShowHintLimitMessage] = useState(false); // Controle da exibição da mensagem de limite
-  const MAX_HINTS = 3; // Número máximo de dicas permitidas
+  const MAX_HINTS = 15; // Número máximo de dicas permitidas
 
   const selecionarPalavrasAleatorias = () => {
     const palavrasSelecionadas = [];
@@ -136,8 +136,6 @@ const OneLevel = () => {
     setHintIndex(0);
     selecionarPalavrasAleatorias();
     setHintsUsed(0); // Reseta o número de dicas usadas
-
-
     // Focar no campo de entrada após reiniciar
     setTimeout(() => {
       document.querySelector('.hidden-input').focus();
@@ -201,7 +199,7 @@ const OneLevel = () => {
             document.querySelector('.hidden-input').focus();
         }, 3000);
     }
-};
+  };
 
   const renderStars = () => {
     const totalStars = 3;

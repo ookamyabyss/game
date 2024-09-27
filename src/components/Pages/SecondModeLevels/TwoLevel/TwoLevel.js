@@ -27,6 +27,9 @@ const TwoLevel = () => {
   const [highlightedSquares, setHighlightedSquares] = useState([]);
   const [hintIndex, setHintIndex] = useState(0);
   const [cursorPosition, setCursorPosition] = useState(0);
+  const [hintsUsed, setHintsUsed] = useState(0); // Número de dicas usadas
+  const [showHintLimitMessage, setShowHintLimitMessage] = useState(false); // Controle da exibição da mensagem de limite
+  const MAX_HINTS = 15; // Número máximo de dicas permitidas
 
   const selecionarPalavrasAleatorias = () => {
     const palavrasSelecionadas = [];
@@ -134,7 +137,7 @@ const TwoLevel = () => {
     setTextoDigitado('');
     setHintIndex(0);
     selecionarPalavrasAleatorias();
-
+    setHintsUsed(0); // Reseta o número de dicas usadas
     // Focar no campo de entrada após reiniciar
     setTimeout(() => {
       document.querySelector('.hidden-input').focus();
@@ -169,23 +172,34 @@ const TwoLevel = () => {
 
   const handleHint = () => {
     playSound(clickSound);
-    let palavraEmProgresso = palavras.find(
-      (p) => p.startsWith(textoDigitado) && !palavrasDigitadas.includes(p)
-    );
 
-    if (!palavraEmProgresso) {
-      palavraEmProgresso = palavras.find((p) => !palavrasDigitadas.includes(p));
-      setTextoDigitado('');
-    }
+    if (hintsUsed < MAX_HINTS) {
+        let palavraEmProgresso = palavras.find(
+            (p) => p.startsWith(textoDigitado) && !palavrasDigitadas.includes(p)
+        );
 
-    if (palavraEmProgresso) {
-      const letrasRestantes = palavraEmProgresso.slice(textoDigitado.length);
-      if (letrasRestantes.length > 0) {
-        const novaLetra = letrasRestantes[0];
-        setTextoDigitado((prevTexto) => prevTexto + novaLetra);
-        setHintIndex(hintIndex + 1);
-        setTimeout(() => setHintPalavra(null), 3000);
-      }
+        if (!palavraEmProgresso) {
+            palavraEmProgresso = palavras.find((p) => !palavrasDigitadas.includes(p));
+            setTextoDigitado('');
+        }
+
+        if (palavraEmProgresso) {
+            const letrasRestantes = palavraEmProgresso.slice(textoDigitado.length);
+            if (letrasRestantes.length > 0) {
+                const novaLetra = letrasRestantes[0];
+                setTextoDigitado((prevTexto) => prevTexto + novaLetra);
+                setHintsUsed(hintsUsed + 1); // Incrementa o número de dicas usadas
+                setTimeout(() => setHintPalavra(null), 3000);
+            }
+        }
+    } else {
+        // Exibe a mensagem de limite de dicas atingido
+        setShowHintLimitMessage(true);
+        setTimeout(() => {
+            setShowHintLimitMessage(false); // Remove a mensagem após 3 segundos
+            // Foca no campo de entrada após exibir a mensagem
+            document.querySelector('.hidden-input').focus();
+        }, 3000);
     }
   };
 
@@ -268,6 +282,14 @@ const TwoLevel = () => {
         </div>
 
       </div>
+
+      {showHintLimitMessage && (
+        <div className="hint-limit-message-overlay">
+            <div className="hint-limit-message">
+              <h2>Limite de Dicas Atingido!</h2>
+            </div>
+        </div>
+      )}     
 
       <div className="controls-second">
         <button className="second-btn-control" onClick={handlePause}>||</button>

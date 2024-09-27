@@ -22,8 +22,8 @@ const Menu = () => {
             {/* Botão para navegar para as opções */}
             <button className="btn-home" onClick={() => playSoundAndNavigate('/options')}>Opções</button>
             {/* Botão para sair do aplicativo */}
-            <button className="btn-home" onClick={() => playSoundAndNavigate('/exit')}>Sair</button>
-        </div>
+            <button className="btn-home" onClick={() => window.location.href = 'about:blank'}>Sair</button>
+            </div>
     );
 };
 
