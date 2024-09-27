@@ -33,12 +33,6 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
         navigate(`/first-mode-level/${level}`);
     };
 
-    // Manipulador de clique para voltar para a página anterior
-    const handleBackClick = () => {
-        playSound();
-        navigate(-1); // Volta para a página anterior
-    };
-
     // Função para lidar com as teclas de seta do teclado
     const handleKeyDown = (event) => {
         switch (event.key) {
@@ -75,6 +69,7 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                 <div className="level-description">
                     <p> 8 MINUTOS </p>
                     <p> 10 ITENS </p>
+                    <div className="tips-count">6 DICAS</div>
                 </div>
             ),
         },
@@ -84,6 +79,7 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                 <div className="level-description">
                     <p> 5 MINUTOS </p>
                     <p> 10 ITENS </p>
+                    <div className="tips-count">6 DICAS</div>
                 </div>
             ),
         },
@@ -93,6 +89,7 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                 <div className="level-description">
                     <p> 3 MINUTOS </p>
                     <p> 10 ITENS </p>
+                    <div className="tips-count">6 DICAS</div>
                 </div>
             ),
         },
@@ -103,6 +100,7 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                     <p> 8 MINUTOS </p>
                     <p> 10 ITENS </p>
                     <p> DESAPARECENDO </p>
+                    <div className="tips-count">4 DICAS</div>
                 </div>
             ),
         },
@@ -113,6 +111,7 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                     <p> 5 MINUTOS </p>
                     <p> 10 ITENS </p>
                     <p> DESAPARECENDO </p>
+                    <div className="tips-count">4 DICAS</div>
                 </div>
             ),
         },
@@ -123,6 +122,7 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                     <p> 3 MINUTOS </p>
                     <p> 10 ITENS </p>
                     <p> DESAPARECENDO </p>
+                    <div className="tips-count">4 DICAS</div>
                 </div>
             ),
         },
@@ -133,6 +133,7 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                     <p> 8 MINUTOS </p>
                     <p> 10 ITENS </p>
                     <p> BLOQUEADOS </p>
+                    <div className="tips-count">2 DICAS</div>
                 </div>
             ),
         },
@@ -143,6 +144,7 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                     <p> 5 MINUTOS </p>
                     <p> 10 ITENS </p>
                     <p> BLOQUEADOS </p>
+                    <div className="tips-count">2 DICAS</div>
                 </div>
             ),
         },
@@ -153,6 +155,7 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                     <p> 3 MINUTOS </p>
                     <p> 10 ITENS </p>
                     <p> BLOQUEADOS </p>
+                    <div className="tips-count">2 DICAS</div>
                 </div>
             ),
         },
@@ -163,6 +166,7 @@ const FirstModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                     <p> 5 MINUTOS </p>
                     <p> 10 ITENS </p>
                     <p> DESAPARECENDO + BLOQUEADOS </p>
+                    <div className="tips-count">1 DICAS</div>
                 </div>
             ),
         },

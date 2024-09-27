@@ -16,7 +16,6 @@
     -webkit-backdrop-filter: blur(10px); /* Compatibilidade com Webkit */
 }
 
-
 /* Estiliza o título do carrossel */
 .carousel-title {
     position: absolute; /* Posiciona o título acima de outros elementos */

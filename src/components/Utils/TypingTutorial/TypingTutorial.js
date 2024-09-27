@@ -3,7 +3,7 @@ import successSound from '../../../assets/sounds/success.mp3'; // Importa o som 
 import './TypingTutorial.css'; // Arquivo CSS para estilização
 
 // Lista de palavras seguras e adequadas
-const wordList = ['COMPUTADOR', 'ESCOLA', 'LIVRO', 'JANELA', 'CAFE', 'CACHORRO', 'FLORESTA', 'CARRO', 'CIDADE', 'RUA'];
+const wordList = ['COMPUTADOR', 'ESCOLA', 'LIVRO', 'JANELA', 'CACHORRO', 'FLORESTA', 'CARRO', 'CIDADE', 'RUA'];
 
 const TypingTutorial = () => {
   const [inputValue, setInputValue] = useState('');

@@ -216,4 +216,20 @@
     background-image: url('../../../assets/background_levels/SecondModeNine_Ten.png');
 } 
 
-
+/* Estilo para o número de dicas */
+.tips-count-2 {
+    position: absolute;
+    top: 10px;
+    right: 20px; /* Posiciona no canto superior direito */
+    font-family: 'Bungee', cursive;
+    color: #ffb000;
+    font-size: 30px;
+    text-shadow: 
+        1px 1px 0 #000,   
+        1px -1px 0 #000, 
+        1px -1px 0 #000,   
+        -2px 2px 0 #000,   
+        2px 2px 2px rgba(0, 0, 0, 0.6);
+    background: transparent;
+    z-index: 2; /* Garante que o número de dicas fique sobre os outros elementos */
+}

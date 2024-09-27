@@ -66,6 +66,7 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                 <div className="level-description">
                     <p> 5 MINUTOS </p>
                     <p> 4 PALAVRAS </p>
+                    <div className="tips-count-2">15 DICAS</div>
                 </div>
             ),
         },
@@ -75,6 +76,7 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                 <div className="level-description">
                     <p> 4 MINUTOS </p>
                     <p> 6 PALAVRAS </p>
+                    <div className="tips-count-2">15 DICAS</div>
                 </div>
             ),
         },
@@ -84,6 +86,7 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                 <div className="level-description">
                     <p> 3 MINUTOS </p>
                     <p> 8 PALAVRAS </p>
+                    <div className="tips-count-2">15 DICAS</div>
                 </div>
             ),
         },
@@ -94,6 +97,7 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                     <p> 5 MINUTOS </p>
                     <p> 4 CÓDIGOS </p>
                     <p> DESAPARECENDO </p>
+                    <div className="tips-count-2">10 DICAS</div>
                 </div>
             ),
         },
@@ -104,6 +108,7 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                     <p> 4 MINUTOS </p>
                     <p> 6 CÓDIGOS </p>
                     <p> DESAPARECENDO </p>
+                    <div className="tips-count-2">10 DICAS</div>
                 </div>
             ),
         },
@@ -114,6 +119,7 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                     <p> 3 MINUTOS </p>
                     <p> 8 CÓDIGOS </p>
                     <p> DESAPARECENDO </p>
+                    <div className="tips-count-2">10 DICAS</div>
                 </div>
             ),
         },
@@ -124,6 +130,7 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                     <p> 5 MINUTOS </p>
                     <p> 4 CÓDIGOS </p>
                     <p> CRIPTÓGRADOS </p>
+                    <div className="tips-count-2">8 DICAS</div>
                 </div>
             ),
         },
@@ -134,6 +141,7 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                     <p> 4 MINUTOS </p>
                     <p> 6 CÓDIGOS </p>
                     <p> CRIPTÓGRADOS </p>
+                    <div className="tips-count-2">8 DICAS</div>
                 </div>
             ),
         },
@@ -144,6 +152,7 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                     <p> 3 MINUTOS </p>
                     <p> 8 CÓDIGOS </p>
                     <p> CRIPTÓGRADOS </p>
+                    <div className="tips-count-2">8 DICAS</div>
                 </div>
             ),
         },
@@ -154,6 +163,7 @@ const SecondModeCarousel = ({ currentStep, handleNext, handlePrevious }) => {
                     <p> 5 MINUTOS </p>
                     <p> 9 CÓDIGOS </p>
                     <p> CRIPTÓGRADOS </p>
+                    <div className="tips-count-2">5 DICAS</div>
                 </div>
             ),
         },

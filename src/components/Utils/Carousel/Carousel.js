@@ -88,14 +88,15 @@ const Carousel = ({ currentStep, handleNext, handlePrevious, handleFinish }) => 
                 {steps[currentStep - 1].content}
             </div>
             <div className="tutorial-navigation-buttons">
-                {/* Botão para ir para o passo anterior */}
-                <button
-                    className="btn-tutorial-nav"
-                    onClick={handlePreviousClick}
-                    disabled={currentStep === 1}
-                >
-                    <FontAwesomeIcon icon={faArrowLeft} />
-                </button>
+                {/* Botão para ir para o passo anterior - escondido quando no primeiro passo */}
+                {currentStep > 1 && (
+                    <button
+                        className="btn-tutorial-nav"
+                        onClick={handlePreviousClick}
+                    >
+                        <FontAwesomeIcon icon={faArrowLeft} />
+                    </button>
+                )}
                 {/* Botão para terminar o tutorial ou para ir para o próximo passo */}
                 {currentStep === steps.length ? (
                     <button className="btn-tutorial-fim" onClick={handleFinish}>
@@ -106,8 +107,11 @@ const Carousel = ({ currentStep, handleNext, handlePrevious, handleFinish }) => 
                         <FontAwesomeIcon icon={faArrowRight} />
                     </button>
                 )}
+                
             </div>
+
         </div>
+
     );
 };
 
