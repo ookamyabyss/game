@@ -19,6 +19,10 @@ const TwoLevel = () => {
     const [isPaused, setIsPaused] = useState(false); // Controle de pausa do jogo
     const [hintItem, setHintItem] = useState(null); // Item de dica
     const [stars, setStars] = useState(0); // Contador de estrelas
+    const [hintsUsed, setHintsUsed] = useState(0); // Usar estado para controlar as dicas
+    const MAX_HINTS = 6; // Número máximo de dicas permitidas
+    const [showHintLimitMessage, setShowHintLimitMessage] = useState(false); // Estado para controlar a exibição da mensagem de limite
+
 
     // Função para importar todas as imagens de itens de um diretório
     const importAll = (r) => {
@@ -117,6 +121,8 @@ const TwoLevel = () => {
         setIsPaused(false);
         setHintItem(null);
         setStars(0); // Reseta as estrelas
+        setHintsUsed(0); // Reseta o número de dicas usadas
+
     };
 
     // Função para ir ao menu principal
@@ -153,10 +159,19 @@ const TwoLevel = () => {
     // Função para exibir uma dica
     const handleHint = () => {
         playSound(clickSound);
-        if (itemsToFind.length > 0) {
+
+        if (hintsUsed < MAX_HINTS && itemsToFind.length > 0) {
             const randomItem = itemsToFind[Math.floor(Math.random() * itemsToFind.length)];
             setHintItem(randomItem);
-            setTimeout(() => setHintItem(null), 3000); // Remove a dica após 3 segundos
+            setHintsUsed(hintsUsed + 1);  // Atualiza o estado com uma nova dica usada
+            // Remove a dica após 3 segundos
+            setTimeout(() => setHintItem(null), 2000);
+        } else {
+            // Exibe a mensagem de limite de dicas
+            setShowHintLimitMessage(true);
+
+            // Remove a mensagem após 3 segundos
+            setTimeout(() => setShowHintLimitMessage(false), 3000);
         }
     };
 
@@ -213,6 +228,14 @@ const TwoLevel = () => {
                     </ul>
                 </div>
             </div>
+
+            {showHintLimitMessage && (
+                <div className="hint-limit-message-overlay">
+                    <div className="hint-limit-message">
+                        <h2>Limite de Dicas Atingido!</h2>
+                    </div>
+                </div>
+            )}     
 
             {/* Controles do jogo */}
             <div className="controls-level-one">

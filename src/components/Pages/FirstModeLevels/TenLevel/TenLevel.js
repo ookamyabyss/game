@@ -21,6 +21,9 @@ const TenLevel = () => {
     const [itemVisibility, setItemVisibility] = useState({});
     const [visibilityInterval, setVisibilityInterval] = useState(null);
     const [lockedItems, setLockedItems] = useState([]);
+    const [hintsUsed, setHintsUsed] = useState(0); // Usar estado para controlar as dicas
+    const MAX_HINTS = 1; // Número máximo de dicas permitidas
+    const [showHintLimitMessage, setShowHintLimitMessage] = useState(false); // Estado para controlar a exibição da mensagem de limite
 
     // Função para carregar as imagens dos itens
     const importAll = (r) => {
@@ -163,7 +166,7 @@ const TenLevel = () => {
         setIsPaused(false);
         setHintItem(null);
         setStars(0);
-    
+        setHintsUsed(0); // Reseta o número de dicas usadas
         // Seleciona 30% dos itens de forma aleatória para bloqueá-los
         const numLockedItems = Math.floor(shuffledItems.length * 0.3);
         const lockedItemsSet = new Set();
@@ -212,13 +215,22 @@ const TenLevel = () => {
 
     const handleHint = () => {
         playSound(clickSound);
-        if (itemsToFind.length > 0) {
+
+        if (hintsUsed < MAX_HINTS && itemsToFind.length > 0) {
             const randomItem = itemsToFind[Math.floor(Math.random() * itemsToFind.length)];
             setHintItem(randomItem);
-            setTimeout(() => setHintItem(null), 3000);
+            setHintsUsed(hintsUsed + 1);  // Atualiza o estado com uma nova dica usada
+            // Remove a dica após 3 segundos
+            setTimeout(() => setHintItem(null), 2000);
+        } else {
+            // Exibe a mensagem de limite de dicas
+            setShowHintLimitMessage(true);
+
+            // Remove a mensagem após 3 segundos
+            setTimeout(() => setShowHintLimitMessage(false), 3000);
         }
     };
-
+    
     const renderStars = () => {
         const totalStars = 3;
         const starsArray = [];
@@ -284,6 +296,14 @@ const TenLevel = () => {
                     </div>
                 )}
             </div>
+
+            {showHintLimitMessage && (
+                <div className="hint-limit-message-overlay">
+                    <div className="hint-limit-message">
+                        <h2>Limite de Dicas Atingido!</h2>
+                    </div>
+                </div>
+            )}           
         
             {/* Controles do jogo */}
             <div className="controls-level-one">

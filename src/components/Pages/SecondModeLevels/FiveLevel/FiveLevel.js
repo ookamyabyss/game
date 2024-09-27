@@ -153,9 +153,7 @@ const FiveLevel = () => {
     setTextoDigitado('');
     setHintIndex(0);
     selecionarPalavrasAleatorias();
-
-    setIsWordsVisible(true); // Resetar visibilidade da lista
-    
+    setIsWordsVisible(true); // Resetar visibilidade da listas
     // Focar no campo de entrada após reiniciar
     setTimeout(() => {
       document.querySelector('.hidden-input').focus();

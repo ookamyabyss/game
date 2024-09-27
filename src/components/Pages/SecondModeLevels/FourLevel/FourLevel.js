@@ -153,7 +153,6 @@ const FourLevel = () => {
     setTextoDigitado('');
     setHintIndex(0);
     selecionarPalavrasAleatorias();
-
     setIsWordsVisible(true); // Resetar visibilidade da lista
     
     // Focar no campo de entrada após reiniciar
