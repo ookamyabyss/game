@@ -154,17 +154,26 @@
     width: 100%;
 }
 
+/* ESTRELAS FINAL */
+
 /* Estilo das estrelas de feedback */
 .star-feedback {
-    display: flex;
-    justify-content: center; /* Centraliza as estrelas */
+    display: flex; /* Usa layout flexível */
+    justify-content: center; /* Centraliza horizontalmente */
 }
 
 .star-icon {
-    margin: 0 10px; /* Espaço entre as estrelas */
-    width: 100px; /* Largura das estrelas */
-    height: auto; /* Altura ajustada automaticamente */
+    width: 80px; /* Aumente o tamanho conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
+    transition: transform 0.3s ease; /* Suaviza o aumento de tamanho */
+    margin: 0 10px;
 }
+
+.star-icon:hover {
+    transform: scale(1.2); /* Aumenta o tamanho quando o mouse passa sobre a estrela */
+}
+
+/* ESTRELAS FINAL */
 
 /* Estado de pausa da grade de itens */
 .item-grid.paused {
@@ -448,3 +457,5 @@
         -3px 3px 0 #000,   /* Sombra preta fina na diagonal inferior esquerda do texto */
         3px 3px 5px rgba(0, 0, 0, 0.6); /* Sombra adicional para efeito de profundidade */
 }
+
+

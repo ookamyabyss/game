@@ -323,18 +323,27 @@
     margin-top: 20px;
 }
 
+/* ESTRELAS FINAL */
+
+/* Estilo das estrelas de feedback */
 .star-feedback {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    display: flex; /* Usa layout flexível */
+    justify-content: center; /* Centraliza horizontalmente */
 }
+
 
 .star-icon {
-    width: 40px;
-    height: 40px;
-    margin: 0 5px;
+    width: 80px; /* Aumente o tamanho conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
+    transition: transform 0.3s ease; /* Suaviza o aumento de tamanho */
+    margin: 0 10px;
 }
 
+.star-icon:hover {
+    transform: scale(1.2); /* Aumenta o tamanho quando o mouse passa sobre a estrela */
+}
+
+/* ESTRELAS FINAL */
 .correto-grid {
     display: flex;
     flex-direction: column; /* Cada palavra vai aparecer uma embaixo da outra */
