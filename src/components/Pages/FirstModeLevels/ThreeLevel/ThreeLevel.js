@@ -23,6 +23,24 @@ const OneLevel = () => {
     const MAX_HINTS = 6; // Número máximo de dicas permitidas
     const [showHintLimitMessage, setShowHintLimitMessage] = useState(false); // Estado para controlar a exibição da mensagem de limite
 
+    // Função para recuperar a contagem de estrelas do sessionStorage
+    const getTotalStars = () => {
+        const stars = sessionStorage.getItem('totalStars');
+        return stars ? parseInt(stars, 10) : 0;
+    };
+
+    // Função para adicionar estrelas ao sessionStorage
+    const addStars = (stars) => {
+        const currentStars = getTotalStars();
+        const newTotal = currentStars + stars;
+        sessionStorage.setItem('totalStars', newTotal);
+    };
+
+    const handleFinishLevel = (earnedStars) => {
+        // Atualiza o total de estrelas no sessionStorage
+        addStars(earnedStars);
+        // Definir outras ações, como navegação para próxima fase ou exibir mensagem de vitória
+    };
 
     // Função para importar todas as imagens de itens de um diretório
     const importAll = (r) => {
@@ -65,13 +83,15 @@ const OneLevel = () => {
     // Função para lidar com o clique em um item
     const handleItemClick = (item) => {
         if (itemsToFind.includes(item) && !foundItems.includes(item)) {
-            setFoundItems([...foundItems, item]);
+            const updatedFoundItems = [...foundItems, item];
+            setFoundItems(updatedFoundItems);
             playItemFoundSound();
-
+    
             // Verifica se todos os itens foram encontrados
-            if (foundItems.length + 1 === itemsToFind.length) {
-                calculateStars();
+            if (updatedFoundItems.length === itemsToFind.length) {
+                const earnedStars = calculateStars(timeRemaining, 480, hintsUsed); // Calcula estrelas
                 setGameStatus('won');
+                handleFinishLevel(earnedStars); // Atualiza o total de estrelas
             }
         }
     };
@@ -88,20 +108,20 @@ const OneLevel = () => {
     };
 
     // Calcula o número de estrelas com base no tempo gasto
-    const calculateStars = () => {
-        const timeSpent = 180 - timeRemaining;
-        const percentageUsed = (timeSpent / 180) * 100;
-
-        if (percentageUsed <= 20) {
-            setStars(3); // Menos de 20% do tempo usado: 3 estrelas
-        } else if (percentageUsed <= 50) {
-            setStars(2); // Menos de 50% do tempo usado: 2 estrelas
-        } else if (percentageUsed <= 80) {
-            setStars(1); // Menos de 80% do tempo usado: 1 estrela
-        } else {
-            setStars(0); // Mais de 80% do tempo usado: 0 estrelas
+    const calculateStars = (timeRemaining, totalTime, hintsUsed) => {
+        let calculatedStars = 1; // O jogador sempre começa com 1 estrela
+        const percentageTimeLeft = (timeRemaining / totalTime) * 100;
+    
+        if (percentageTimeLeft >= 50) {
+            calculatedStars = 2; // Se restar 50% ou mais do tempo, ganha 2 estrelas
         }
-    };
+        if (percentageTimeLeft >= 75 && hintsUsed === 0) {
+            calculatedStars = 3; // Se restar 75% ou mais do tempo e não usou dicas, ganha 3 estrelas
+        }
+    
+        setStars(calculatedStars); // Atualiza o estado com o número de estrelas
+        return calculatedStars; // Retorna o número de estrelas calculadas
+    };  
 
     // Função para reiniciar o nível
     const restartLevel = () => {

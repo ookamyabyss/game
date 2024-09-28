@@ -23,6 +23,24 @@ const NineLevel = () => {
     const MAX_HINTS = 2; // Número máximo de dicas permitidas
     const [showHintLimitMessage, setShowHintLimitMessage] = useState(false); // Estado para controlar a exibição da mensagem de limite
 
+    // Função para recuperar a contagem de estrelas do sessionStorage
+    const getTotalStars = () => {
+        const stars = sessionStorage.getItem('totalStars');
+        return stars ? parseInt(stars, 10) : 0;
+    };
+
+    // Função para adicionar estrelas ao sessionStorage
+    const addStars = (stars) => {
+        const currentStars = getTotalStars();
+        const newTotal = currentStars + stars;
+        sessionStorage.setItem('totalStars', newTotal);
+    };
+
+    const handleFinishLevel = (earnedStars) => {
+        // Atualiza o total de estrelas no sessionStorage
+        addStars(earnedStars);
+        // Definir outras ações, como navegação para próxima fase ou exibir mensagem de vitória
+    };
 
     // Função para carregar as imagens dos itens
     const importAll = (r) => {
@@ -81,27 +99,32 @@ const NineLevel = () => {
         }
     }, [timeRemaining, gameStatus, isPaused]);
 
-    const handleItemClick = (item) => {
+    const handleItemClick = (item) => { 
         if (lockedItems.includes(item)) {
             return; // Não permite clicar em itens bloqueados
         }
+    
         if (itemsToFind.includes(item) && !foundItems.includes(item)) {
             setFoundItems([...foundItems, item]);
             playItemFoundSound();
     
             // Desbloquear itens à medida que o jogador encontra outros
-            const numItemsToUnlock = 3; // Exemplo: desbloquear 3 itens de cada vez
+            const numItemsToUnlock = 3; // Quantidade de itens a desbloquear de cada vez
             if (lockedItems.length > 0) {
-                const newLockedItems = lockedItems.slice(numItemsToUnlock); // Desbloqueia vários itens de uma vez
-                setLockedItems(newLockedItems);
+                const newLockedItems = lockedItems.slice(numItemsToUnlock); // Remove os itens desbloqueados da lista
+                setLockedItems(newLockedItems); // Atualiza o estado com os itens restantes bloqueados
             }
     
+            // Verifica se todos os itens foram encontrados
             if (foundItems.length + 1 === itemsToFind.length) {
-                calculateStars();
-                setGameStatus('won');
+                const earnedStars = calculateStars(timeRemaining, 480, hintsUsed); // Calcula as estrelas
+                setStars(earnedStars); // Atualiza o número de estrelas no estado
+                setGameStatus('won'); // Define o status do jogo como "vencido"
+                handleFinishLevel(earnedStars); // Adiciona as estrelas ao sessionStorage
             }
+            
         }
-    };
+    };    
 
     const playSound = (soundFile) => {
         const audio = new Audio(soundFile);
@@ -112,20 +135,20 @@ const NineLevel = () => {
         playSound(itemFoundSound);
     };
 
-    const calculateStars = () => {
-        const timeSpent = 180 - timeRemaining;
-        const percentageUsed = (timeSpent / 180) * 100;
-
-        if (percentageUsed <= 20) {
-            setStars(3);
-        } else if (percentageUsed <= 50) {
-            setStars(2);
-        } else if (percentageUsed <= 80) {
-            setStars(1);
-        } else {
-            setStars(0);
+    const calculateStars = (timeRemaining, totalTime, hintsUsed) => {
+        let calculatedStars = 1; // O jogador sempre começa com 1 estrela
+        const percentageTimeLeft = (timeRemaining / totalTime) * 100;
+    
+        if (percentageTimeLeft >= 50) {
+            calculatedStars = 2; // Se restar 50% ou mais do tempo, ganha 2 estrelas
         }
-    };
+        if (percentageTimeLeft >= 75 && hintsUsed === 0) {
+            calculatedStars = 3; // Se restar 75% ou mais do tempo e não usou dicas, ganha 3 estrelas
+        }
+    
+        setStars(calculatedStars); // Atualiza o estado com o número de estrelas
+        return calculatedStars; // Retorna o número de estrelas calculadas
+    }; 
 
     const restartLevel = () => {
         // Reinicia o jogo mantendo o estado original

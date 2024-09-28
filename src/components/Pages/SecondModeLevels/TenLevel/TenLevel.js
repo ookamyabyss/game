@@ -34,6 +34,27 @@ const TenLevel = () => {
   const [showHintLimitMessage, setShowHintLimitMessage] = useState(false); // Controle da exibição da mensagem de limite
   const MAX_HINTS = 5; // Número máximo de dicas permitidas
 
+  // Função para recuperar a contagem de estrelas do sessionStorage
+  const getTotalStars = () => {
+      const stars = sessionStorage.getItem('totalStars');
+      return stars ? parseInt(stars, 10) : 0;
+  };
+
+  // Função para adicionar estrelas ao sessionStorage
+  const addStars = (stars) => {
+      const currentStars = getTotalStars();
+      const newTotal = currentStars + stars;
+      sessionStorage.setItem('totalStars', newTotal);
+  };
+
+  const handleFinishLevel = (earnedStars) => {
+      // Atualiza o total de estrelas no sessionStorage
+      addStars(earnedStars);
+      // Definir outras ações, como navegação para próxima fase ou exibir mensagem de vitória
+  };
+
+  //-----------
+
   const selecionarPalavrasAleatorias = () => {
     const palavrasSelecionadas = [];
     while (palavrasSelecionadas.length < 9) {
@@ -122,7 +143,8 @@ const TenLevel = () => {
         setHintIndex(0);
 
         if (palavrasDigitadas.length + 1 === palavras.length) {
-          calculateStars();
+          const earnedStars = calculateStars(timeRemaining, 300, hintsUsed); // Passando parâmetros corretos
+          handleFinishLevel(earnedStars); // Salvando estrelas
           setGameStatus('won');
         }
         setTextoDigitado('');
@@ -141,20 +163,20 @@ const TenLevel = () => {
     playSound(successSound);
   };
 
-  const calculateStars = () => {
-    const timeSpent = 300 - timeRemaining;
-    const percentageUsed = (timeSpent / 300) * 100;
+  const calculateStars = (timeRemaining, totalTime, hintsUsed) => {
+    let calculatedStars = 1; // O jogador sempre começa com 1 estrela
+    const percentageTimeLeft = (timeRemaining / totalTime) * 100;
 
-    if (percentageUsed <= 20) {
-      setStars(3);
-    } else if (percentageUsed <= 50) {
-      setStars(2);
-    } else if (percentageUsed <= 80) {
-      setStars(1);
-    } else {
-      setStars(0);
+    if (percentageTimeLeft >= 50) {
+        calculatedStars = 2; // Se restar 50% ou mais do tempo, ganha 2 estrelas
     }
-  };
+    if (percentageTimeLeft >= 75 && hintsUsed === 0) {
+        calculatedStars = 3; // Se restar 75% ou mais do tempo e não usou dicas, ganha 3 estrelas
+    }
+
+    setStars(calculatedStars); // Atualiza o estado com o número de estrelas
+    return calculatedStars; // Retorna o número de estrelas calculadas
+  }; 
 
   const handleClickOnSquare = () => {
     document.querySelector('.hidden-input').focus();
