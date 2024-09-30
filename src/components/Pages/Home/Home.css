@@ -1,14 +1,89 @@
-/* src/components/Pages/Home/Home.css */
-
-/* Classe .home define o layout principal da página Home */
-.home {
-    position: relative; /* Define a posição relativa para ajustar elementos internos */
-    height: 100vh;      /* Define a altura da página como 100% da altura da janela */
-    overflow: hidden;   /* Evita que o conteúdo da página saia dos limites visíveis */
+.hub {
+    position: fixed;
+    top: 20px;
+    right: 65px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-shadow:
+        1px 1px 0 #000,    
+        1px -1px 0 #000,   
+        1px -1px 0 #000,   
+        -2px 2px 0 #000,   
+        2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-/* Classe .container define uma área de conteúdo com prioridade visual */
-.container {
-    position: relative; /* Mantém a posição relativa para alinhar com outros elementos */
-    z-index: 1;         /* Garante que o conteúdo da .container fique sobre outros elementos como o background */
+.hub .name-container {
+    display: flex;
+    flex-direction: column; /* Alinha o nome e o "LEVEL" em coluna */
+    margin-right: 30px;
+}
+
+.hub p {
+    font-family: 'Bungee', cursive;
+    font-size: 35px;
+    letter-spacing: 8px;
+    color: #FFC000;
+    text-shadow: 
+        1px 1px 0 #000,    
+        1px -1px 0 #000,   
+        1px -1px 0 #000,   
+        -2px 2px 0 #000,   
+        2px 2px 4px rgba(0, 0, 0, 0.6);
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.hub h1 {
+    font-family: 'Bungee', cursive;
+    font-size: 35px;
+    letter-spacing: 8px;
+    color: #ffc000;
+    text-shadow: 
+        1px 1px 0 #000,    
+        1px -1px 0 #000,   
+        1px -1px 0 #000,   
+        -2px 2px 0 #000,   
+        2px 2px 4px rgba(0, 0, 0, 0.6);
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.hub .name-container h2 {
+    font-family: 'Bungee', cursive;
+    font-size: 30px;
+    letter-spacing: 8px;
+    color: white;
+    text-shadow: 
+        2px 2px 0 #000,    
+        2px -2px 0 #000,   
+        2px -2px 0 #000,   
+        -2px 2px 0 #000,   
+        4px 4px 6px rgba(0, 0, 0, 0.6);
+    text-transform: uppercase;
+    margin: 0;
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+.hub .level {
+    margin-top: 0; 
+    font-size: 0.8rem; 
+    text-align: center;
+    color: #333; 
+}
+
+.star-hub {
+    width: 60px; /* Tamanho da estrela */
+    height: auto;
+    margin-left: 10px; /* Espaçamento entre o texto e a estrela */
+    transition: transform 0.3s ease;
+}
+
+.star-hub:hover {
+    transform: scale(1.2);
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; // Adicione useState e useEffect aqui
+import React, { useState, useEffect } from 'react';
 
 // Importação de componentes utilitários para o layout da página Home
 import BackgroundVideo from '../../Utils/BackgroundVideo/BackgroundVideo';
@@ -6,13 +6,15 @@ import Menu from '../../Utils/Menu/Menu';
 import FloatingMenu from '../../Utils/FloatingMenu/FloatingMenu';
 import FullScreenButton from '../../Utils/FullScreenButton/FullScreenButton';
 import GameTitle from '../../Utils/GameTitle/GameTitle';
+import starImage from '../../../assets/stars/star.png'; // Caminho da imagem da estrela
+import './Home.css';
 
-// Componente Home: Página principal do jogo
 const Home = () => {
-
-    // TESTE PARA EXIBIR QUANTIDADE DE ESTRELAS
-
+    // Estados para estrelas, nome do usuário e nível
     const [totalStars, setTotalStars] = useState(0);
+    const [userName, setUserName] = useState('');
+    const [showNameInput, setShowNameInput] = useState(true); // Para mostrar ou esconder o input de nome
+    const [level, setLevel] = useState(1); // Estado para o nível do jogador
 
     // Função para recuperar a contagem de estrelas do sessionStorage
     const getTotalStars = () => {
@@ -20,32 +22,78 @@ const Home = () => {
         return stars ? parseInt(stars, 10) : 0;
     };
 
+    // Função para recuperar o nome do sessionStorage
+    const getUserName = () => {
+        const name = sessionStorage.getItem('userName');
+        return name ? name : '';
+    };
+
+    // Função para calcular o nível com base nas estrelas
+    const calculateLevel = (stars) => {
+        let currentLevel = 1;
+        let starsNeeded = 10; // Estrelas necessárias para o nível 1
+
+        while (stars >= starsNeeded) {
+            currentLevel++;
+            starsNeeded += 15; // Adiciona 15 estrelas para o próximo nível
+        }
+
+        return currentLevel - 1; // Subtrai 1 porque o loop aumenta além do necessário
+    };
+
+    // UseEffect para carregar estrelas e nome do sessionStorage ao iniciar
     useEffect(() => {
-        // Atualiza o estado com a contagem de estrelas do sessionStorage ao carregar a página
         const stars = getTotalStars();
         setTotalStars(stars);
+        setLevel(calculateLevel(stars)); // Calcula o nível com as estrelas
+
+        const name = getUserName();
+        setUserName(name);
+        setShowNameInput(!name); // Se já houver nome, não mostra o input
     }, []);
 
-    // TESTE PARA EXIBIR QUANTIDADE DE ESTRELAS
+    // Função para salvar o nome do usuário no sessionStorage
+    const handleSaveName = () => {
+        sessionStorage.setItem('userName', userName);
+        setShowNameInput(false);
+    };
 
+    // Função para fechar o input de nome
+    const handleCloseInput = () => {
+        setShowNameInput(false);
+    };
 
     return (
         <div className="Home">
-            {/* Componente do título do jogo, exibido no topo */}
-            <GameTitle />      
-
-            {/* Componente de vídeo de fundo, adicionado como background visual */}
+            <GameTitle />
             <BackgroundVideo />
 
-            <p>Total de Estrelas: {totalStars}</p>
+            {/* Exibir a div do nome se ainda não foi preenchido */}
+            {showNameInput && (
+                <div className="name-input-popup">
+                    <input 
+                        type="text" 
+                        placeholder="Digite seu nome" 
+                        value={userName} 
+                        onChange={(e) => setUserName(e.target.value)} 
+                    />
+                    <button onClick={handleSaveName}>Enter</button>
+                    <button onClick={handleCloseInput}>X</button>
+                </div>
+            )}
 
-            {/* Menu principal com opções do jogo, como Story Mode, Challenge Mode, etc. */}
+            {/* DIV no canto superior direito para exibir o total de estrelas, nome e nível */}
+            <div className="hub">
+                <div className="name-container">
+                    <h1>{userName && `${userName}`}</h1>
+                    {userName && <h2 className="level">Level {level}</h2>} {/* Mostra o nível */}
+                </div>
+                <p>{totalStars}</p>
+                <img src={starImage} alt="Estrela" className="star-hub" />
+            </div>
+
             <Menu />
-
-            {/* Menu flutuante para acessos rápidos, geralmente com opções adicionais */}
             <FloatingMenu />
-
-            {/* Botão de tela cheia, permite que o jogador ative o modo de tela cheia */}
             <FullScreenButton />
         </div>
     );
