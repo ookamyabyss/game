@@ -12,7 +12,8 @@ import './Home.css';
 const Home = () => {
     // Estados para estrelas, nome do usuário e nível
     const [totalStars, setTotalStars] = useState(0);
-    const [userName, setUserName] = useState('');
+    const [userName, setUserName] = useState(''); // Nome salvo
+    const [tempUserName, setTempUserName] = useState(''); // Nome temporário do input
     const [showNameInput, setShowNameInput] = useState(true); // Para mostrar ou esconder o input de nome
     const [level, setLevel] = useState(1); // Estado para o nível do jogador
 
@@ -49,39 +50,53 @@ const Home = () => {
 
         const name = getUserName();
         setUserName(name);
+        setTempUserName(name); // Inicializa o nome temporário
         setShowNameInput(!name); // Se já houver nome, não mostra o input
     }, []);
 
     // Função para salvar o nome do usuário no sessionStorage
     const handleSaveName = () => {
-        sessionStorage.setItem('userName', userName);
+        if (tempUserName.trim()) { // Verifica se o nome temporário não está vazio
+            sessionStorage.setItem('userName', tempUserName);
+            setUserName(tempUserName); // Atualiza o nome real
+        }
         setShowNameInput(false);
     };
 
     // Função para fechar o input de nome
     const handleCloseInput = () => {
-        setShowNameInput(false);
+        setShowNameInput(false); // Apenas fecha sem salvar
+    };
+
+    // Função para lidar com a tecla pressionada
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSaveName();
+        }
     };
 
     return (
         <div className="Home">
             <GameTitle />
             <BackgroundVideo />
-
+    
             {/* Exibir a div do nome se ainda não foi preenchido */}
             {showNameInput && (
                 <div className="name-input-popup">
+                    <button className="close-button" onClick={handleCloseInput}>X</button>
+                    <h2>Digite seu nome no campo abaixo.</h2>
+    
                     <input 
                         type="text" 
-                        placeholder="Digite seu nome" 
-                        value={userName} 
-                        onChange={(e) => setUserName(e.target.value)} 
+                        placeholder="...." 
+                        value={tempUserName} // Usa o estado temporário
+                        onChange={(e) => setTempUserName(e.target.value)} 
+                        onKeyDown={handleKeyDown} // Adiciona o manipulador de tecla aqui
                     />
-                    <button onClick={handleSaveName}>Enter</button>
-                    <button onClick={handleCloseInput}>X</button>
+                    <button onClick={handleSaveName}>OK</button>
                 </div>
             )}
-
+    
             {/* DIV no canto superior direito para exibir o total de estrelas, nome e nível */}
             <div className="hub">
                 <div className="name-container">
@@ -91,7 +106,7 @@ const Home = () => {
                 <p>{totalStars}</p>
                 <img src={starImage} alt="Estrela" className="star-hub" />
             </div>
-
+    
             <Menu />
             <FloatingMenu />
             <FullScreenButton />
