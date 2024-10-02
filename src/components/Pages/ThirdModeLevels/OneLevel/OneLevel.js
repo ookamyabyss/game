@@ -18,6 +18,8 @@ const OneLevel = () => {
     const [stars, setStars] = useState(0);
     const [hintsUsed, setHintsUsed] = useState(0);
     const MAX_HINTS = 6;
+    const [highlightShape, setHighlightShape] = useState(false); // Controla o destaque da forma correta
+
     const [showHintLimitMessage, setShowHintLimitMessage] = useState(false);
 
     // Estado para acompanhar as formas selecionadas e a correta
@@ -38,10 +40,12 @@ const OneLevel = () => {
     };
 
     const handleFinishLevel = (earnedStars) => {
-        addStars(earnedStars);
+        setStars(earnedStars);  // Atualizar o estado das estrelas
+        addStars(earnedStars);  // Salvar o total de estrelas no sessionStorage
     };
 
     // Controla o temporizador do jogo
+
     useEffect(() => {
         if (gameStatus === 'playing' && timeRemaining > 0 && !isPaused) {
             const timer = setInterval(() => {
@@ -69,7 +73,6 @@ const OneLevel = () => {
             calculatedStars = 3;
         }
 
-        setStars(calculatedStars);
         return calculatedStars;
     };
 
@@ -114,6 +117,10 @@ const OneLevel = () => {
         if (shape === correctShape) {
             playSound(successSound);
             setGameStatus('won'); // Se a escolha estiver correta, o jogador vence
+            
+            // Calcular as estrelas e adicionar ao total
+            const earnedStars = calculateStars(timeRemaining, 480, hintsUsed);
+            handleFinishLevel(earnedStars);
         } else {
             playSound(errorSound);
             // Pode adicionar lógica para penalizar o jogador ou exibir uma mensagem de erro
@@ -138,6 +145,24 @@ const OneLevel = () => {
         return <div className="star-feedback">{starsArray}</div>;
     };
 
+    // Função para exibir uma dica
+    const handleHint = () => {
+        playSound(clickSound);
+
+        if (hintsUsed < MAX_HINTS) {
+            setHighlightShape(true);  // Destaca a forma correta
+            setHintsUsed(hintsUsed + 1);
+
+            setTimeout(() => setHighlightShape(false), 2000);  // Remove o destaque após 2 segundos
+        } else {
+            // Exibe a mensagem de limite de dicas
+            setShowHintLimitMessage(true);
+
+            // Remove a mensagem após 3 segundos
+            setTimeout(() => setShowHintLimitMessage(false), 3000);
+        }
+    };
+
     return (
         <div className="level-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
             <h1>NÍVEL 1</h1>
@@ -147,12 +172,9 @@ const OneLevel = () => {
                 <div className='item-grid-three'>
                     {/* Formas à esquerda */}
                     <div className="shapes-selection left">
-                        {shapes.slice(0, 6).map((shape, index) => (
-                            <div
-                                key={index}
-                                className={`shape ${shape}`}
-                                onClick={() => handleShapeSelection(shape)}
-                            >
+                        {shapes.slice(0, 4).map((shape, index) => (
+                            <div className={`shape ${shape} ${highlightShape && shape === correctShape ? 'highlight-3' : ''}`}
+                                onClick={() => handleShapeSelection(shape)}>
                                 {shape}
                             </div>
                         ))}
@@ -170,18 +192,14 @@ const OneLevel = () => {
 
                     {/* Formas à direita */}
                     <div className="shapes-selection right">
-                        {shapes.slice(6, 12).map((shape, index) => (
-                            <div
-                                key={index}
-                                className={`shape ${shape}`}
-                                onClick={() => handleShapeSelection(shape)}
-                            >
+                        {shapes.slice(4, 8).map((shape, index) => (
+                            <div className={`shape ${shape} ${highlightShape && shape === correctShape ? 'highlight-3' : ''}`}
+                                onClick={() => handleShapeSelection(shape)}>
                                 {shape}
                             </div>
                         ))}
                     </div>
                 </div>
-
 
 
                 <div className="item-list">
@@ -202,7 +220,7 @@ const OneLevel = () => {
 
             <div className="controls-level-two">
                 <button className="btn-control-two" onClick={handlePause}>||</button>
-                <button className="btn-control-two" onClick={handlePause}>?</button>
+                <button className="btn-control-two" onClick={handleHint}>?</button>
             </div>
 
             {gameStatus !== 'playing' && (
