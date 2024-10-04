@@ -53,7 +53,7 @@
     margin-bottom: 20px; /* Espaçamento abaixo do título */
 }
 
-/* Estilo de cada item na grid */
+
 .item {
     position: relative; /* Permite posicionamento absoluto dos filhos */
     width: 100px; /* Largura do item */
@@ -67,6 +67,8 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transição para transformações e sombras */
     box-sizing: border-box; /* Inclui bordas e padding no cálculo da largura */
     border-radius: 5px; /* Bordas arredondadas */
+    font-size: 0; /* Tamanho da fonte ajustado para 0, ocultando texto */
+    text-indent: -9999px; /* Remove o texto visualmente */
 }
 
 /* Estilo da imagem dentro do item */
@@ -471,6 +473,7 @@
 
 
 
+
 .item-grid-three {
     display: flex;
     justify-content: center;
@@ -535,16 +538,6 @@
     gap: 20px; /* Espaço entre as formas */
 }
 
-.shape {
-    width: 100px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0f0f0;
-    border: 2px solid #000;
-    cursor: pointer;
-}
 
 /* Definir os estilos para as formas à esquerda e à direita */
 .shapes-selection.left {
@@ -553,20 +546,6 @@
 
 .shapes-selection.right {
     margin-left: 50px;
-}
-
-.shape.quadrado {
-    background-color: #ffb000;
-}
-
-.shape.triângulo {
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    background-color: #ff5722;
-}
-
-.shape.losango {
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    background-color: #2196f3;
 }
 
 /* Área do jogo */
@@ -585,3 +564,99 @@
     border: 4px solid green;  /* Borda verde para indicar a dica */
     border-radius: 8px;       /* Deixa as bordas suavizadas */
 }
+
+
+/* FORMAS GEOMETRICAS */
+
+.shape {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.shape::before {
+    content: ''; /* Remove o nome da forma que estava aparecendo */
+}
+
+.shape:hover {
+    transform: scale(1.1);
+}
+
+
+/* Círculo */
+
+.shape.circulo {
+    background-color: #4caf50;
+    border-radius: 50%;
+}
+
+/* Retangulo */
+
+.shape.retangulo {
+    background-color: #ff9800;
+    width: 200px;
+    height: 100px;
+}
+
+/* Pentágono */
+
+.shape.pentagono {
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    background-color: #673ab7;
+}
+
+/* Hexagono */
+
+.shape.hexagono {
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    background-color: #009688;
+}
+
+/* Trapezio */
+
+.shape.trapezio {
+    clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
+    background-color: #e91e63;
+}
+
+/* Paralelogramo */
+
+.shape.paralelogramo {
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    background-color: #ffeb3b;
+}
+
+/* Estrela */
+
+.shape.estrela {
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    background-color: #3f51b5;
+}
+
+/* Triangulo */
+
+.shape.triangulo {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    background-color: #ff5722;
+}
+
+/* Quadrado */
+
+.shape.quadrado {
+    background-color: #ffb000;
+}
+
+/* Losango */
+
+.shape.losango {
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    background-color: #2196f3;
+} 
+

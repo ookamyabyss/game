@@ -26,7 +26,8 @@ const OneLevel = () => {
     const [selectedShape, setSelectedShape] = useState(null);
     const [correctShape, setCorrectShape] = useState('quadrado'); // A forma correta para completar a imagem
 
-    const shapes = ['quadrado', 'triângulo', 'losango', 'quadrado', 'triângulo', 'losango', 'quadrado', 'triângulo', 'losango', 'quadrado', 'triângulo', 'losango'];
+    const shapes = ['quadrado', 'triangulo', 'losango', 'circulo', 'retangulo', 'pentagono', 
+                    'hexagono', 'trapezio', 'paralelogramo', 'estrela'];
 
     const getTotalStars = () => {
         const stars = sessionStorage.getItem('totalStars');
@@ -174,9 +175,8 @@ const OneLevel = () => {
                     <div className="shapes-selection left">
                         {shapes.slice(0, 4).map((shape, index) => (
                             <div className={`shape ${shape} ${highlightShape && shape === correctShape ? 'highlight-3' : ''}`}
-                                onClick={() => handleShapeSelection(shape)}>
-                                {shape}
-                            </div>
+                            onClick={() => handleShapeSelection(shape)}>
+                        </div>
                         ))}
                     </div>
 
@@ -195,7 +195,6 @@ const OneLevel = () => {
                         {shapes.slice(4, 8).map((shape, index) => (
                             <div className={`shape ${shape} ${highlightShape && shape === correctShape ? 'highlight-3' : ''}`}
                                 onClick={() => handleShapeSelection(shape)}>
-                                {shape}
                             </div>
                         ))}
                     </div>

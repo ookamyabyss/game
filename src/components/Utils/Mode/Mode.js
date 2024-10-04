@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import clickSound from '../../../assets/sounds/click.mp3'; // Importa o arquivo de som para o clique dos botões
 import Mode1Animation from '../Mode1Animation/Mode1Animation'; // Importa o componente de animação do Modo 1
-import Mode2Animation from '../Mode2Animation/Mode2Animation'; // Importa o componente de animação do Modo 2
+import Mode2Animation from '../Mode2Animation/Mode2Animation'; // Importa o componente de animação do Modo 2]
+import Mode3Animation from '../Mode3Animation/Mode3Animation'; // Importa o componente de animação do Modo 2
 import './Mode.css'; // Importa o CSS para estilização do componente
 
 const Mode = () => {
@@ -75,11 +76,12 @@ const Mode = () => {
                     <>
                         <div className="info-container info-left"> {/* Container para animação à esquerda */}
                             {/* Aqui vai a animação do Modo 3 */}
+                            <Mode3Animation/> {/* Componente de animação do Modo 3 */}
                             <img src="caminho/para/animacao3.gif" alt="Animação Modo 3" /> {/* Imagem da animação do Modo 3 */}
                         </div>
                         <div className="info-container info-right"> {/* Container para a descrição à direita */}
                             {/* Aqui vai a descrição do Modo 3 */}
-                            <p>Descrição do Modo 3: Detalhes e instruções sobre o modo 3.</p> {/* Descrição do Modo 3 */}
+                            <p>Complete a imagem antes do tempo termina.</p> {/* Descrição do Modo 3 */}
                         </div>
                     </>
                 )}
