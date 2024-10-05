@@ -13,15 +13,12 @@
 }
 
 /* Contêiner individual para cada imagem de seleção */
-.selection-image-container {
+.selection-image-container-3 {
     position: relative; /* Necessário para posicionar o balão de chat relativo à imagem */
     width: 100px; /* Define a largura do contêiner da imagem */
     height: 100px; /* Define a altura do contêiner da imagem */
     background-color: white; /* Cor de fundo do contêiner */
-    border-top: 8px ridge #ffb000; /* Borda superior com estilo ridge */
-    border-left: 8px groove #ffb000; /* Borda esquerda com estilo groove */
-    border-right: 8px ridge #ffb000; /* Borda direita com estilo ridge */
-    border-bottom: 8px groove #ffb000; /* Borda inferior com estilo groove */
+    border: 8px solid transparent; /* Borda padrão transparente */
     box-shadow: 
         inset 0px 0px 7px 4px rgba(0, 0, 0, 0.4), /* Sombra interna para efeito de profundidade */
         0px 4px 15px rgba(0, 0, 0, 0.2); /* Sombra externa para efeito de profundidade */
@@ -42,7 +39,7 @@
 }
 
 /* Estilização ao passar o mouse sobre o contêiner da imagem */
-.selection-image-container:hover {
+.selection-image-container-3:hover {
     transform: scale(1.1); /* Aumenta o tamanho do contêiner ao passar o mouse */
     border-radius: 10px; /* Arredonda os cantos do contêiner */
     box-shadow: 

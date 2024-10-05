@@ -5,6 +5,7 @@ import clickSound from '../../../assets/sounds/click.mp3';
 import ImageSelection from '../ImageSelection/ImageSelection';
 import TypingTutorial from '../TypingTutorial/TypingTutorial';
 import ShapeSelection from '../ShapeSelection/ShapeSelection';
+import ControlsTutorial from '../ControlsTutorial/ControlsTutorial';
 import './Carousel.css'; 
 
 const Carousel = ({ currentStep, handleNext, handlePrevious, handleFinish }) => {
@@ -66,8 +67,8 @@ const Carousel = ({ currentStep, handleNext, handlePrevious, handleFinish }) => 
             content: <ShapeSelection/>
         },
         {
-            title: "Parte 4 : Pausa || e Ajuda ?",
-            content: <p>Conteúdo de finalização do tutorial.</p>
+            title: "Parte 4 : Pausa || ... Ajuda ?",
+            content: <ControlsTutorial/>
         }
     ];
 

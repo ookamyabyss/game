@@ -1,0 +1,27 @@
+/* Container principal do tutorial de digitação */
+.controls-tutorial-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  color: #ffb000;
+
+  position: relative; /* Permite posicionamento absoluto do balão */
+  margin-top: -60px; /* Exemplo de margem superior negativa */
+
+}
+
+.message-box-4 {
+  font-family: 'Bungee', cursive; /* Define a fonte usada no título */
+  color: #ffc000; /* Cor do texto */
+  font-size: 35px; /* Tamanho da fonte */
+  font-weight: 400; /* Peso da fonte */
+  text-shadow: 0 1px 3px #000; /* Sombra no texto para destaque */
+  text-align: center; /* Centraliza o texto dentro da caixa */
+  padding: 2px 0; /* Espaçamento interno acima e abaixo do texto */
+  margin-top: -30px; /* Margem negativa para ajustar a posição vertical da caixa */
+  margin: 10px 0;
+}
+

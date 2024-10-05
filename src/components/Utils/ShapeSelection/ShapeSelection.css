@@ -44,10 +44,7 @@
     width: 100px; /* Define a largura do contêiner da imagem */
     height: 100px; /* Define a altura do contêiner da imagem */
     background-color: white; /* Cor de fundo do contêiner */
-    border-top: 8px ridge #ffb000; /* Borda superior com estilo ridge */
-    border-left: 8px groove #ffb000; /* Borda esquerda com estilo groove */
-    border-right: 8px ridge #ffb000; /* Borda direita com estilo ridge */
-    border-bottom: 8px groove #ffb000; /* Borda inferior com estilo groove */
+    border: 8px solid transparent; /* Borda padrão transparente */
     box-shadow: 
         inset 0px 0px 7px 4px rgba(0, 0, 0, 0.4), /* Sombra interna para efeito de profundidade */
         0px 4px 15px rgba(0, 0, 0, 0.2); /* Sombra externa para efeito de profundidade */
@@ -117,6 +114,7 @@
     font-size: 20px; /* Tamanho da fonte */
     color: black; /* Cor do texto */
     white-space: nowrap; /* Impede que o texto quebre em várias linhas */
+    z-index: 10;
 }
 
 /* Triângulo que aponta para o balão de chat */
@@ -134,62 +132,59 @@
 
 
 /* Estilos para as formas geométricas */
-.shape-quadrado {
+.shape-3-quadrado { /* FUNCIONA */
     width: 40px;
     height: 40px;
-    background-color: blue;
+    background-color: lawngreen;
 }
 
-.shape-triangulo {
-    width: 0;
-    height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-bottom: 40px solid red;
-}
-
-.shape-circulo {
-    width: 40px;
-    height: 40px;
-    background-color: yellow;
+.shape-3-elipse { /* FUNCIONA */
+    width: 60px;
+    height: 30px;
+    background-color: cyan;
     border-radius: 50%;
 }
 
-.shape-retangulo {
+.shape-3-circulo { /* FUNCIONA */
     width: 40px;
-    height: 30px;
-    background-color: green;
+    height: 40px;
+    background-color: gold;
+    border-radius: 50%;
 }
 
-.shape-losango {
+.shape-3-retangulo { /* FUNCIONA */
+    width: 40px;
+    height: 30px;
+    background-color: red;
+}
+
+.shape-3-losango { /* FUNCIONA */
     width: 30px;
     height: 30px;
-    background-color: purple;
+    background-color: darkmagenta;
     transform: rotate(45deg);
 }
 
-.shape-hexagono {
-    width: 40px;
-    height: 40px;
-    background-color: orange;
-    clip-path: polygon(50% 0%, 90% 25%, 90% 75%, 50% 100%, 10% 75%, 10% 25%);
-}
-
-.shape-pentagono {
-    width: 40px;
-    height: 40px;
-    background-color: pink;
-    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-}
-
-.shape-trapezio {
-    width: 40px;
+.shape-3-paralelogramo { /* FUNCIONA */
+    width: 50px;
     height: 30px;
-    background-color: cyan;
-    clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
+    background-color: pink;
+    transform: skew(20deg);
 }
 
+.shape-3-pentagono-2 {
+    position: relative;
+    width: 54px;
+    height: 31px;
+    background-color: orangered;
+    transform: rotate(54deg) skewX(-10deg);
+}
 
+.shape-3-retangulo-2 {
+    width: 60px;
+    height: 20px;
+    background-color: gray;
+}
 
 /* Imagem a completa s */
 
@@ -198,26 +193,27 @@
     position: relative;
     width: 205px;
     height: 205px;
-    background-color: #fff; /* Cor do quadrado */
+    background-color: #ffb000; /* Cor do quadrado */
     border: 2px solid #000;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 8px solid white;
     box-shadow: 
-    inset 0px 0px 7px 4px rgba(0, 0, 0, 0.4), /* Sombra interna para efeito de profundidade */
-    0px 4px 15px rgba(0, 0, 0, 0.2); /* Sombra externa para efeito de profundidade */
+        inset 0px 0px 7px 4px rgba(0, 0, 0, 0.4), /* Sombra interna para efeito de profundidade */
+        0px 4px 15px rgba(0, 0, 0, 0.2); /* Sombra externa para efeito de profundidade */
     border-radius: 0px;
+    overflow: hidden; /* Garante que a forma não ultrapasse os limites do container */
 }
 
 .missing-shape-3 {
-    position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 100px;  /* Ajuste o tamanho da forma */
+    height: 100px; /* Ajuste o tamanho da forma */
     background-color: transparent; /* Espaço para a forma faltante */
-
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative; /* Mantém a forma centralizada dentro do container */
 }
+
 

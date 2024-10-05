@@ -50,7 +50,7 @@ const ImageSelection = () => {
     // Função para determinar a cor da borda com base na imagem selecionada
     const getBorderColor = (imageName) => {
         if (selectedImage === imageName) {
-            return imageName === correctAnswer ? 'green' : 'red';
+            return imageName === correctAnswer ? 'lime' : 'red';
         }
         return 'transparent';
     };
@@ -63,7 +63,7 @@ const ImageSelection = () => {
                 {shuffledImages.map((image, index) => (
                     <div
                         key={index}
-                        className="selection-image-container"
+                        className="selection-image-container-3"
                         style={{ borderColor: getBorderColor(image.name) }}
                         onClick={() => handleImageClick(image.name)}
                     >

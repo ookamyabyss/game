@@ -10,7 +10,8 @@ const ShapeSelection = () => {
 
     // Embaralha as formas e define a resposta correta
     const shuffleShapes = () => {
-        const shapes = ['quadrado', 'triangulo', 'circulo', 'retangulo', 'losango', 'hexagono', 'pentagono', 'trapezio'];
+        const shapes = ['quadrado', 'elipse', 'circulo', 'retangulo', 
+                        'losango', 'paralelogramo', 'pentagono-2', 'retangulo-2'];
         const shuffled = shapes.sort(() => 0.5 - Math.random()).slice(0, 6);
         setShuffledShapes(shuffled);
         setCorrectAnswer(shuffled[Math.floor(Math.random() * shuffled.length)]);
@@ -40,31 +41,33 @@ const ShapeSelection = () => {
 
     const getBorderColor = (shape) => {
         if (selectedShape === shape) {
-            return shape === correctAnswer ? 'green' : 'red';
+            return shape === correctAnswer ? 'lime' : 'red';
         }
         return 'transparent';
     };
 
     function renderShape(shape, isOutline = false) {
         const shapeStyle = isOutline
-            ? { backgroundColor: 'transparent', border: '2px dashed #ff0000' }  // Remover a borda vermelha ao exibir apenas contorno
+            ? { backgroundColor: 'white', border: '4px dashed #ff0000',}  // Remover a borda vermelha 
             : { backgroundColor: shape.color };  // Forma preenchida para o grid
         
         switch (shape) {
             case 'quadrado':
-                return <div className="shape-quadrado" style={shapeStyle}></div>;
-            case 'triangulo':
-                return <div className="shape-triangulo" style={shapeStyle}></div>;
+                return <div className="shape-3-quadrado" style={shapeStyle}></div>;      // Funciona
             case 'losango':
-                return <div className="shape-losango" style={shapeStyle}></div>;
+                return <div className="shape-3-losango" style={shapeStyle}></div>;       // Funciona
             case 'circulo':
-                return <div className="shape-circulo" style={shapeStyle}></div>;
-            case 'hexagono':
-                return <div className="shape-hexagono" style={shapeStyle}></div>;
-            case 'pentagono':
-                return <div className="shape-pentagono" style={shapeStyle}></div>;
-            case 'trapezio':
-                return <div className="shape-trapezio" style={shapeStyle}></div>;
+                return <div className="shape-3-circulo" style={shapeStyle}></div>;       // Funciona
+            case 'retangulo':
+                return <div className="shape-3-retangulo" style={shapeStyle}></div>;     // Funciona
+            case 'paralelogramo':
+                return <div className="shape-3-paralelogramo" style={shapeStyle}></div>; // Funciona
+            case 'elipse':
+                return <div className="shape-3-elipse" style={shapeStyle}></div>;        // Funciona
+            case 'pentagono-2':
+                return <div className="shape-3-pentagono-2" style={shapeStyle}></div>;   // Funciona
+            case 'retangulo-2':
+                return <div className="shape-3-retangulo-2" style={shapeStyle}></div>;   // Funciona
             default:
                 return null;
         }
@@ -100,7 +103,8 @@ const ShapeSelection = () => {
                     <div className="square">
                         {/* O triângulo faltando */}
                         <div className="missing-shape-3">
-                            <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <div style={{ width: '150%', height: '150%', display: 'flex', 
+                                          justifyContent: 'center', alignItems: 'center' }}>
                                 {renderShape(correctAnswer, true)}  {/* Exibe apenas as bordas */}
                             </div>
                         </div>

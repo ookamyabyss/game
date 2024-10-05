@@ -48,7 +48,7 @@ const TypingTutorial = () => {
 
   return (
     <div className="typing-tutorial-container">
-      <p className="message-box-4" >Usando o teclado, digite a palavra abaixo :</p>
+      <p className="message-box-4">Usando o teclado, digite a palavra abaixo :</p>
       <p className="message-box-3">{correctWord}</p>
 
       <div className="input-container">
@@ -56,7 +56,7 @@ const TypingTutorial = () => {
           type="text"
           value={inputValue}
           onChange={handleInputChange}
-          className="typing-input"
+          className={`typing-input ${showSuccess ? 'success' : ''}`} // Adiciona a classe 'success' se a palavra estiver correta
           placeholder="Digite aqui..."
           autoFocus // Campo de entrada já ativo automaticamente
         />

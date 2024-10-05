@@ -41,6 +41,10 @@
   position: relative;
 }
 
+.typing-input.success {
+  border-color: lime; /* Borda verde quando a palavra correta é digitada */
+}
+
 .typing-tutorial-container {
   display: flex;
   flex-direction: column;
