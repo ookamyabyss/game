@@ -54,7 +54,7 @@
 }
 
 .shape-retangulo {
-    width: 50px;
+    width: 40px;
     height: 30px;
     background-color: green;
 }
@@ -67,15 +67,15 @@
 }
 
 .shape-hexagono {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     background-color: orange;
     clip-path: polygon(50% 0%, 90% 25%, 90% 75%, 50% 100%, 10% 75%, 10% 25%);
 }
 
 .shape-pentagono {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     background-color: pink;
     clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
 }

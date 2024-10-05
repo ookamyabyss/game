@@ -523,15 +523,6 @@
     align-items: center;
 }
 
-
-.missing-shape {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background-color: transparent; /* Espaço para a forma faltante */
-    border: 2px dashed #ff0000; /* Para destacar a área faltante */
-}
-
 .shapes-selection {
     display: flex;
     flex-direction: column;

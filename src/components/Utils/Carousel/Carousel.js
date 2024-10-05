@@ -4,6 +4,7 @@ import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import clickSound from '../../../assets/sounds/click.mp3'; 
 import ImageSelection from '../ImageSelection/ImageSelection';
 import TypingTutorial from '../TypingTutorial/TypingTutorial';
+import ShapeSelection from '../ShapeSelection/ShapeSelection';
 import './Carousel.css'; 
 
 const Carousel = ({ currentStep, handleNext, handlePrevious, handleFinish }) => {
@@ -48,33 +49,24 @@ const Carousel = ({ currentStep, handleNext, handlePrevious, handleFinish }) => 
         };
     }, [handleNextClick, handlePreviousClick]);
 
-    // Função chamada quando a seleção correta é feita
-    const handleCorrectSelection = () => {
-        alert('Você escolheu corretamente!'); 
-    };
-
-    // **Função chamada quando a palavra correta for digitada**
-    const handleCorrectTyping = () => {
-        alert('Você digitou a palavra corretamente!'); 
-    };
 
     // Definição dos títulos e do conteúdo das etapas
     const steps = [
         {
             title: "Parte 1 : Escolha de Itens",
-            content: <ImageSelection onCorrectSelection={handleCorrectSelection} />
+            content: <ImageSelection/>
         },
         {
             title: "Parte 2 : Escrevendo",
             // Aqui, passe a função handleCorrectTyping para o componente TypingTutorial
-            content: <TypingTutorial onCorrectTyping={handleCorrectTyping} />
+            content: <TypingTutorial/>
         },
         {
-            title: "Parte 3 do Tutorial: Resolvendo Desafios",
-            content: <p>Conteúdo sobre resolver desafios.</p>
+            title: "Parte 3 : Complete a Imagem ",
+            content: <ShapeSelection/>
         },
         {
-            title: "Parte 4 do Tutorial: Finalizando",
+            title: "Parte 4 : Pausa || e Ajuda ?",
             content: <p>Conteúdo de finalização do tutorial.</p>
         }
     ];
