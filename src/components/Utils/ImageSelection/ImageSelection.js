@@ -57,25 +57,32 @@ const ImageSelection = () => {
 
     return (
         <div className="image-selection-container">
-            <p className="message-box">Escolha a imagem correta :</p>
-            <p className="message-box-2">{correctAnswer.toUpperCase()}</p>
-            <div className="image-grid">
-                {shuffledImages.map((image, index) => (
-                    <div
-                        key={index}
-                        className="selection-image-container-3"
-                        style={{ borderColor: getBorderColor(image.name) }}
-                        onClick={() => handleImageClick(image.name)}
-                    >
-                        <img src={image.src} alt={image.name} className="selection-image" />
-                        {selectedImage === image.name && image.name === correctAnswer && (
-                            <div className="chat-bubble-fist">
-                                Você escolheu certo!
-                            </div>
-                        )}
-                    </div>
-                ))}
+
+            <div className="box-1">
+                <p className="message-box">Escolha a imagem correta :</p>
+                <p className="message-box-2">{correctAnswer.toUpperCase()}</p>
+
+
+                <div className="image-grid">
+                    {shuffledImages.map((image, index) => (
+                        <div
+                            key={index}
+                            className="selection-image-container-3"
+                            style={{ borderColor: getBorderColor(image.name) }}
+                            onClick={() => handleImageClick(image.name)}
+                        >
+                            <img src={image.src} alt={image.name} className="selection-image" />
+                            {selectedImage === image.name && image.name === correctAnswer && (
+                                <div className="chat-bubble-fist">
+                                    Você escolheu certo!
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+
             </div>
+
         </div>
     );
 };

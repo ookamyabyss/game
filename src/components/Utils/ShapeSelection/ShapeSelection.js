@@ -75,40 +75,45 @@ const ShapeSelection = () => {
 
     return (
         <div className="container">
-            <div className="instructions">
-                <p className="message-box">Escolha a forma correta para completa a imagem :</p>
-            </div>
 
-            <div className="selection-container">
-                <div className="image-grid-3">
-                    {shuffledShapes.map((shape, index) => (
-                        <div
-                            key={index}
-                            className="selection-image-container"
-                            style={{ borderColor: getBorderColor(shape) }}
-                            onClick={() => handleShapeClick(shape)}
-                        >
-                            {renderShape(shape, false)}
-                            {selectedShape === shape && shape === correctAnswer && (
-                                <div className="chat-bubble-fist">
-                                    Você escolheu certo!
-                                </div>
-                            )}
-                        </div>
-                    ))}
+            <div className="box-5">
+
+                <div className="instructions">
+                    <p className="message-box">Complete a imagem abaixo: </p>
                 </div>
 
-                {/* Imagem incompleta com o espaço faltando */}
-                <div className="incomplete-image-3">
-                    <div className="square">
-                        {/* O triângulo faltando */}
-                        <div className="missing-shape-3">
-                            <div style={{ width: '150%', height: '150%', display: 'flex', 
-                                          justifyContent: 'center', alignItems: 'center' }}>
-                                {renderShape(correctAnswer, true)}  {/* Exibe apenas as bordas */}
+                <div className="selection-container">
+                    <div className="image-grid-3">
+                        {shuffledShapes.map((shape, index) => (
+                            <div
+                                key={index}
+                                className="selection-image-container"
+                                style={{ borderColor: getBorderColor(shape) }}
+                                onClick={() => handleShapeClick(shape)}
+                            >
+                                {renderShape(shape, false)}
+                                {selectedShape === shape && shape === correctAnswer && (
+                                    <div className="chat-bubble-fist">
+                                        Você escolheu certo!
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Imagem incompleta com o espaço faltando */}
+                    <div className="incomplete-image-3">
+                        <div className="square">
+                            {/* O triângulo faltando */}
+                            <div className="missing-shape-3">
+                                <div style={{ width: '150%', height: '150%', display: 'flex', 
+                                            justifyContent: 'center', alignItems: 'center' }}>
+                                    {renderShape(correctAnswer, true)}  {/* Exibe apenas as bordas */}
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>

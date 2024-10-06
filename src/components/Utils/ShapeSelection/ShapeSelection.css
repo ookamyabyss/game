@@ -216,4 +216,18 @@
     position: relative; /* Mantém a forma centralizada dentro do container */
 }
 
+.box-5 {
+    margin-top: -15px;
+    display: flex;
+    flex-direction: column; /* Para alinhar texto e botão em coluna */
+    justify-content: center;
+    align-items: center; /* Centraliza os itens dentro da div */
+    background: transparent; /* Cor de fundo para exemplo */
+    padding: 10px;
+    padding-right: 40px;
 
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 10px; /* Arredonda os cantos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9); /* Sombra leve */
+  }

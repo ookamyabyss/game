@@ -48,27 +48,31 @@ const TypingTutorial = () => {
 
   return (
     <div className="typing-tutorial-container">
-      <p className="message-box-4">Usando o teclado, digite a palavra abaixo :</p>
-      <p className="message-box-3">{correctWord}</p>
 
-      <div className="input-container">
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          className={`typing-input ${showSuccess ? 'success' : ''}`} // Adiciona a classe 'success' se a palavra estiver correta
-          placeholder="Digite aqui..."
-          autoFocus // Campo de entrada já ativo automaticamente
-        />
+      <div className="box-1">
+        <p className="message-box-4">Digite a palavra abaixo :</p>
+        <p className="message-box-3">{correctWord}</p>
 
-        {/* Exibe o balão de sucesso próximo ao campo de digitação */}
-        {showSuccess && (
-          <div className="chat-bubble">
-            Você acertou!
-          </div>
-        )}
+        <div className="input-container">
+          <input
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            className={`typing-input ${showSuccess ? 'success' : ''}`} // Adiciona a classe 'success' se a palavra estiver correta
+            placeholder="Digite aqui..."
+            autoFocus // Campo de entrada já ativo automaticamente
+          />
+
+          {/* Exibe o balão de sucesso próximo ao campo de digitação */}
+          {showSuccess && (
+            <div className="chat-bubble">
+              Você acertou!
+            </div>
+          )}
+        </div>
       </div>
     </div>
+
   );
 };
 
