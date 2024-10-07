@@ -29,7 +29,7 @@ const TypingTutorial = () => {
         <div className="box-3">
           <p className="message-box-title" >Botão de Pause ||</p>
           <button className="btn-control-two" onClick={tutorialPause}>||</button>
-          <p className="message-box-text" >Serve para da uma pausa na partida, o seu também.</p>
+          <p className="message-box-text" >Serve para da uma pausa na partida.</p>
         </div>
 
         <div className="box-3">

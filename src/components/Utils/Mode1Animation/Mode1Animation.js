@@ -42,7 +42,7 @@ const Mode1Animation = () => {
     // Função para determinar a cor da borda de acordo com o item destacado
     const getBorderColor = (index) => {
         if (index === highlightedIndex) {
-            return 'green'; // Borda verde para o item atualmente destacado
+            return 'lime'; // Borda verde para o item atualmente destacado
         }
         if (index === (highlightedIndex + 1) % items.length) {
             return 'red'; // Borda vermelha para o próximo item

@@ -151,19 +151,20 @@
     color: #ffc000; /* Define a cor do texto em dourado */
     background: radial-gradient(circle, #8b0000, #8b0000); /* Gradiente de fundo com vermelho escuro */
     border: 6px solid #ffb000; /* Define uma borda branca de 6px */
-    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3); /* Sombra interna para dar profundidade */
     cursor: pointer; /* Define o cursor como pointer (mãozinha) ao passar sobre o botão */
     transition: background-color 0.3s, box-shadow 0.3s; /* Transição suave ao mudar de cor ou sombra */
 }
 
-.name-input-popup .close-button {
+.name-input-popup  .close-button-3 {
+    font-family: 'Ariel', cursive;
     position: absolute; /* Fica posicionado em relação à div pai */
-    top: 10px; /* Distância do topo */
-    right: 10px; /* Distância da direita */
-    font-size: 30px; /* Tamanho do X */
+    top: -4px; /* Distância do topo */
+    right: -4px; /* Distância da direita */
+    font-size: 40px; /* Tamanho do X */
     color: red; /* Cor do X */
-    background: none; /* Remove fundo */
-    border: none; /* Remove borda */
+    background: transparent; /* Remove fundo */
+    border: 0px; /* Remove borda */
     cursor: pointer; /* Cursor de mão */
     margin: transparent
+    
 }

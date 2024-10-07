@@ -1,16 +1,42 @@
-import React from 'react';
-import './HowToPlay.css'; // Importa o arquivo de estilo para a página "Como Jogar"
-import BackButton from '../../Utils/BackButton/BackButton'; // Importa o componente de botão de voltar
+import { useNavigate } from 'react-router-dom';
+import clickSound from '../../../assets/sounds/click.mp3';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import './HowToPlay.css';
+import backgroundImage from '../../../assets/background_options/Background_options.png';
 
-// Componente HowToPlay: Página com instruções de como jogar
 const HowToPlay = () => {
-    return (
-        <div className="howtoplay-container">
-            {/* Título da página "Como Jogar" */}
-            <h1>HowToPlay</h1>
 
-            {/* Botão para retornar à página anterior */}
-            <BackButton />
+    const navigate = useNavigate();
+
+    // Função para tocar o som de clique
+    const playSound = () => {
+        const audio = new Audio(clickSound);
+        audio.play();
+    };
+
+    // Função para lidar com o clique no botão de voltar
+    const handleBackClick = () => {
+        playSound();
+        navigate("/");
+    };
+
+    return (
+        <div className="level-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
+            <div className="howtoplay-container">
+                <h1>Como Jogar</h1>
+
+
+            </div>
+
+            <div className="howtoplay-back-menu">
+                <button className="howtoplay-btn-back" onClick={handleBackClick}>
+                    <FontAwesomeIcon icon={faArrowLeft} />
+                </button>
+            </div>
+
+
+
         </div>
     );
 };

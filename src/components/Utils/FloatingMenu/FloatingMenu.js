@@ -44,7 +44,7 @@ const FloatingMenu = () => {
             {isVisible && (
                 <div className="menu-content">
                     {/* Botão para navegar para a página "How To Play" */}
-                    <button className="btn-home" onClick={handleHowToPlayClick}>How To Play</button>
+                    <button className="btn-home" onClick={handleHowToPlayClick}>Como Jogar</button>
                     {/* Botão para navegar para a página "Extras" */}
                     <button className="btn-home" onClick={handleExtrasClick}>Extras</button>
                 </div>

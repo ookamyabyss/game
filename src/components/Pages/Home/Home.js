@@ -7,6 +7,8 @@ import FloatingMenu from '../../Utils/FloatingMenu/FloatingMenu';
 import FullScreenButton from '../../Utils/FullScreenButton/FullScreenButton';
 import GameTitle from '../../Utils/GameTitle/GameTitle';
 import starImage from '../../../assets/stars/star.png'; // Caminho da imagem da estrela
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import './Home.css';
 
 const Home = () => {
@@ -83,7 +85,11 @@ const Home = () => {
             {/* Exibir a div do nome se ainda não foi preenchido */}
             {showNameInput && (
                 <div className="name-input-popup">
-                    <button className="close-button" onClick={handleCloseInput}>X</button>
+                    
+                    <button className="close-button-3" onClick={handleCloseInput}>
+                        <FontAwesomeIcon icon={faTimes} />
+                    </button>
+
                     <h2>Digite seu nome no campo abaixo.</h2>
     
                     <input 

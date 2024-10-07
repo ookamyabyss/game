@@ -45,7 +45,7 @@
 
 /* Estilo aplicado ao container de item quando ele está destacado com a cor verde */
 .mode1-item-container.highlighted-green {
-    border-color: green; /* Muda a cor da borda para verde */
+    border-color: lime; /* Muda a cor da borda para verde */
 }
 
 /* Estilo aplicado ao container de item quando ele está destacado com a cor vermelha */

@@ -31,7 +31,7 @@
 }
 
 .mode1-item-container.highlighted-green {
-    border-color: green; /* Aplica a cor verde nas bordas quando o item está destacado */
+    border-color: lime; /* Aplica a cor verde nas bordas quando o item está destacado */
 }
 
 .mode1-item-container.highlighted-red {

@@ -35,7 +35,7 @@
 .shape-quadrado {
     width: 40px;
     height: 40px;
-    background-color: blue;
+    background-color: lawngreen;
 }
 
 .shape-triangulo {
@@ -43,33 +43,33 @@
     height: 0;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
-    border-bottom: 40px solid red;
+    border-bottom: 40px solid cyan;
 }
 
 .shape-circulo {
     width: 40px;
     height: 40px;
-    background-color: yellow;
+    background-color: gold;
     border-radius: 50%;
 }
 
 .shape-retangulo {
     width: 40px;
     height: 30px;
-    background-color: green;
+    background-color: red;
 }
 
 .shape-losango {
     width: 30px;
     height: 30px;
-    background-color: purple;
+    background-color: darkmagenta;
     transform: rotate(45deg);
 }
 
 .shape-hexagono {
     width: 40px;
     height: 40px;
-    background-color: orange;
+    background-color: pink;
     clip-path: polygon(50% 0%, 90% 25%, 90% 75%, 50% 100%, 10% 75%, 10% 25%);
 }
 
@@ -83,13 +83,13 @@
 .shape-trapezio {
     width: 40px;
     height: 30px;
-    background-color: cyan;
+    background-color: orangered;
     clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
 }
 
 /* Destacar borda dos itens em verde ou vermelho */
 .mode1-item-container.highlighted-green {
-    border-color: green;
+    border-color: lime
 }
 
 .mode1-item-container.highlighted-red {
