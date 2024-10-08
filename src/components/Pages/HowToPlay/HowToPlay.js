@@ -26,13 +26,30 @@ const HowToPlay = () => {
             <div className="howtoplay-container">
                 <h1>Como Jogar</h1>
 
+                <div className="howtoplay-grid-container">
+
+                    <div className="howtoplay-box-1">
+
+                        <p className="howtoplay-box-text" >Como usar o teclado.</p>
+
+                    </div>
+
+                    <div className="howtoplay-box-1">
+
+                        <p className="howtoplay-box-text" >Como usar o mouse.</p>
+                    
+                    </div>
+
+                </div>
 
             </div>
 
             <div className="howtoplay-back-menu">
+                
                 <button className="howtoplay-btn-back" onClick={handleBackClick}>
                     <FontAwesomeIcon icon={faArrowLeft} />
                 </button>
+
             </div>
 
 

@@ -73,3 +73,33 @@ html, body {
     box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3); /* Sombra interna para profundidade */
     cursor: pointer; /* Define o cursor como pointer ao passar sobre o botão */
 }
+
+.howtoplay-grid-container {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+    gap: 50px; /* Espaçamento entre as divs */
+}
+
+.howtoplay-box-1 {
+    display: flex;
+    flex-direction: column; /* Para alinhar texto e botão em coluna */
+    justify-content: center;
+    align-items: center; /* Centraliza os itens dentro da div */
+    background: transparent; /* Cor de fundo para exemplo */
+    padding: 20px;
+    border-radius: 10px; /* Arredonda os cantos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9); /* Sombra leve */
+}
+
+.howtoplay-box-text {
+    font-family: 'Bungee', cursive; /* Define a fonte usada no título */
+    color: #ffc000; /* Cor do texto */
+    font-size: 25px; /* Tamanho da fonte */
+    font-weight: 400; /* Peso da fonte */
+    text-shadow: 0 1px 3px #000; /* Sombra no texto para destaque */
+    text-align: center; /* Centraliza o texto dentro da caixa */
+    padding: 2px 0; /* Espaçamento interno acima e abaixo do texto */
+    margin-top: -30px; /* Margem negativa para ajustar a posição vertical da caixa */
+    margin: 10px 0;
+  }
