@@ -2,51 +2,53 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import clickSound from '../../../../assets/sounds/click.mp3';
 import successSound from '../../../../assets/sounds/success.mp3';
-
 import errorSound from '../../../../assets/sounds/click.mp3'; // Som para escolhas erradas
-
 import starImage from '../../../../assets/stars/star.png';
 import starGrayImage from '../../../../assets/stars/star-gray.png';
 import backgroundImage from '../../../../assets/background_levels/ThirdModeOne_Two.png';
 import './OneLevel.css';
 
 const OneLevel = () => {
-    const navigate = useNavigate();
-    const [timeRemaining, setTimeRemaining] = useState(480);
-    const [gameStatus, setGameStatus] = useState('playing');
-    const [isPaused, setIsPaused] = useState(false);
-    const [stars, setStars] = useState(0);
-    const [hintsUsed, setHintsUsed] = useState(0);
-    const MAX_HINTS = 6;
-    const [highlightShape, setHighlightShape] = useState(false); // Controla o destaque da forma correta
+    const navigate = useNavigate(); // Importa o hook useNavigate do React Router para permitir a navegação entre páginas
+    const [timeRemaining, setTimeRemaining] = useState(480); // Estado que controla o tempo restante do nível, inicializado em 480 segundos (8 minutos)
+    const [gameStatus, setGameStatus] = useState('playing'); // Estado que controla o status do jogo, iniciado como 'playing' (jogando)
+    const [isPaused, setIsPaused] = useState(false); // Estado que indica se o jogo está pausado, iniciado como false
+    const [stars, setStars] = useState(0); // Estado que armazena a quantidade de estrelas conquistadas
+    const [hintsUsed, setHintsUsed] = useState(0); // Estado que registra o número de dicas usadas
+    const MAX_HINTS = 6; // Define o limite máximo de dicas que podem ser usadas
+    const [highlightShape, setHighlightShape] = useState(false); // Estado que controla o destaque da forma correta durante a utilização de dicas
+    const [showHintLimitMessage, setShowHintLimitMessage] = useState(false); // Estado que controla a exibição da mensagem de limite de dicas atingido
+    const [leftShapes, setLeftShapes] = useState([]); // Estado que armazena as formas exibidas à esquerda
+    const [rightShapes, setRightShapes] = useState([]); // Estado que armazena as formas exibidas à direita
+    const [selectedShape, setSelectedShape] = useState(null); // Estado que armazena a forma atualmente selecionada pelo jogador
+    const [correctShape, setCorrectShape] = useState('retangulo'); // Estado que armazena a forma correta para completar a imagem, inicializado como 'retangulo'
+    const [correctShapes, setCorrectShapes] = useState([]); // Agora são 4 formas corretas
+    const [selectedCorrectShapes, setSelectedCorrectShapes] = useState([]); // Armazena as formas corretas já selecionadas pelo jogador
 
-    const [showHintLimitMessage, setShowHintLimitMessage] = useState(false);
+    // Lista de formas disponíveis que podem ser usadas no jogo
+    const shapes = ['quadrado', 'elipse', 'circulo', 'retangulo', 'losango', 'paralelogramo', 'pentagono-2', 
+                    'retangulo-2'];
 
-    // Estado para acompanhar as formas selecionadas e a correta
-    const [selectedShape, setSelectedShape] = useState(null);
-    const [correctShape, setCorrectShape] = useState('quadrado'); // A forma correta para completar a imagem
+    // useEffect que é executado ao montar o componente para escolher a forma correta e embaralhar as formas
+    useEffect(() => {
+        // Escolhe 4 formas corretas aleatoriamente
+        const randomCorrectShapes = [];
+        while (randomCorrectShapes.length < 4) {
+            const shape = shapes[Math.floor(Math.random() * shapes.length)];
+            if (!randomCorrectShapes.includes(shape)) {
+                randomCorrectShapes.push(shape);  // Garante que as formas sejam diferentes
+            }
+        }
+        setCorrectShapes(randomCorrectShapes);
+    
+        const shuffledLeftShapes = shuffleShapes(shapes.slice());
+        const shuffledRightShapes = shuffleShapes(shapes.slice());
+        
+        setLeftShapes(shuffledLeftShapes.slice(0, 8)); // Formas para a esquerda
+        setRightShapes(shuffledRightShapes.slice(0, 8)); // Formas para a direita
+    }, []);
 
-    const shapes = ['quadrado', 'triangulo', 'losango', 'circulo', 'retangulo', 'pentagono', 
-                    'hexagono', 'trapezio', 'paralelogramo', 'estrela'];
-
-    const getTotalStars = () => {
-        const stars = sessionStorage.getItem('totalStars');
-        return stars ? parseInt(stars, 10) : 0;
-    };
-
-    const addStars = (stars) => {
-        const currentStars = getTotalStars();
-        const newTotal = currentStars + stars;
-        sessionStorage.setItem('totalStars', newTotal);
-    };
-
-    const handleFinishLevel = (earnedStars) => {
-        setStars(earnedStars);  // Atualizar o estado das estrelas
-        addStars(earnedStars);  // Salvar o total de estrelas no sessionStorage
-    };
-
-    // Controla o temporizador do jogo
-
+    // useEffect que controla o temporizador do jogo
     useEffect(() => {
         if (gameStatus === 'playing' && timeRemaining > 0 && !isPaused) {
             const timer = setInterval(() => {
@@ -58,11 +60,83 @@ const OneLevel = () => {
         }
     }, [timeRemaining, gameStatus, isPaused]);
 
+    // Altere para renderizar 4 formas na imagem incompleta, cada uma em uma posição diferente
+    const renderMissingShapes = () => {
+        const positions = [
+            { top: '10%', left: '10%' },
+            { top: '10%', right: '10%' },
+            { bottom: '10%', left: '10%' },
+            { bottom: '10%', right: '10%' }
+        ];  // Posições fixas para garantir que não se sobreponham
+
+        return correctShapes.map((shape, index) => (
+            <div key={index} className="missing-shape-1" style={{ position: 'absolute', ...positions[index] }}>
+                <div style={{ width: '250%', height: '250%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    {renderShape(shape, true)} {/* Renderiza a borda da forma correta */}
+                </div>
+            </div>
+        ));
+    };
+
+    // Função que embaralha um array de formas
+    const shuffleShapes = (array) => {
+        return array.sort(() => Math.random() - 0.5);
+    };
+
+    // Função que retorna o total de estrelas armazenadas no sessionStorage
+    const getTotalStars = () => {
+        const stars = sessionStorage.getItem('totalStars');
+        return stars ? parseInt(stars, 10) : 0;
+    };
+
+    // Função que adiciona estrelas ao total armazenado no sessionStorage
+    const addStars = (stars) => {
+        const currentStars = getTotalStars();
+        const newTotal = currentStars + stars;
+        sessionStorage.setItem('totalStars', newTotal);
+    };
+
+    // Função chamada quando o nível é finalizado, atualiza as estrelas e as salva
+    const handleFinishLevel = (earnedStars) => {
+        setStars(earnedStars);  // Atualizar o estado das estrelas
+        addStars(earnedStars);  // Salvar o total de estrelas no sessionStorage
+    };
+
+    // Função que renderiza uma forma com base no seu tipo e estilo
+    const renderShape = (shape, isOutline = false) => {
+        const shapeStyle = isOutline
+            ? { backgroundColor: 'white', border: '4px dashed #ff0000' }
+            : { backgroundColor: shape.color };  // Forma preenchida para o grid
+        
+        switch (shape) {
+            case 'quadrado':
+                return <div className="shape-3-quadrado" style={shapeStyle}></div>;      // Funciona
+            case 'losango':
+                return <div className="shape-3-losango" style={shapeStyle}></div>;       // Funciona
+            case 'circulo':
+                return <div className="shape-3-circulo" style={shapeStyle}></div>;       // Funciona
+            case 'retangulo':
+                return <div className="shape-3-retangulo" style={shapeStyle}></div>;     // Funciona
+            case 'paralelogramo':
+                return <div className="shape-3-paralelogramo" style={shapeStyle}></div>; // Funciona
+            case 'elipse':
+                return <div className="shape-3-elipse" style={shapeStyle}></div>;        // Funciona
+            case 'pentagono-2':
+                return <div className="shape-3-pentagono-2" style={shapeStyle}></div>;   // Funciona
+            case 'retangulo-2':
+                return <div className="shape-3-retangulo-2" style={shapeStyle}></div>;   // Funciona
+            default:
+                return null;
+        }
+    };    
+
+    // Função que toca um som a partir de um arquivo de áudio
     const playSound = (soundFile) => {
         const audio = new Audio(soundFile);
         audio.play();
     };
 
+    // Função que calcula a quantidade de estrelas que o jogador ganhará
     const calculateStars = (timeRemaining, totalTime, hintsUsed) => {
         let calculatedStars = 1;
         const percentageTimeLeft = (timeRemaining / totalTime) * 100;
@@ -77,57 +151,79 @@ const OneLevel = () => {
         return calculatedStars;
     };
 
-    const restartLevel = () => {
+    // Função para reiniciar o nível
+    const restartLevel = () => { 
         setTimeRemaining(480);
         setGameStatus('playing');
         setIsPaused(false);
         setSelectedShape(null);
         setStars(0);
         setHintsUsed(0);
-    };
+    
+        // Escolhe uma nova forma correta aleatoriamente
+        const randomCorrectShape = shapes[Math.floor(Math.random() * shapes.length)];
+        setCorrectShape(randomCorrectShape);
+    
+        // Embaralha as formas ao reiniciar
+        const shuffledLeftShapes = shuffleShapes(shapes.slice()).slice(0, 8);
+        const shuffledRightShapes = shuffleShapes(shapes.slice()).slice(0, 8);
+        
+        setLeftShapes(shuffledLeftShapes);
+        setRightShapes(shuffledRightShapes);
+    };      
 
+    // Função que navega para o menu principal
     const goToMenu = () => {
         playSound(clickSound);
         navigate("/third-mode");
     };
 
+    // Função que navega para o próximo nível
     const goToNextLevel = () => {
         playSound(clickSound);
         navigate('/third-mode-level/2');
     };
 
+    // Função que formata o tempo em minutos e segundos
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60).toString().padStart(2, '0');
         const seconds = (time % 60).toString().padStart(2, '0');
         return `${minutes}:${seconds}`;
     };
 
+    // Função chamada para pausar o jogo
     const handlePause = () => {
         playSound(clickSound);
         setIsPaused(true);
     };
 
+    // Função chamada para continuar o jogo após a pausa
     const handleContinue = () => {
         playSound(clickSound);
         setIsPaused(false);
     };
 
-    // Função para verificar a escolha da forma correta
+    // Função chamada ao selecionar uma forma
     const handleShapeSelection = (shape) => {
         setSelectedShape(shape);
-        if (shape === correctShape) {
-            playSound(successSound);
-            setGameStatus('won'); // Se a escolha estiver correta, o jogador vence
-            
-            // Calcular as estrelas e adicionar ao total
-            const earnedStars = calculateStars(timeRemaining, 480, hintsUsed);
-            handleFinishLevel(earnedStars);
+        if (correctShapes.includes(shape)) {
+            if (!selectedCorrectShapes.includes(shape)) {
+                playSound(successSound);
+                setSelectedCorrectShapes([...selectedCorrectShapes, shape]);
+    
+                // Se o jogador selecionar todas as formas corretas, ele vence
+                if (selectedCorrectShapes.length + 1 === correctShapes.length) {
+                    setGameStatus('won');  // Jogador vence ao encontrar todas as formas
+                    const earnedStars = calculateStars(timeRemaining, 480, hintsUsed);
+                    handleFinishLevel(earnedStars);
+                }
+            }
         } else {
             playSound(errorSound);
-            // Pode adicionar lógica para penalizar o jogador ou exibir uma mensagem de erro
         }
     };
 
+    // Função que renderiza o feedback das estrelas conquistadas
     const renderStars = () => {
         const totalStars = 3;
         const starsArray = [];
@@ -146,7 +242,7 @@ const OneLevel = () => {
         return <div className="star-feedback">{starsArray}</div>;
     };
 
-    // Função para exibir uma dica
+    // Função chamada ao utilizar uma dica
     const handleHint = () => {
         playSound(clickSound);
 
@@ -171,35 +267,36 @@ const OneLevel = () => {
             <div className="game-area-3">
                 {/* Grade onde o jogador escolhe as formas geométricas */}
                 <div className='item-grid-three'>
+
                     {/* Formas à esquerda */}
-                    <div className="shapes-selection left">
-                        {shapes.slice(0, 4).map((shape, index) => (
-                            <div className={`shape ${shape} ${highlightShape && shape === correctShape ? 'highlight-3' : ''}`}
-                            onClick={() => handleShapeSelection(shape)}>
-                        </div>
+                    <div className="shapes-selection-1 left">
+                        {leftShapes.slice(0, 8).map((shape, index) => (
+                            <div key={index} className={`shape ${highlightShape && shape === correctShape ? 'highlight-3' : ''}`}
+                                onClick={() => handleShapeSelection(shape)}>
+                                {renderShape(shape)}
+                            </div>
                         ))}
                     </div>
 
                     {/* Imagem incompleta com o espaço faltando */}
-                    <div className="incomplete-image">
+                    <div className="incomplete-image-1">
                         <div className="square">
-                            {/* O triângulo faltando */}
-                            <div className="missing-shape">
-                                {/* Espaço para a forma faltante */}
-                            </div>
+                            {/* Chama a função para renderizar as 4 formas na imagem incompleta */}
+                            {renderMissingShapes()}
                         </div>
                     </div>
 
                     {/* Formas à direita */}
-                    <div className="shapes-selection right">
-                        {shapes.slice(4, 8).map((shape, index) => (
-                            <div className={`shape ${shape} ${highlightShape && shape === correctShape ? 'highlight-3' : ''}`}
+                    <div className="shapes-selection-1 right">
+                        {rightShapes.slice(0, 8).map((shape, index) => (
+                            <div key={index} className={`shape ${highlightShape && shape === correctShape ? 'highlight-3' : ''}`}
                                 onClick={() => handleShapeSelection(shape)}>
+                                {renderShape(shape)}
                             </div>
                         ))}
                     </div>
-                </div>
 
+                </div>
 
                 <div className="item-list">
                     <div className="status-one">
@@ -207,7 +304,6 @@ const OneLevel = () => {
                     </div>
                 </div>
             </div>
-
 
             {showHintLimitMessage && (
                 <div className="hint-limit-message-overlay">

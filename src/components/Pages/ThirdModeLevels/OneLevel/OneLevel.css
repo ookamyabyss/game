@@ -53,7 +53,6 @@
     margin-bottom: 20px; /* Espaçamento abaixo do título */
 }
 
-
 .item {
     position: relative; /* Permite posicionamento absoluto dos filhos */
     width: 100px; /* Largura do item */
@@ -468,10 +467,10 @@
 }
 
 
-
-
-
-
+.missing-shape-large {
+    width: 200px;  /* Aumente conforme necessário */
+    height: 200px; /* Aumente conforme necessário */
+}
 
 
 .item-grid-three {
@@ -479,7 +478,6 @@
     justify-content: center;
     grid-template-columns: repeat(10, 100px);
     grid-auto-rows: 100px;
-    gap: 8px;
     background-color: #f5f5f5;
     padding: 10px;
     border-radius: 10px;
@@ -487,30 +485,37 @@
     max-width: calc(100px * 10 + 8px * 9 + 20px);
     box-sizing: border-box;
     margin-right: 20px;
-    gap: 50px; /* Espaço entre a imagem incompleta e as formas */
+    gap: 10px; /* Espaço entre a imagem incompleta e as formas */
     justify-items: center; /* Centraliza horizontalmente os itens */
     align-items: center; /* Centraliza verticalmente os itens */
 }
 
-.incomplete-image {
+.incomplete-image-1 {
     position: relative;
-    width: 300px;
-    height: 300px;
-    background-color: #fff; /* Cor do quadrado */
+    width: 400px;
+    height: 400px;
+    background-color: #ffb000; /* Cor do quadrado */
     border: 2px solid #000;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 8px solid white;
+    box-shadow: 
+        inset 0px 0px 7px 4px rgba(0, 0, 0, 0.4), /* Sombra interna para efeito de profundidade */
+        0px 4px 15px rgba(0, 0, 0, 0.2); /* Sombra externa para efeito de profundidade */
+    border-radius: 0px;
+    overflow: hidden; /* Garante que a forma não ultrapasse os limites do container */
 }
 
-.missing-shape {
-    position: absolute;
-    width: 100px;
-    height: 100px;
+.missing-shape-1 {
+    width: 100px;  /* Ajuste o tamanho da forma */
+    height: 100px; /* Ajuste o tamanho da forma */
     background-color: transparent; /* Espaço para a forma faltante */
-    border: 2px dashed #ff0000; /* Para destacar a área faltante */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Mantém a forma centralizada dentro do container */
 }
-
 
 .incomplete-image {
     position: relative;
@@ -523,20 +528,20 @@
     align-items: center;
 }
 
-.shapes-selection {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Espaço entre as formas */
+.shapes-selection-1 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas */
+    gap: 10px; /* Espaço entre as formas */
 }
 
 
 /* Definir os estilos para as formas à esquerda e à direita */
-.shapes-selection.left {
-    margin-right: 50px;
+.shapes-selection-1.left {
+    margin-right: 20px;
 }
 
-.shapes-selection.right {
-    margin-left: 50px;
+.shapes-selection-1.right {
+    margin-left: 20px;
 }
 
 /* Área do jogo */
@@ -544,7 +549,7 @@
     display: flex; /* Alinha os itens em uma linha flexível */
     justify-content: center; /* Centraliza horizontalmente */
     align-items: flex-start; /* Alinha os itens no topo */
-    gap: 20px; /* Espaço entre os itens */
+    gap: 10px; /* Espaço entre os itens */
     width: 100%; /* Largura total */
     max-width: 100%; /* Largura máxima */
     overflow-x: auto; /* Adiciona rolagem horizontal se necessário */
@@ -556,98 +561,102 @@
     border-radius: 8px;       /* Deixa as bordas suavizadas */
 }
 
+.selection-image-container {
+    position: relative; /* Necessário para posicionar o balão de chat relativo à imagem */
+    width: 100px; /* Define a largura do contêiner da imagem */
+    height: 100px; /* Define a altura do contêiner da imagem */
+    background-color: white; /* Cor de fundo do contêiner */
+    border: 8px solid transparent; /* Borda padrão transparente */
+    box-shadow: 
+        inset 0px 0px 7px 4px rgba(0, 0, 0, 0.4), /* Sombra interna para efeito de profundidade */
+        0px 4px 15px rgba(0, 0, 0, 0.2); /* Sombra externa para efeito de profundidade */
+    display: flex; /* Usa flexbox para layout interno */
+    justify-content: center; /* Centraliza a imagem horizontalmente dentro do contêiner */
+    align-items: center; /* Centraliza a imagem verticalmente dentro do contêiner */
+    margin: 10px; /* Margem ao redor do contêiner da imagem */
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Transição suave para transformações e sombras */
+    box-sizing: border-box; /* Inclui bordas e padding nas dimensões totais do contêiner */
+}
 
 /* FORMAS GEOMETRICAS */
 
-.shape {
-    width: 100px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0f0f0;
-    cursor: pointer;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+/* Estilos para as formas geométricas */
+.shape-3-quadrado { /* FUNCIONA */
+    width: 40px;
+    height: 40px;
+    background-color: lawngreen;
 }
 
-.shape::before {
-    content: ''; /* Remove o nome da forma que estava aparecendo */
+.shape-3-elipse { /* FUNCIONA */
+    width: 60px;
+    height: 30px;
+    background-color: cyan;
+    border-radius: 50%;
+}
+
+.shape-3-circulo { /* FUNCIONA */
+    width: 40px;
+    height: 40px;
+    background-color: gold;
+    border-radius: 50%;
+}
+
+.shape-3-retangulo { /* FUNCIONA */
+    width: 40px;
+    height: 30px;
+    background-color: red;
+}
+
+.shape-3-losango { /* FUNCIONA */
+    width: 30px;
+    height: 30px;
+    background-color: darkmagenta;
+    transform: rotate(45deg);
+}
+
+.shape-3-paralelogramo { /* FUNCIONA */
+    width: 50px;
+    height: 30px;
+    background-color: pink;
+    transform: skew(20deg);
+}
+
+.shape-3-pentagono-2 { /* FUNCIONA */
+    position: relative;
+    width: 54px;
+    height: 31px;
+    background-color: orangered;
+    transform: rotate(54deg) skewX(-10deg);
+}
+
+.shape-3-retangulo-2 { /* FUNCIONA */
+    width: 60px;
+    height: 20px;
+    background-color: gray;
+}
+
+
+
+/* quadrado para forma geometrica dentro */
+.shape {
+    position: relative; /* Necessário para posicionar o balão de chat relativo à imagem */
+    width: 100px; /* Define a largura do contêiner da imagem */
+    height: 100px; /* Define a altura do contêiner da imagem */
+    background-color: white; /* Cor de fundo do contêiner */
+    border: 8px solid transparent; /* Borda padrão transparente */
+    box-shadow: 
+        inset 0px 0px 7px 4px rgba(0, 0, 0, 0.4), /* Sombra interna para efeito de profundidade */
+        0px 4px 15px rgba(0, 0, 0, 0.2); /* Sombra externa para efeito de profundidade */
+    display: flex; /* Usa flexbox para layout interno */
+    justify-content: center; /* Centraliza a imagem horizontalmente dentro do contêiner */
+    align-items: center; /* Centraliza a imagem verticalmente dentro do contêiner */
+    margin: 10px; /* Margem ao redor do contêiner da imagem */
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Transição suave para transformações e sombras */
+    box-sizing: border-box; /* Inclui bordas e padding nas dimensões totais do contêiner */
+    border-radius: 0px;
 }
 
 .shape:hover {
     transform: scale(1.1);
 }
-
-
-/* Círculo */
-
-.shape.circulo {
-    background-color: #4caf50;
-    border-radius: 50%;
-}
-
-/* Retangulo */
-
-.shape.retangulo {
-    background-color: #ff9800;
-    width: 200px;
-    height: 100px;
-}
-
-/* Pentágono */
-
-.shape.pentagono {
-    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-    background-color: #673ab7;
-}
-
-/* Hexagono */
-
-.shape.hexagono {
-    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-    background-color: #009688;
-}
-
-/* Trapezio */
-
-.shape.trapezio {
-    clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
-    background-color: #e91e63;
-}
-
-/* Paralelogramo */
-
-.shape.paralelogramo {
-    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
-    background-color: #ffeb3b;
-}
-
-/* Estrela */
-
-.shape.estrela {
-    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-    background-color: #3f51b5;
-}
-
-/* Triangulo */
-
-.shape.triangulo {
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    background-color: #ff5722;
-}
-
-/* Quadrado */
-
-.shape.quadrado {
-    background-color: #ffb000;
-}
-
-/* Losango */
-
-.shape.losango {
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    background-color: #2196f3;
-} 
 
