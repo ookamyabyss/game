@@ -13,7 +13,9 @@ const ThreeLevel = () => {
     'FANTASIA', 'CACHORRO', 'ABACATES', 'FRUTINHA', 'SARDINHA', 'CAMPANHA', 'DISPONHA', 'AMISTOSO', 
     'ARTEFATO', 'MONTANHA', 'ACIDENTE', 'TRADUZIR', 'PENDENTE', 'PADRINHO', 'RELOGIOS', 'RESPEITO',
     'OBJETIVO', 'OTIMISTA', 'IMINENTE', 'INFERIOR', 'LIMITADA', 'LEALDADE', 'MATUTINO', 'ELEGANTE', 
-    'ESCASSEZ', 'ENCANTOS', 'COMPOSTO', 'OFICINAS', 'CAPRICHO', 'CANTINHO', 'PADRINHO'];
+    'ESCASSEZ', 'ENCANTOS', 'COMPOSTO', 'OFICINAS', 'CAPRICHO', 'CANTINHO', 'PADRINHO', 'CADERNOS',
+    'PARAFUSO', 'LANCHERA', 'TORNEIRA', 'CONDUTOR', 'ESPECIAL', 'PROJETOS', 'DERIVADO', 'ESPINHOS',
+    'INTERIOR', 'SURPRESA', 'CONSERTO', 'PALAVRAS', 'ROTEIROS', 'RECEITAS', 'MAQUINAS', 'TECLADOS' ];
   
   const [palavras, setPalavras] = useState([]); // Corrigido: estado para as palavras selecionadas
   const [indicePalavraAtual, setIndicePalavraAtual] = useState(0);

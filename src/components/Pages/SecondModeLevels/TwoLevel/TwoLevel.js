@@ -12,8 +12,10 @@ const TwoLevel = () => {
   const todasPalavras = [
     'BANANA', 'AMIGOS', 'GAROTO', 'FUTURO', 'ESCOLA', 'LIVROS', 'TREMES', 'JANELA', 'CARROS', 'PRATOS',
     'CASACO', 'SAPATO', 'OVELHA', 'CACHOS', 'OUTROS', 'PASSOS', 'CAMISA', 'MARCAS', 'VENTOS', 'BONECO',
-    'LUCROS', 'BOVINO', 'FLORES', 'RUIDOS', 'CAMPOS', 'MANTOS', 'CANTOS', 'MESADA', 'QUADRO', 'BARCOS', 'LIMPOS'
-  ];
+    'LUCROS', 'BOVINO', 'FLORES', 'RUIDOS', 'CAMPOS', 'MANTOS', 'CANTOS', 'MESADA', 'QUADRO', 'BARCOS', 
+    'LIMPOS', 'BATATA', 'TORRES', 'BOLHAS', 'JARDIM', 'PESSOA', 'ANIMAL', 'PONTOS', 'PESADO', 'CABRAS', 
+    'TELHAS', 'GARFOS', 'QUEIJO', 'PAREDE', 'TORRES', 'FRUTOS', 'COELHO', 'TAPETE', 'PEDRAS', 'SALADA',
+    'BOTINA', 'MANGAS', 'VINHOS', 'TINTAS', 'CORDAS', 'GRANJA', 'CANETA', 'BOLHAS', 'CHAVES', 'QUENTE'];
   
   const [palavras, setPalavras] = useState([]); // Corrigido: estado para as palavras selecionadas
   const [indicePalavraAtual, setIndicePalavraAtual] = useState(0);
