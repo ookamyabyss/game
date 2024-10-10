@@ -24,10 +24,11 @@ const OneLevel = () => {
     const [correctShape, setCorrectShape] = useState('retangulo'); // Estado que armazena a forma correta para completar a imagem, inicializado como 'retangulo'
     const [correctShapes, setCorrectShapes] = useState([]); // Agora são 4 formas corretas
     const [selectedCorrectShapes, setSelectedCorrectShapes] = useState([]); // Armazena as formas corretas já selecionadas pelo jogador
+    const [selectedIncorrectShapes, setSelectedIncorrectShapes] = useState([]); // Estado para armazenar formas incorretas
 
     // Lista de formas disponíveis que podem ser usadas no jogo
     const shapes = ['quadrado', 'elipse', 'circulo', 'retangulo', 'losango', 'paralelogramo', 'pentagono-2', 
-                    'retangulo-2'];
+                    'retangulo-2', 'oval', 'paralelogramo-simples'];
 
     // useEffect que é executado ao montar o componente para escolher a forma correta e embaralhar as formas
     useEffect(() => {
@@ -125,10 +126,16 @@ const OneLevel = () => {
                 return <div className="shape-3-pentagono-2" style={shapeStyle}></div>;   // Funciona
             case 'retangulo-2':
                 return <div className="shape-3-retangulo-2" style={shapeStyle}></div>;   // Funciona
+            case 'oval':
+                return <div className="shape-3-oval" style={shapeStyle}></div>;   // Funciona
+            case 'paralelogramo-simples':
+                return <div className="shape-3-paralelogramo-simples" style={shapeStyle}></div>;   // Funcion
             default:
                 return null;
         }
     };    
+
+    
 
     // Função que toca um som a partir de um arquivo de áudio
     const playSound = (soundFile) => {
@@ -159,18 +166,26 @@ const OneLevel = () => {
         setSelectedShape(null);
         setStars(0);
         setHintsUsed(0);
-    
-        // Escolhe uma nova forma correta aleatoriamente
-        const randomCorrectShape = shapes[Math.floor(Math.random() * shapes.length)];
-        setCorrectShape(randomCorrectShape);
-    
+        setSelectedCorrectShapes([]);  // Reseta as formas corretas selecionadas
+        setSelectedIncorrectShapes([]); // Reseta as formas incorretas selecionadas
+
+        // Escolhe novas 4 formas corretas aleatoriamente
+        const randomCorrectShapes = [];
+        while (randomCorrectShapes.length < 4) {
+            const shape = shapes[Math.floor(Math.random() * shapes.length)];
+            if (!randomCorrectShapes.includes(shape)) {
+                randomCorrectShapes.push(shape);  // Garante que as formas corretas sejam diferentes
+            }
+        }
+        setCorrectShapes(randomCorrectShapes);  // Atualiza as formas corretas
+        
         // Embaralha as formas ao reiniciar
         const shuffledLeftShapes = shuffleShapes(shapes.slice()).slice(0, 8);
         const shuffledRightShapes = shuffleShapes(shapes.slice()).slice(0, 8);
-        
+
         setLeftShapes(shuffledLeftShapes);
         setRightShapes(shuffledRightShapes);
-    };      
+    };
 
     // Função que navega para o menu principal
     const goToMenu = () => {
@@ -210,7 +225,7 @@ const OneLevel = () => {
             if (!selectedCorrectShapes.includes(shape)) {
                 playSound(successSound);
                 setSelectedCorrectShapes([...selectedCorrectShapes, shape]);
-    
+
                 // Se o jogador selecionar todas as formas corretas, ele vence
                 if (selectedCorrectShapes.length + 1 === correctShapes.length) {
                     setGameStatus('won');  // Jogador vence ao encontrar todas as formas
@@ -220,6 +235,9 @@ const OneLevel = () => {
             }
         } else {
             playSound(errorSound);
+            if (!selectedIncorrectShapes.includes(shape)) {
+                setSelectedIncorrectShapes([...selectedIncorrectShapes, shape]); // Adiciona a forma incorreta
+            }
         }
     };
 
@@ -271,8 +289,13 @@ const OneLevel = () => {
                     {/* Formas à esquerda */}
                     <div className="shapes-selection-1 left">
                         {leftShapes.slice(0, 8).map((shape, index) => (
-                            <div key={index} className={`shape ${highlightShape && shape === correctShape ? 'highlight-3' : ''}`}
-                                onClick={() => handleShapeSelection(shape)}>
+                            <div
+                                key={index}
+                                className={`shape 
+                                    ${selectedCorrectShapes.includes(shape) ? 'correct-border' : ''} 
+                                    ${selectedIncorrectShapes.includes(shape) ? 'incorrect-border' : ''}`} 
+                                onClick={() => handleShapeSelection(shape)}
+                            >
                                 {renderShape(shape)}
                             </div>
                         ))}
@@ -289,8 +312,13 @@ const OneLevel = () => {
                     {/* Formas à direita */}
                     <div className="shapes-selection-1 right">
                         {rightShapes.slice(0, 8).map((shape, index) => (
-                            <div key={index} className={`shape ${highlightShape && shape === correctShape ? 'highlight-3' : ''}`}
-                                onClick={() => handleShapeSelection(shape)}>
+                            <div
+                                key={index}
+                                className={`shape 
+                                    ${selectedCorrectShapes.includes(shape) ? 'correct-border' : ''} 
+                                    ${selectedIncorrectShapes.includes(shape) ? 'incorrect-border' : ''}`} 
+                                onClick={() => handleShapeSelection(shape)}
+                            >
                                 {renderShape(shape)}
                             </div>
                         ))}
